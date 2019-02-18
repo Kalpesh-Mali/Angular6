@@ -1,0 +1,40 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import {MatStepperModule} from '@angular/material/stepper'; 
+import {MatCardModule} from '@angular/material/card'; 
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatInputModule} from '@angular/material/input'; 
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+import {MatIconModule} from '@angular/material'; 
+import { HttpClientModule } from '@angular/common/http';
+
+@NgModule({
+  declarations: [],
+  imports: [
+    CommonModule,
+    MatStepperModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FlexLayoutModule,
+    ShowHidePasswordModule,
+    MatIconModule,
+    HttpClientModule
+  ],
+  exports: [
+    MatStepperModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FlexLayoutModule,
+    ShowHidePasswordModule,
+    MatIconModule,
+    HttpClientModule
+  ],
+})
+export class AppMaterialModule { }

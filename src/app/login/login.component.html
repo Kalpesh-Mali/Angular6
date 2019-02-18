@@ -1,0 +1,38 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-card fxFlex="30%;" fxFlex.xs="80%" fxFlex.sm="50%" fxFlex.md="40%">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+      <div align="center">
+        <img src="./assets/img/keep.jpg" height=20% width=20%>
+      </div><br>
+      <div align="center">
+        <label><b>Sign In To Fundoo Note</b></label>
+      </div>
+      <div class="form-group" class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Enter your email" type="emailId" formControlName="emailId" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.emailId.errors }" />
+          <mat-error *ngIf="submitted && f.emailId.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.emailId.errors.required">*emailId is <strong>required</strong></mat-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group" class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+            formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <mat-error *ngIf="f.password.errors.required">*password is <strong>required</strong></mat-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+          <button mat-button color="btn-primary" [disabled]="loading" class="btn btn-primary">Sign In</button>
+        <div>New user?
+          <a [routerLink]="['/register']" class="btn btn-link">Sign Up</a>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>
