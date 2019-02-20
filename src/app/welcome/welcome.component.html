@@ -1,3 +1,73 @@
-<p>
-  You have logged in successfully.
-</p>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-toolbar class="fixed-header" fxFlex="100%;" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="100%">
+    <mat-toolbar-row>
+      <button mat-button [matMenuTriggerFor]="menu" matTooltip="Menu">
+        <mat-icon>list</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>notes</mat-icon>
+          <span>Notes</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>notifications_on</mat-icon>
+          <span>Remainder</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>edit</mat-icon>
+          <span>Edit Labels</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>archive</mat-icon>
+          <span>Archive</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Trash</span>
+        </button>
+      </mat-menu>
+      <span><img src="./assets/img/keep.jpg" style="width:30px;"></span>
+      &nbsp;&nbsp;
+      <span>
+        <font size="5" face="arial">keep</font>
+      </span>
+      &nbsp;&nbsp;
+
+
+      <button mat-raised-button matTooltip="Search">
+        <!-- <mat-search-bar></mat-search-bar> -->
+        <input matmatInput ng-model="searchText" placeholder="Search...">
+        <mat-icon>search</mat-icon>
+      </button>
+
+
+
+      <a mat-button routerLink="/welcome" routerLinkActive="active" matTooltip="Refresh">
+        <mat-icon>refresh</mat-icon>
+      </a>
+      <a mat-button routerLink="#" routerLinkActive="active" matTooltip="Lists">
+        <mat-icon>dns</mat-icon>
+      </a>
+      <button mat-button [matMenuTriggerFor]="settings" matTooltip="Settings">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <mat-menu #settings="matMenu">
+        <button mat-menu-item>
+          <span>Settings</span>
+        </button>
+      </mat-menu>
+      <button mat-button [matMenuTriggerFor]="user" matTooltip="User Details">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #user="matMenu">
+        <button mat-menu-item>
+          <mat-icon>logout</mat-icon>
+          <a mat-button routerLink="/login">
+            <span>Logout</span>
+          </a>
+        </button>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+<mat-divider></mat-divider>

@@ -17,8 +17,8 @@ export class LoginComponent {
   hide = true;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,
-    private router: Router,private userService:UserService) {
-    
+    private router: Router, private userService: UserService) {
+
   }
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class LoginComponent {
       password: ['', Validators.required]
     });
   }
-  
+
   get f() { return this.loginForm.controls; }
 
   onSubmit(user) {

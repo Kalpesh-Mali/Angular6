@@ -11,6 +11,16 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 import {MatIconModule} from '@angular/material'; 
 import { HttpClientModule } from '@angular/common/http';
 
+
+import {MatToolbarModule} from '@angular/material/toolbar'; 
+import {MatMenuModule} from '@angular/material/menu'; 
+import {MatButtonModule} from '@angular/material/button'; 
+import { NgMatSearchBarModule } from 'ng-mat-search-bar';
+import {MatDividerModule} from '@angular/material/divider'; 
+import {MatTooltipModule} from '@angular/material/tooltip'; 
+
+
+
 @NgModule({
   declarations: [],
   imports: [
@@ -23,7 +33,13 @@ import { HttpClientModule } from '@angular/common/http';
     FlexLayoutModule,
     ShowHidePasswordModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatButtonModule,
+    NgMatSearchBarModule,
+    MatDividerModule,
+    MatTooltipModule
   ],
   exports: [
     MatStepperModule,
@@ -34,7 +50,13 @@ import { HttpClientModule } from '@angular/common/http';
     FlexLayoutModule,
     ShowHidePasswordModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatButtonModule,
+    NgMatSearchBarModule,
+    MatDividerModule,
+    MatTooltipModule
   ],
 })
 export class AppMaterialModule { }
