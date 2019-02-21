@@ -18,6 +18,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import {MatDividerModule} from '@angular/material/divider'; 
 import {MatTooltipModule} from '@angular/material/tooltip'; 
+import {MatNativeDateModule, MatSidenavModule, MatListModule} from '@angular/material';
 
 
 
@@ -39,7 +40,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatButtonModule,
     NgMatSearchBarModule,
     MatDividerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatNativeDateModule, 
+    MatSidenavModule, 
+    MatListModule
   ],
   exports: [
     MatStepperModule,
@@ -56,7 +60,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatButtonModule,
     NgMatSearchBarModule,
     MatDividerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatNativeDateModule, 
+    MatSidenavModule, 
+    MatListModule
   ],
 })
 export class AppMaterialModule { }

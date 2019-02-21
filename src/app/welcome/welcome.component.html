@@ -1,62 +1,65 @@
-<div fxLayout="row" fxLayoutAlign="center center">
+<div fxLayout="row" fxLayoutAlign=" center center">
   <mat-toolbar class="fixed-header" fxFlex="100%;" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="100%">
     <mat-toolbar-row>
-      <button mat-button [matMenuTriggerFor]="menu" matTooltip="Menu">
-        <mat-icon>list</mat-icon>
+      <!-- menu  -->
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" matTooltip="Menu">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>notes</mat-icon>
-          <span>Notes</span>
-        </button>
-        <button mat-menu-item disabled>
-          <mat-icon>notifications_on</mat-icon>
-          <span>Remainder</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>edit</mat-icon>
-          <span>Edit Labels</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>archive</mat-icon>
-          <span>Archive</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>delete</mat-icon>
-          <span>Trash</span>
-        </button>
-      </mat-menu>
+      <!-- keep image -->
       <span><img src="./assets/img/keep.jpg" style="width:30px;"></span>
       &nbsp;&nbsp;
+      <!-- keep name -->
       <span>
         <font size="5" face="arial">keep</font>
       </span>
       &nbsp;&nbsp;
 
+      <!-- for search bar -->
+      <div class="slinput" ng-init="">
+        <i class="fa fa-search left-icon"></i>
+        <input type="search" placeholder="Search here" ng-model="searchInputVal" />
+        <i ng-class="{'fa' : true, 'fa-close' : true, 'right-icon' : true, active : (searchInputVal.length > 0)}"
+          ng-click="searchInputVal = ''"></i>
+      </div>
 
-      <button mat-raised-button matTooltip="Search">
-        <!-- <mat-search-bar></mat-search-bar> -->
-        <input matmatInput ng-model="searchText" placeholder="Search...">
-        <mat-icon>search</mat-icon>
-      </button>
-
-
-
-      <a mat-button routerLink="/welcome" routerLinkActive="active" matTooltip="Refresh">
+      <!-- for refreshing page -->
+      <a mat-icon-button routerLink="/welcome" routerLinkActive="active" matTooltip="Refresh">
         <mat-icon>refresh</mat-icon>
       </a>
-      <a mat-button routerLink="#" routerLinkActive="active" matTooltip="Lists">
-        <mat-icon>dns</mat-icon>
+
+      <!-- for list grid -->
+      <a mat-icon-button routerLink="#" routerLinkActive="active" matTooltip="Lists">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'view_module' : 'view_stream'}}</mat-icon>
       </a>
-      <button mat-button [matMenuTriggerFor]="settings" matTooltip="Settings">
+      <!-- for settings -->
+      <button mat-icon-button [matMenuTriggerFor]="settings" matTooltip="Settings" >
         <mat-icon>settings</mat-icon>
       </button>
       <mat-menu #settings="matMenu">
         <button mat-menu-item>
           <span>Settings</span>
         </button>
+        <button mat-menu-item>
+          <span>Send feedback</span>
+        </button>
+        <button mat-menu-item>
+          <span>Help</span>
+        </button>
+        <button mat-menu-item>
+          <span>App downloads</span>
+        </button>
+        <button mat-menu-item>
+          <span>Keyboad Shortcuts</span>
+        </button>
       </mat-menu>
-      <button mat-button [matMenuTriggerFor]="user" matTooltip="User Details">
+      <!-- notfications -->
+      <button mat-icon-button [matMenuTriggerFor]="notifications" matTooltip="notifications">
+        <mat-icon>notifications_on</mat-icon>
+      </button>
+      <mat-menu #notifications="matMenu">
+      </mat-menu>
+      <!-- for user details -->
+      <button mat-icon-button [matMenuTriggerFor]="user" matTooltip="User Details">
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #user="matMenu">
@@ -71,3 +74,48 @@
   </mat-toolbar>
 </div>
 <mat-divider></mat-divider>
+
+<!-- side navigation bar -->
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #drawer mode="side" opened role="navigation">
+    <mat-nav-list>
+      <!-- notes -->
+      <button mat-menu-item>
+        <mat-icon>notes</mat-icon>
+        <span>Notes</span>
+      </button>
+      <!-- remainder -->
+      <button mat-menu-item>
+        <mat-icon>notifications</mat-icon>
+        <span>Remainder</span>
+      </button>
+      <mat-divider></mat-divider><br>
+      <!-- label name -->
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <span>
+        <font size="1" face="arial">LABELS</font>
+      </span>
+      <!-- edit labels -->
+      <button mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Edit Labels</span>
+      </button>
+      <mat-divider></mat-divider>
+      <!-- archive -->
+      <button mat-menu-item>
+        <mat-icon>archive</mat-icon>
+        <span>Archive</span>
+      </button>
+      <!-- delete -->
+      <button mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Trash</span>
+      </button>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

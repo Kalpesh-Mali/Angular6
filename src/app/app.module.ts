@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppMaterialModule } from './app-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotesearchbodyComponent } from './notesearchbody/notesearchbody.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    NotesearchbodyComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

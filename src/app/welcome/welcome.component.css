@@ -1,0 +1,47 @@
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+    height: 100%;
+}
+ 
+mat-sidenav {
+    width: 250px;
+}
+ 
+main {
+    padding: 10px;
+}
+
+.slinput input {
+    padding:5px;
+    width:100%;
+    border:1px solid #ccc;
+    padding-left:31px;
+    padding-right:30px;
+    color:black;
+    font-family: arial,sans-serif;
+    font-size: 16px;
+  }
+  /* Remove IE10's “clear field” X button */
+  .slinput input::-ms-clear {
+      display: none;
+  }
+  .slinput input:focus {
+    border:1px solid #282a2c;
+  }
+  
+  /* left side icon style (search icon) */
+  .slinput .left-icon {
+    position:absolute;
+    left:10px;
+    top:11px;
+  }
+  .slinput .fa {
+    color:#444;
+    font-size: 16px;
+  }
+  .slinput .fa-close {
+    color:#ccc;
+  }
+  
+  .slinput .active {
+    color:#555;
+  }
