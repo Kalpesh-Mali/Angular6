@@ -1,38 +1,39 @@
-<div fxLayout="row" fxLayoutAlign=" center center">
-  <mat-toolbar class="fixed-header" fxFlex="100%;" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="100%">
+<div>
+  <mat-toolbar class="navbar">
     <mat-toolbar-row>
-      <!-- menu  -->
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" matTooltip="Menu">
+      <!-- menu -->
+      <button id="menubuttn" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        matTooltip="Menu">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <!-- keep image -->
-      <span><img src="./assets/img/keep.jpg" style="width:30px;"></span>
-      &nbsp;&nbsp;
-      <!-- keep name -->
-      <span>
-        <font size="5" face="arial">keep</font>
-      </span>
-      &nbsp;&nbsp;
+      <!-- Image -->
+      <p fxHide.xs="true"> <span><img src="./assets/img/keep.jpg" style="width:30px;"></span></p>
 
-      <!-- for search bar -->
-      <div class="slinput" ng-init="">
-        <i class="fa fa-search left-icon"></i>
-        <input type="search" placeholder="Search here" ng-model="searchInputVal" />
-        <i ng-class="{'fa' : true, 'fa-close' : true, 'right-icon' : true, active : (searchInputVal.length > 0)}"
-          ng-click="searchInputVal = ''"></i>
+      <!-- keep -->
+      <p id="text" fxHide.xs="true" fxHide.xs="true">Keep</p>
+
+      <!-- Search -->
+      <div id="searchbox" fxLayout="row" fxLayoutGap="2%">
+        <div fxFlex="0%">
+          <button mat-icon-button id="buttn"><i id="search" class="material-icons">search</i></button>
+        </div>
+        <div fxFlex="100">
+          <input id="input" type="text" placeholder="Search" name="string" (click)="searchtest()" [(ngModel)]="string">
+        </div>
       </div>
 
-      <!-- for refreshing page -->
+      <!-- Refresh -->
       <a mat-icon-button routerLink="/welcome" routerLinkActive="active" matTooltip="Refresh">
         <mat-icon>refresh</mat-icon>
       </a>
 
-      <!-- for list grid -->
+      <!-- List -->
       <a mat-icon-button routerLink="#" routerLinkActive="active" matTooltip="Lists">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'view_module' : 'view_stream'}}</mat-icon>
       </a>
-      <!-- for settings -->
-      <button mat-icon-button [matMenuTriggerFor]="settings" matTooltip="Settings" >
+
+      <!-- Settings -->
+      <button mat-icon-button [matMenuTriggerFor]="settings" matTooltip="Settings">
         <mat-icon>settings</mat-icon>
       </button>
       <mat-menu #settings="matMenu">
@@ -52,70 +53,73 @@
           <span>Keyboad Shortcuts</span>
         </button>
       </mat-menu>
+
       <!-- notfications -->
       <button mat-icon-button [matMenuTriggerFor]="notifications" matTooltip="notifications">
         <mat-icon>notifications_on</mat-icon>
       </button>
       <mat-menu #notifications="matMenu">
       </mat-menu>
-      <!-- for user details -->
-      <button mat-icon-button [matMenuTriggerFor]="user" matTooltip="User Details">
-        <mat-icon>account_circle</mat-icon>
-      </button>
-      <mat-menu #user="matMenu">
-        <button mat-menu-item>
-          <mat-icon>logout</mat-icon>
-          <a mat-button routerLink="/login">
-            <span>Logout</span>
-          </a>
-        </button>
+
+      <!-- User -->
+      <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="menu">
+        <i id="accountcircle" class="material-icons">account_circle</i></button>
+      <mat-menu #menu="matMenu" class="morecard">
+        <button mat-button (click)="logout()">Sign out</button>
       </mat-menu>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
-<mat-divider></mat-divider>
 
 <!-- side navigation bar -->
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #drawer mode="side" opened role="navigation">
-    <mat-nav-list>
-      <!-- notes -->
-      <button mat-menu-item>
-        <mat-icon>notes</mat-icon>
-        <span>Notes</span>
-      </button>
-      <!-- remainder -->
-      <button mat-menu-item>
-        <mat-icon>notifications</mat-icon>
-        <span>Remainder</span>
-      </button>
-      <mat-divider></mat-divider><br>
-      <!-- label name -->
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <span>
-        <font size="1" face="arial">LABELS</font>
-      </span>
-      <!-- edit labels -->
-      <button mat-menu-item>
-        <mat-icon>edit</mat-icon>
-        <span>Edit Labels</span>
-      </button>
-      <mat-divider></mat-divider>
-      <!-- archive -->
-      <button mat-menu-item>
-        <mat-icon>archive</mat-icon>
-        <span>Archive</span>
-      </button>
-      <!-- delete -->
-      <button mat-menu-item>
-        <mat-icon>delete</mat-icon>
-        <span>Trash</span>
-      </button>
+  <mat-sidenav #drawer mode="side" opened role="navigation" id="sidenave">
+    <mat-nav-list id="insidenave">
+      <button mat-stroked-button id="button" (click)="notes()"><img class="image" src="./assets/img/note.svg"
+          id="imgNotes">Notes</button><br>
+      <button mat-stroked-button id="button"><img class="image" src="./assets/img/reminders.svg"
+          id="imgRem">Reminders</button><br>
+      <hr id="line">
+      <div>
+        <span style="margin-left: 10px">
+          <font face="arial">Label</font>
+        </span> <button mat-stroked-button id="editbutton" type="button">Edit</button>
+      </div>
+      <div (updateClick)="refresh($event)">
+        <button mat-stroked-button class="buttonn" (click)="createLabel()">
+          <img class="image" src="./assets/img/label.svg" id="imglab">Createnew label</button>
+        <div *ngFor="let data of labelNameList">
+          <div fxLayout=row fxLayoutGap="10%">
+            <button mat-stroked-button class=labelbutton (click)="notesWithList(data)">
+              <div fxFlex="5%"><i class="material-icons">label</i></div>
+              <div fxFlex="90%" class="txtt">{{data}}</div>
+            </button>
+          </div>
+        </div>
+      </div>
+      <hr id="line">
+      <button mat-stroked-button id="button" (click)="archive()"><img class="image" src="./assets/img/Archive.svg"
+          id="imgArc">Archive</button><br>
+      <button mat-stroked-button id="button" (click)="trashnote()"><img class="image" src="./assets/img/Trash.svg"
+          id="imgtrace">Trash</button><br>
+      <hr id="line">
+      <button mat-stroked-button id="button"><img class="image" src="./assets/img/Settings.svg"
+          id="imgSet">Settings</button><br>
+      <button mat-stroked-button id="button"><img class="image" src="./assets/img/Send_feedback.svg" id="imgfeed">Send
+        feedback
+      </button><br>
+      <button mat-stroked-button id="button"><img class="image" src="./assets/img/help.svg"
+          id="imghelp">Help</button><br>
+      <button mat-stroked-button id="button"><img class="image" src="./assets/img/app_download.svg" id="imgdn">App
+        download
+      </button><br>
+      <button mat-stroked-button id="button"><img class="image" src="./assets/img/keyboard_shortcuts.svg"
+          id="imgkb">Keyboard
+        shortcuts
+      </button><br>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <main>
-      <router-outlet></router-outlet>
-    </main>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
