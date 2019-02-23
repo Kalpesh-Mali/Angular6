@@ -10,7 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 import {MatIconModule} from '@angular/material'; 
 import { HttpClientModule } from '@angular/common/http';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import {MatMenuModule} from '@angular/material/menu'; 
@@ -42,7 +42,8 @@ import {MatNativeDateModule, MatSidenavModule, MatListModule} from '@angular/mat
     MatTooltipModule,
     MatNativeDateModule, 
     MatSidenavModule, 
-    MatListModule
+    MatListModule,
+    MatSnackBarModule
   ],
   exports: [
     MatStepperModule,
@@ -62,7 +63,8 @@ import {MatNativeDateModule, MatSidenavModule, MatListModule} from '@angular/mat
     MatTooltipModule,
     MatNativeDateModule, 
     MatSidenavModule, 
-    MatListModule
+    MatListModule,
+    MatSnackBarModule
   ],
 })
 export class AppMaterialModule { }

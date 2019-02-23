@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../core/service/user.service';
+import { UserService } from 'src/app/core/service/user.service';
+import { HttpService } from 'src/app/core/service/http.service';
+import { environment } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'app-login',
@@ -17,7 +21,8 @@ export class LoginComponent {
   hide = true;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,
-    private router: Router, private userService: UserService) {
+    private router: Router, private userService: UserService,
+    private httpUtil: HttpService,public snackBar:MatSnackBar) {
 
   }
 
@@ -37,7 +42,19 @@ export class LoginComponent {
       return;
     }
     console.log(user);
-    this.userService.login(user);
+    // this.userService.login(user);
+
+    this.httpUtil.postService(environment.base_url + 'login', user).subscribe(response => {
+        console.log("login successful");
+        localStorage.setItem('Authorization', response.headers.get('token'));
+        console.log(response.headers.get('token'));
+        this.router.navigate(['/welcome']);
+    },error=>{
+        this.snackBar.open("error","please enter valid data",{duration:2000})
+      });
   }
+    
+    
+
 
 }

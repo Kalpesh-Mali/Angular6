@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notesearchbody.component.css']
 })
 export class NotesearchbodyComponent implements OnInit {
-
+public showHeader=true;
   constructor() { }
 
   ngOnInit() {

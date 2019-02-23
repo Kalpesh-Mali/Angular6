@@ -16,6 +16,7 @@ export class UserService {
       if (response.status == 200) {
         console.log("login successful");
         localStorage.setItem('Authorization', response.headers.get('token'));
+        console.log(response.headers.get('token'));
         this.router.navigate(['/welcome']);
       }
       else {
