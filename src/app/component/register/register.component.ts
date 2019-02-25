@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/service/user.service';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -15,9 +16,10 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   hide = true;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, 
+    private userService: UserService,private snackBar:MatSnackBar) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.registerForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern("^[a-zA-Z]{3,15}$")]],
       emailId: ['', [Validators.required, Validators.pattern("^[a-z0-9._%-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
@@ -26,7 +28,7 @@ export class RegisterComponent implements OnInit {
     });
   }
   get f() { return this.registerForm.controls; }
-  onSubmit(user) {
+  public onSubmit(user) {
     this.submitted = true;
 
     // stop here if form is invalid
@@ -34,7 +36,12 @@ export class RegisterComponent implements OnInit {
       return;
     }
     console.log(user);
-    this.userService.register(user);
+    this.userService.register(user).subscribe(response => {
+      console.log("registartion successful");
+      this.router.navigate(['/login']);
+    }, error => {
+      this.snackBar.open("error", "cannot register", { duration: 2000 })
+    });
 
   }
 

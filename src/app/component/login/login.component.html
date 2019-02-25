@@ -28,8 +28,9 @@
       <div class="form-group">
         <mat-card-actions>
           <button color="btn-primary" [disabled]="loading" class="btn btn-primary"><b>Sign In</b></button>
+          <div align="center"><a class="btn btn-link" routerLink="/passwordforgot">Forgot password?</a></div>
           <div>New user?
-            <a [routerLink]="['/register']" class="btn btn-link">Sign Up</a>
+            <a routerLink="/register" class="btn btn-link">Sign Up</a>
           </div>
         </mat-card-actions>
       </div>

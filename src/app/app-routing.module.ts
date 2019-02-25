@@ -5,6 +5,8 @@ import { RegisterComponent } from './component/register/register.component';
 import { WelcomeComponent } from './component/welcome/welcome.component';
 import { NotesearchbodyComponent } from './component/notesearchbody/notesearchbody.component';
 import { AuthGuard } from './gaurd/auth.guard';
+import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
+import { PasswordresetComponent } from './component/passwordreset/passwordreset.component';
 
 const routes: Routes = [
   {
@@ -16,20 +18,28 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
+    path: 'passwordforgot', 
+    component: ForgotpasswordComponent
+  },
+  {
     path: 'welcome',
     component: WelcomeComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: '',
-        redirectTo: 'notesearchbody',
-        pathMatch: 'full'
-      },
-      {
         path: 'notesearchbody',
         component: NotesearchbodyComponent
       },
+      {
+        path: '',
+        redirectTo: 'notesearchbody',
+        pathMatch: 'full'
+      }
     ]
+  },
+  {
+    path: 'resetpassword/:id', 
+    component: PasswordresetComponent
   },
   {
     path: '**',

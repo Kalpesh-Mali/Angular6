@@ -10,6 +10,8 @@ import { WelcomeComponent } from './component/welcome/welcome.component';
 import { AppMaterialModule } from './app-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotesearchbodyComponent } from './component/notesearchbody/notesearchbody.component';
+import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
+import { PasswordresetComponent } from './component/passwordreset/passwordreset.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { NotesearchbodyComponent } from './component/notesearchbody/notesearchbo
     LoginComponent,
     RegisterComponent,
     WelcomeComponent,
-    NotesearchbodyComponent
+    NotesearchbodyComponent,
+    ForgotpasswordComponent,
+    PasswordresetComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

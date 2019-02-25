@@ -22,7 +22,7 @@ export class LoginComponent {
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,
     private router: Router, private userService: UserService,
-    private httpUtil: HttpService,public snackBar:MatSnackBar) {
+    private httpUtil: HttpService, private snackBar:MatSnackBar) {
 
   }
 
@@ -42,19 +42,15 @@ export class LoginComponent {
       return;
     }
     console.log(user);
-    // this.userService.login(user);
-
-    this.httpUtil.postService(environment.base_url + 'login', user).subscribe(response => {
-        console.log("login successful");
-        localStorage.setItem('Authorization', response.headers.get('token'));
-        console.log(response.headers.get('token'));
-        this.router.navigate(['/welcome']);
-    },error=>{
-        this.snackBar.open("error","please enter valid data",{duration:2000})
-      });
+    this.userService.login(user).subscribe(response => {
+      console.log("login successful");
+      localStorage.setItem('Authorization', response.headers.get('token'));
+      console.log(localStorage.getItem('Authorization'));
+      console.log(response.headers.get('token'));
+      this.router.navigate(['/welcome']);
+      this.snackBar.open("ok", "Sucess", { duration: 2000 })
+    }, error => {
+      this.snackBar.open("error", "please enter valid data", { duration: 2000 })
+    });
   }
-    
-    
-
-
 }
