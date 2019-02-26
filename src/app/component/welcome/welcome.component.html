@@ -10,7 +10,7 @@
       <p fxHide.xs="true"> <span><img src="./assets/img/keep.jpg" style="width:30px;"></span></p>
 
       <!-- keep -->
-      <p id="text" fxHide.xs="true" fxHide.xs="true">Keep</p>
+      <p id="text" fxHide.xs="true">Keep</p>
 
       <!-- Search -->
       <div id="searchbox" fxLayout="row" fxLayoutGap="2%">
@@ -33,7 +33,7 @@
       </a>
 
       <!-- Settings -->
-      <button mat-icon-button [matMenuTriggerFor]="settings" matTooltip="Settings">
+      <button fxHide.xs="true" mat-icon-button [matMenuTriggerFor]="settings" matTooltip="Settings">
         <mat-icon>settings</mat-icon>
       </button>
       <mat-menu #settings="matMenu">
@@ -55,7 +55,7 @@
       </mat-menu>
 
       <!-- notfications -->
-      <button mat-icon-button [matMenuTriggerFor]="notifications" matTooltip="notifications">
+      <button fxHide.xs="true" mat-icon-button [matMenuTriggerFor]="notifications" matTooltip="notifications">
         <mat-icon>notifications_on</mat-icon>
       </button>
       <mat-menu #notifications="matMenu">
@@ -75,6 +75,11 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #drawer mode="side" opened role="navigation" id="sidenave">
     <mat-nav-list id="insidenave">
+      <button fxHide="true" fxHide.xs="false" mat-icon-button [matMenuTriggerFor]="notifications" matTooltip="notifications">
+        <mat-icon>notifications_on</mat-icon>
+      </button>
+      <mat-menu #notifications="matMenu">
+      </mat-menu>
       <button mat-stroked-button id="button" (click)="notes()"><img class="image" src="./assets/img/note.svg"
           id="imgNotes">Notes</button><br>
       <button mat-stroked-button id="button"><img class="image" src="./assets/img/reminders.svg"
@@ -103,17 +108,17 @@
       <button mat-stroked-button id="button" (click)="trashnote()"><img class="image" src="./assets/img/Trash.svg"
           id="imgtrace">Trash</button><br>
       <hr id="line">
-      <button mat-stroked-button id="button"><img class="image" src="./assets/img/Settings.svg"
+      <button fxHide="true" fxHide.xs="false" mat-stroked-button id="button"><img class="image" src="./assets/img/Settings.svg"
           id="imgSet">Settings</button><br>
-      <button mat-stroked-button id="button"><img class="image" src="./assets/img/Send_feedback.svg" id="imgfeed">Send
+      <button fxHide="true" fxHide.xs="false" mat-stroked-button id="button"><img class="image" src="./assets/img/Send_feedback.svg" id="imgfeed">Send
         feedback
       </button><br>
-      <button mat-stroked-button id="button"><img class="image" src="./assets/img/help.svg"
+      <button fxHide="true" fxHide.xs="false" mat-stroked-button id="button"><img class="image" src="./assets/img/help.svg"
           id="imghelp">Help</button><br>
-      <button mat-stroked-button id="button"><img class="image" src="./assets/img/app_download.svg" id="imgdn">App
+      <button fxHide="true" fxHide.xs="false" mat-stroked-button id="button"><img class="image" src="./assets/img/app_download.svg" id="imgdn">App
         download
       </button><br>
-      <button mat-stroked-button id="button"><img class="image" src="./assets/img/keyboard_shortcuts.svg"
+      <button fxHide="true" fxHide.xs="false" mat-stroked-button id="button"><img class="image" src="./assets/img/keyboard_shortcuts.svg"
           id="imgkb">Keyboard
         shortcuts
       </button><br>

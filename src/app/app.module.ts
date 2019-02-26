@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotesearchbodyComponent } from './component/notesearchbody/notesearchbody.component';
 import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
 import { PasswordresetComponent } from './component/passwordreset/passwordreset.component';
+import { MainNotesComponent } from './component/main-notes/main-notes.component';
 
 
 @NgModule({
@@ -36,7 +37,9 @@ import { PasswordresetComponent } from './component/passwordreset/passwordreset.
     WelcomeComponent,
     NotesearchbodyComponent,
     ForgotpasswordComponent,
-    PasswordresetComponent
+    PasswordresetComponent,
+    MainNotesComponent,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

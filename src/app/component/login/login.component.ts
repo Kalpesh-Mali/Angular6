@@ -44,11 +44,9 @@ export class LoginComponent {
     console.log(user);
     this.userService.login(user).subscribe(response => {
       console.log("login successful");
-      localStorage.setItem('Authorization', response.headers.get('token'));
-      console.log(localStorage.getItem('Authorization'));
-      console.log(response.headers.get('token'));
+      localStorage.setItem('token', response.headers.get('token'));
       this.router.navigate(['/welcome']);
-      this.snackBar.open("ok", "Sucess", { duration: 2000 })
+      this.snackBar.open("Successfully logged In", "Ok", { duration: 2000 })
     }, error => {
       this.snackBar.open("error", "please enter valid data", { duration: 2000 })
     });

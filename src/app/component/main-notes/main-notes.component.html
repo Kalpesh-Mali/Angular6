@@ -1,0 +1,47 @@
+<div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
+
+  <div fxFlex="40%">
+    <app-notesearchbody></app-notesearchbody>
+  </div>
+
+  <!-- <div fxFlex="60%">
+     <app-notes ></app-notes>
+     </div> -->
+
+  <div *ngFor="let notes of notes">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{notes.title}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        {{notes.description}}
+      </mat-card-content>
+      <div>
+        <button mat-icon-button matTooltip="Remaind me">
+          <mat-icon>add_alert</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Collaborator">
+          <mat-icon>person_add</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Change color">
+          <mat-icon>palette</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Add image">
+          <mat-icon>image</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="more">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="undo">
+          <mat-icon>undo</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="redo">
+          <mat-icon>redo</mat-icon>
+        </button>
+        <button mat-button>
+          <span>close</span>
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>

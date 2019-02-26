@@ -7,6 +7,7 @@ import { NotesearchbodyComponent } from './component/notesearchbody/notesearchbo
 import { AuthGuard } from './gaurd/auth.guard';
 import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
 import { PasswordresetComponent } from './component/passwordreset/passwordreset.component';
+import { MainNotesComponent } from './component/main-notes/main-notes.component';
 
 const routes: Routes = [
   {
@@ -27,12 +28,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'notesearchbody',
-        component: NotesearchbodyComponent
+        path: 'main-notes',
+        component: MainNotesComponent
       },
       {
         path: '',
-        redirectTo: 'notesearchbody',
+        redirectTo: 'main-notes',
         pathMatch: 'full'
       }
     ]
