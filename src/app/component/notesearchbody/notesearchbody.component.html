@@ -1,59 +1,65 @@
 <div fxLayout="row" fxLayoutAlign="center center">
-  <mat-accordion>
-    <mat-expansion-panel [expanded]=true (opened)="showHeader = false" (closed)="showHeader = true" hideToggle="true">
-      <mat-expansion-panel-header>
-        <ng-container *ngIf="showHeader;else tempTtext">
-          <mat-panel-title>
-            Take a note..
-            <div style="text-align:right; width:100%;">
-              <button mat-icon-button matTooltip="new list">
-                <mat-icon>check_box</mat-icon>
-              </button>
-              <button mat-icon-button matTooltip="new note with image">
-                <mat-icon>image</mat-icon>
-              </button>
-            </div>
-          </mat-panel-title>
-        </ng-container>
-        <ng-template #tempTtext>
+  <form [formGroup]="createNoteForm">
+    <mat-accordion>
+      <mat-expansion-panel [expanded]=true (opened)="showHeader = false" (closed)="onSubmit(createNoteForm.value)"
+        (closed)="showHeader = true" hideToggle="true">
+        <mat-expansion-panel-header>
+          <ng-container *ngIf="showHeader;else tempTtext">
+            <mat-panel-title>
+              Take a note..
+              <div style="text-align:right; width:100%;">
+                <button mat-icon-button matTooltip="new list">
+                  <mat-icon>check_box</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="new note with image">
+                  <mat-icon>image</mat-icon>
+                </button>
+              </div>
+            </mat-panel-title>
+          </ng-container>
+          <ng-template #tempTtext>
 
-        </ng-template>
-      </mat-expansion-panel-header>
-      <mat-panel-description>
-        <input matInput class="noBorderAndBackground" placeholder="Title" style="width: 500px;">
-        <button mat-icon-button matTooltip="pin">
-          <mat-icon>colorize</mat-icon>
-        </button>
-      </mat-panel-description>
-      <mat-panel-description>
-        <textarea matInput class="noBorderAndBackground" placeholder="Take a note.." style="width: 500px;"></textarea>
-      </mat-panel-description>
-      <mat-panel-description>
-        <button mat-icon-button matTooltip="Remaind me">
-          <mat-icon>add_alert</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Collaborator">
-          <mat-icon>person_add</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Change color">
-          <mat-icon>palette</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Add image">
-          <mat-icon>image</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="more">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="undo">
-          <mat-icon>undo</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="redo">
-          <mat-icon>redo</mat-icon>
-        </button>
-        <button mat-button>
-          <span>close</span>
-        </button>
-      </mat-panel-description>
-    </mat-expansion-panel>
-  </mat-accordion>
+          </ng-template>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <input matInput class="noBorderAndBackground" placeholder="Title" formControlName="title" 
+            [ngClass]="{ 'is-invalid': submitted && f.title.errors }" style="width: 500px;">
+          <button mat-icon-button matTooltip="pin">
+            <mat-icon>colorize</mat-icon>
+          </button>
+        </mat-panel-description>
+        <mat-panel-description>
+          <textarea matInput class="noBorderAndBackground" placeholder="Take a note.." formControlName="description"
+           [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+            style="width: 500px;"></textarea>
+        </mat-panel-description>
+        <mat-panel-description>
+          <button mat-icon-button matTooltip="Remaind me">
+            <mat-icon>add_alert</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Collaborator">
+            <mat-icon>person_add</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Change color">
+            <mat-icon>palette</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Add image">
+            <mat-icon>image</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="more">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="undo">
+            <mat-icon>undo</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="redo">
+            <mat-icon>redo</mat-icon>
+          </button>
+          <button mat-button (click)="showHeader = true">
+            <span>close</span>
+          </button>
+        </mat-panel-description>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </form>
 </div>

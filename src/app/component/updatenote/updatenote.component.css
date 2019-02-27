@@ -1,0 +1,12 @@
+.textarea{
+    outline: none;
+}
+
+.mat-dialog-content{
+    padding: 20px 24px;
+  }
+
+  .mat-dialog-title {
+    margin: 0 0 3px;
+    display: block;
+}

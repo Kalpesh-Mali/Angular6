@@ -11,16 +11,53 @@ import { Observable } from 'rxjs';
 })
 export class NoteService {
 
+
   constructor(private httpUtil: HttpService, private router: Router, public snackBar: MatSnackBar) { }
 
-  retrieveNotes(token):Observable<any>
-  {
+  retrieveNotes(): Observable<any> {
+    var token = localStorage.getItem('token');
     var httpheaders = {
-      headers:new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
         'token': token
       })
     };
-    return this.httpUtil.getService(environment.note_url + 'retrievenote',httpheaders);
+    return this.httpUtil.getService(environment.note_url + 'retrievenote', httpheaders);
+  }
+
+  createNote(note): Observable<any> {
+    var token = localStorage.getItem('token');
+    var httpheaders = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': token
+      })
+    };
+    return this.httpUtil.postServiceForNoteCreate(environment.note_url + 'createnote', httpheaders, note);
+  }
+
+
+  updateNote(note)
+  {
+    var token = localStorage.getItem('token');
+    var httpheaders = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': token
+      })
+    };
+    return this.httpUtil.putServiceForNoteUpdate(environment.note_url + 'updatenote',note,httpheaders);
+  }
+
+  deleteNote(note)
+  {
+    var token = localStorage.getItem('token');
+    var httpheaders = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': token
+      })
+    };
+    return this.httpUtil.deleteServiceForNoteDelete(environment.note_url + 'deletenote',note,httpheaders);
   }
 }

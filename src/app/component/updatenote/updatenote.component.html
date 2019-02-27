@@ -1,0 +1,37 @@
+<div class="notecard">
+  <div mat-dialog-title contenteditable="true" id="title" class="textarea" [innerHTML]=data.title></div>
+  <p mat-dialog-content contenteditable="true" id="description" class="textarea" [innerHTML]=data.description></p>
+  <div>
+    <button mat-icon-button matTooltip="Remind me">
+      <mat-icon>add_alert</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Collaborator">
+      <mat-icon>person_add</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Change color">
+      <mat-icon>palette</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Add image">
+      <mat-icon>image</mat-icon>
+    </button>
+    <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="more">
+      <i id="accountcircle" class="material-icons">more_vert</i></button>
+    <mat-menu #more="matMenu" class="morecard">
+      <button mat-button (click)=deleteNote(data)>Delete Note</button>
+    </mat-menu>
+    <button mat-icon-button matTooltip="undo">
+      <mat-icon>undo</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="redo">
+      <mat-icon>redo</mat-icon>
+    </button>
+  </div>
+
+
+  <button mat-button (click)="closeClick(data.title,data.description );" style="float:right">Close</button>
+</div>
+<!-- <div>
+  <form [formGroup]="updateNoteForm" (ngSubmit)="onSubmit(updateNoteForm.value)">
+<input value='data.title' type=text >
+  </form>
+</div> -->

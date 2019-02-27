@@ -23,11 +23,15 @@ export class HttpService {
     return this.http.delete<any>(url,header);
   }
 
-  postServiceWithParam(url,params){
-    return this.http.post<any>(url,null,params);
+  postServiceForNoteCreate(url,header,object){
+    return this.http.post<any>(url,object,header);
   }
 
-  deleteServiceWithParams(url,params){
-    return this.http.delete(url,params);
+  putServiceForNoteUpdate(url,object,header){
+    return this.http.put<any>(url,object,header);
+  }
+
+  deleteServiceForNoteDelete(url,object,header){
+    return this.http.post<any>(url,object,header);
   }
 }

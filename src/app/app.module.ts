@@ -13,6 +13,7 @@ import { NotesearchbodyComponent } from './component/notesearchbody/notesearchbo
 import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
 import { PasswordresetComponent } from './component/passwordreset/passwordreset.component';
 import { MainNotesComponent } from './component/main-notes/main-notes.component';
+import { UpdatenoteComponent } from './component/updatenote/updatenote.component';
 
 
 @NgModule({
@@ -39,8 +40,10 @@ import { MainNotesComponent } from './component/main-notes/main-notes.component'
     ForgotpasswordComponent,
     PasswordresetComponent,
     MainNotesComponent,
+    UpdatenoteComponent,
     
   ],
+  entryComponents: [UpdatenoteComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
