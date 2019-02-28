@@ -1,9 +1,4 @@
 <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
-
-  <div fxFlex="40%">
-    <app-notesearchbody></app-notesearchbody>
-  </div>
-
   <div *ngFor="let note of notes">
     <mat-card>
       <mat-card-header>
@@ -14,7 +9,7 @@
       <mat-card-content (click)=openDialog(note)>
         {{note.description}}
       </mat-card-content>
-      <div>
+      <div class="mouseover">
         <button mat-icon-button matTooltip="Remind me">
           <mat-icon>add_alert</mat-icon>
         </button>
@@ -27,7 +22,7 @@
         <button mat-icon-button matTooltip="Add image">
           <mat-icon>image</mat-icon>
         </button>
-        <button mat-icon-button (click)="updateArchiveNote(note)" matTooltip="Archive">
+        <button mat-icon-button (click)="updateArchiveNote(note)"matTooltip="Undo Archive">
             <mat-icon>archive</mat-icon>
           </button>
         <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="more">

@@ -1,6 +1,10 @@
 <div class="notecard">
-  <div mat-dialog-title contenteditable="true" id="title" class="textarea" [innerHTML]=data.title></div>
-  <p mat-dialog-content contenteditable="true" id="description" class="textarea" [innerHTML]=data.description></p>
+  <div>
+    <input class="noBorderAndBackground" matInput [(ngModel)]="data.title" [value]=data.title>
+  </div>
+  <div>
+    <textarea class="noBorderAndBackground" matInput [(ngModel)]="data.description" [value]=data.description></textarea>
+  </div>
   <div>
     <button mat-icon-button matTooltip="Remind me">
       <mat-icon>add_alert</mat-icon>
@@ -19,19 +23,7 @@
     <mat-menu #more="matMenu" class="morecard">
       <button mat-button (click)=deleteNote(data)>Delete Note</button>
     </mat-menu>
-    <button mat-icon-button matTooltip="undo">
-      <mat-icon>undo</mat-icon>
-    </button>
-    <button mat-icon-button matTooltip="redo">
-      <mat-icon>redo</mat-icon>
-    </button>
+    <button mat-button [mat-dialog-close]="data" (click)="closeClick(data)" style="float:right"
+      cdkFocusInitial>Close</button>
   </div>
-
-
-  <button mat-button (click)="closeClick(data.title,data.description );" style="float:right">Close</button>
 </div>
-<!-- <div>
-  <form [formGroup]="updateNoteForm" (ngSubmit)="onSubmit(updateNoteForm.value)">
-<input value='data.title' type=text >
-  </form>
-</div> -->

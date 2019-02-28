@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { NoteService } from 'src/app/core/service/note.service';
-import { Note } from 'src/app/core/models/note';
-import { MatSnackBar, MatDialog } from '@angular/material';
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
+import { Note } from 'src/app/core/models/note';
+import { NoteService } from 'src/app/core/service/note.service';
+import { MatSnackBar, MatDialog } from '@angular/material';
 
 @Component({
-  selector: 'app-main-notes',
-  templateUrl: './main-notes.component.html',
-  styleUrls: ['./main-notes.component.css']
+  selector: 'app-archive-note',
+  templateUrl: './archive-note.component.html',
+  styleUrls: ['./archive-note.component.css']
 })
-export class MainNotesComponent implements OnInit {
+export class ArchiveNoteComponent implements OnInit {
 
   public notes: Note[] = [];
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
@@ -19,7 +19,7 @@ export class MainNotesComponent implements OnInit {
     this.getNotes();
   }
   getNotes() {
-    this.noteService.retrieveNotes().subscribe(newNote => {
+    this.noteService.retrieveArchiveNotes().subscribe(newNote => {
       this.notes = newNote;
     }, error => {
       this.snackBar.open("error", "error to retrieve notes", { duration: 2000 });
@@ -55,7 +55,7 @@ export class MainNotesComponent implements OnInit {
   updateArchiveNote(note)
   {
     var newNote={
-      "archive": true,
+      "archive": false,
       "description": note.description,
       "inTrash": note.inTrash,
       "noteId": note.noteId,
@@ -71,4 +71,5 @@ export class MainNotesComponent implements OnInit {
         console.log("error");
       })
   }
+
 }

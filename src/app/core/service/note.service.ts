@@ -10,54 +10,34 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NoteService {
-
+  public token = localStorage.getItem('token');
+  public httpheaders = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'token': this.token
+    })
+  };
 
   constructor(private httpUtil: HttpService, private router: Router, public snackBar: MatSnackBar) { }
 
   retrieveNotes(): Observable<any> {
-    var token = localStorage.getItem('token');
-    var httpheaders = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': token
-      })
-    };
-    return this.httpUtil.getService(environment.note_url + 'retrievenote', httpheaders);
+    return this.httpUtil.getService(environment.note_url + 'retrievenote', this.httpheaders);
   }
 
   createNote(note): Observable<any> {
-    var token = localStorage.getItem('token');
-    var httpheaders = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': token
-      })
-    };
-    return this.httpUtil.postServiceForNoteCreate(environment.note_url + 'createnote', httpheaders, note);
+    return this.httpUtil.postServiceForNoteCreate(environment.note_url + 'createnote', this.httpheaders, note);
   }
 
 
-  updateNote(note)
-  {
-    var token = localStorage.getItem('token');
-    var httpheaders = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': token
-      })
-    };
-    return this.httpUtil.putServiceForNoteUpdate(environment.note_url + 'updatenote',note,httpheaders);
+  updateNote(note,id) {
+    return this.httpUtil.putServiceForNoteUpdate(environment.note_url + 'updatenote/'+id, note, this.httpheaders);
   }
 
-  deleteNote(note)
-  {
-    var token = localStorage.getItem('token');
-    var httpheaders = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': token
-      })
-    };
-    return this.httpUtil.deleteServiceForNoteDelete(environment.note_url + 'deletenote',note,httpheaders);
+  deleteNote(id) {
+    return this.httpUtil.deleteServiceForNoteDelete(environment.note_url + 'deletenote/' + id, this.httpheaders);
+  }
+
+  retrieveArchiveNotes(): Observable<any> {
+    return this.httpUtil.getService(environment.note_url + 'archivenote', this.httpheaders);
   }
 }

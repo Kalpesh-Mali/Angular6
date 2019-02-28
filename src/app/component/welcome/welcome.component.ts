@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
@@ -7,12 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
  hide=true;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }
+
+  archive(){
+    this.router.navigate(['welcome/archive-notes'])
+  }
   notes()
   {
+    this.router.navigate(['welcome/main-notes'])
   }
  
 }

@@ -22,7 +22,7 @@
           </ng-template>
         </mat-expansion-panel-header>
         <mat-panel-description>
-          <input matInput class="noBorderAndBackground" placeholder="Title" formControlName="title" 
+          <input matInput class="noBorderAndBackground" placeholder="Title" formControlName="title"
             [ngClass]="{ 'is-invalid': submitted && f.title.errors }" style="width: 500px;">
           <button mat-icon-button matTooltip="pin">
             <mat-icon>colorize</mat-icon>
@@ -30,8 +30,7 @@
         </mat-panel-description>
         <mat-panel-description>
           <textarea matInput class="noBorderAndBackground" placeholder="Take a note.." formControlName="description"
-           [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
-            style="width: 500px;"></textarea>
+            [ngClass]="{ 'is-invalid': submitted && f.description.errors }" style="width: 500px;"></textarea>
         </mat-panel-description>
         <mat-panel-description>
           <button mat-icon-button matTooltip="Remaind me">
@@ -45,6 +44,9 @@
           </button>
           <button mat-icon-button matTooltip="Add image">
             <mat-icon>image</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Archive">
+            <mat-icon>archive</mat-icon>
           </button>
           <button mat-icon-button matTooltip="more">
             <mat-icon>more_vert</mat-icon>

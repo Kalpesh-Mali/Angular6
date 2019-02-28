@@ -8,6 +8,7 @@ import { AuthGuard } from './gaurd/auth.guard';
 import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
 import { PasswordresetComponent } from './component/passwordreset/passwordreset.component';
 import { MainNotesComponent } from './component/main-notes/main-notes.component';
+import { ArchiveNoteComponent } from './component/archive-note/archive-note.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'main-notes',
         component: MainNotesComponent
+      },
+      {
+        path: 'archive-notes',
+        component: ArchiveNoteComponent
       },
       {
         path: '',

@@ -1,7 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { NoteService } from 'src/app/core/service/note.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Note } from 'src/app/core/models/note';
 
 @Component({
   selector: 'app-updatenote',
@@ -10,33 +11,27 @@ import { FormGroup } from '@angular/forms';
 })
 export class UpdatenoteComponent implements OnInit {
 
-  updateNoteForm: FormGroup;
   constructor(public dialogRef: MatDialogRef<UpdatenoteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data, private noteService: NoteService,
-    private snackBar:MatSnackBar) { }
+    @Inject(MAT_DIALOG_DATA) public data: Note, private noteService: NoteService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
-
-  closeClick(title, description) {
-    var note = {
-      "title": title,
-      "description": description,
-      "noteId": this.data.noteId
-    }
-    console.log(title);
-    console.log(description);
-    this.noteService.updateNote(note).subscribe(response => {
+  closeClick(newNote) {
+    console.log(newNote.title);
+    console.log(newNote.description);
+    this.noteService.updateNote(newNote,newNote.noteId).subscribe(response => {
       console.log(response);
     },
       error => {
         console.log("error");
       })
+    this.dialogRef.close();
   }
   deleteNote(note) {
     console.log(note.noteId);
-    this.noteService.deleteNote(note).subscribe(response => {
+    this.noteService.deleteNote(note.noteId).subscribe(response => {
       this.snackBar.open("deleted Note", "OK", { duration: 2000 });
     }), error => {
       this.snackBar.open("error", "error to retrieve notes", { duration: 2000 });

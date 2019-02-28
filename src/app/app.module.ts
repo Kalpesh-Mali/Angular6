@@ -14,6 +14,7 @@ import { ForgotpasswordComponent } from './component/forgotpassword/forgotpasswo
 import { PasswordresetComponent } from './component/passwordreset/passwordreset.component';
 import { MainNotesComponent } from './component/main-notes/main-notes.component';
 import { UpdatenoteComponent } from './component/updatenote/updatenote.component';
+import { ArchiveNoteComponent } from './component/archive-note/archive-note.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { UpdatenoteComponent } from './component/updatenote/updatenote.component
     PasswordresetComponent,
     MainNotesComponent,
     UpdatenoteComponent,
+    ArchiveNoteComponent,
     
   ],
   entryComponents: [UpdatenoteComponent],
