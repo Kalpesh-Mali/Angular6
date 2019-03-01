@@ -9,6 +9,7 @@ import { ForgotpasswordComponent } from './component/forgotpassword/forgotpasswo
 import { PasswordresetComponent } from './component/passwordreset/passwordreset.component';
 import { MainNotesComponent } from './component/main-notes/main-notes.component';
 import { ArchiveNoteComponent } from './component/archive-note/archive-note.component';
+import { TrashComponent } from './component/trash/trash.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
       {
         path: 'archive-notes',
         component: ArchiveNoteComponent
+      },
+      {
+        path: 'trash-notes',
+        component: TrashComponent
       },
       {
         path: '',

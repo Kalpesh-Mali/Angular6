@@ -7,18 +7,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
- hide=true;
-  constructor(private router:Router) { }
+  hide = true;
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  archive(){
+  archive() {
     this.router.navigate(['welcome/archive-notes'])
   }
-  notes()
-  {
+  notes() {
     this.router.navigate(['welcome/main-notes'])
   }
- 
+
+  logout() {
+    localStorage.removeItem('token')
+    this.router.navigate(['/login']);
+  }
+
+  trashnote()
+  {
+    this.router.navigate(['welcome/trash-notes'])
+
+  }
 }

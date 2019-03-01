@@ -27,13 +27,20 @@ export class MainNotesComponent implements OnInit {
     )
   }
 
+  checkNote(note) {
+    if (note.archieve == false && note.inTrash == false)
+      return true;
+    else
+      return false;
+  }
+
   openDialog(note): void {
     const dialogRef = this.dialog.open(UpdatenoteComponent, {
       width: '500px',
       data: note
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.noteService.updateNote(note,note.noteId).subscribe(response => {
+      this.noteService.updateNote(note, note.noteId).subscribe(response => {
         console.log(response);
       },
         error => {
@@ -43,18 +50,28 @@ export class MainNotesComponent implements OnInit {
     });
   }
 
-  deleteNote(note) {
-    console.log(note.noteId);
-    this.noteService.deleteNote(note.noteId).subscribe(response => {
-      this.snackBar.open("deleted Note", "OK", { duration: 2000 });
-    }), error => {
-      this.snackBar.open("error", "error to retrieve notes", { duration: 2000 });
+
+  moveToTrash(note) {
+    var newNote = {
+      "archive": note.archive,
+      "description": note.description,
+      "inTrash": true,
+      "noteId": note.noteId,
+      "pinned": note.pinned,
+      "title": note.title
     }
+    console.log(newNote);
+    this.noteService.updateNote(newNote, note.noteId).subscribe(response => {
+      console.log(response);
+      this.snackBar.open("moved to trash", "Ok", { duration: 2000 });
+    },
+      error => {
+        console.log("error");
+      })
   }
 
-  updateArchiveNote(note)
-  {
-    var newNote={
+  updateArchiveNote(note) {
+    var newNote = {
       "archive": true,
       "description": note.description,
       "inTrash": note.inTrash,
@@ -63,7 +80,7 @@ export class MainNotesComponent implements OnInit {
       "title": note.title
     }
     console.log(newNote);
-    this.noteService.updateNote(newNote,note.noteId).subscribe(response => {
+    this.noteService.updateNote(newNote, note.noteId).subscribe(response => {
       console.log(response);
       this.snackBar.open("archieve OK", "Ok", { duration: 2000 });
     },

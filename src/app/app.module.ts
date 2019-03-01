@@ -15,6 +15,8 @@ import { PasswordresetComponent } from './component/passwordreset/passwordreset.
 import { MainNotesComponent } from './component/main-notes/main-notes.component';
 import { UpdatenoteComponent } from './component/updatenote/updatenote.component';
 import { ArchiveNoteComponent } from './component/archive-note/archive-note.component';
+import { TrashComponent } from './component/trash/trash.component';
+import { TrashdailogComponent } from './component/trashdailog/trashdailog.component';
 
 
 @NgModule({
@@ -25,7 +27,6 @@ import { ArchiveNoteComponent } from './component/archive-note/archive-note.comp
     ReactiveFormsModule,
     AppMaterialModule,
     BrowserAnimationsModule
-
   ],
   exports: [
     FormsModule,
@@ -43,9 +44,11 @@ import { ArchiveNoteComponent } from './component/archive-note/archive-note.comp
     MainNotesComponent,
     UpdatenoteComponent,
     ArchiveNoteComponent,
+    TrashComponent,
+    TrashdailogComponent,
     
   ],
-  entryComponents: [UpdatenoteComponent],
+  entryComponents: [UpdatenoteComponent,TrashdailogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

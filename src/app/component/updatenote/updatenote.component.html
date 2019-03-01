@@ -18,10 +18,13 @@
     <button mat-icon-button matTooltip="Add image">
       <mat-icon>image</mat-icon>
     </button>
+    <!-- <button mat-icon-button (click)="updateArchiveNote(data)" matTooltip="Undo Archive">
+      <mat-icon>archive</mat-icon>
+    </button> -->
     <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="more">
       <i id="accountcircle" class="material-icons">more_vert</i></button>
     <mat-menu #more="matMenu" class="morecard">
-      <button mat-button (click)=deleteNote(data)>Delete Note</button>
+      <button mat-button (click)=moveToTrash(data)>Delete Note</button>
     </mat-menu>
     <button mat-button [mat-dialog-close]="data" (click)="closeClick(data)" style="float:right"
       cdkFocusInitial>Close</button>

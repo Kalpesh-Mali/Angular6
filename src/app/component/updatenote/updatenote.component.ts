@@ -21,7 +21,7 @@ export class UpdatenoteComponent implements OnInit {
   closeClick(newNote) {
     console.log(newNote.title);
     console.log(newNote.description);
-    this.noteService.updateNote(newNote,newNote.noteId).subscribe(response => {
+    this.noteService.updateNote(newNote, newNote.noteId).subscribe(response => {
       console.log(response);
     },
       error => {
@@ -37,5 +37,24 @@ export class UpdatenoteComponent implements OnInit {
       this.snackBar.open("error", "error to retrieve notes", { duration: 2000 });
     }
   }
+
+  // updateArchiveNote(note) {
+  //   var newNote = {
+  //     "archive": true,
+  //     "description": note.description,
+  //     "inTrash": note.inTrash,
+  //     "noteId": note.noteId,
+  //     "pinned": note.pinned,
+  //     "title": note.title
+  //   }
+  //   console.log(newNote);
+  //   this.noteService.updateNote(newNote, note.noteId).subscribe(response => {
+  //     console.log(response);
+  //     this.snackBar.open("archieve OK", "Ok", { duration: 2000 });
+  //   },
+  //     error => {
+  //       console.log("error");
+  //     })
+  // }
 
 }
