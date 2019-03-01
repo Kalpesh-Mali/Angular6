@@ -45,7 +45,7 @@
           <button mat-icon-button matTooltip="Add image">
             <mat-icon>image</mat-icon>
           </button>
-          <button mat-icon-button matTooltip="Archive">
+          <button mat-icon-button (click)="archiveNoteSave(createNoteForm.value)" matTooltip="Archive">
             <mat-icon>archive</mat-icon>
           </button>
           <button mat-icon-button matTooltip="more">

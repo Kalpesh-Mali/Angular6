@@ -49,4 +49,26 @@ export class NotesearchbodyComponent implements OnInit {
     })
   }
 
+  archiveNoteSave(note)
+  {
+    this.submitted = true;
+
+    if (this.createNoteForm.invalid) {
+      return;
+    }
+    if (this.createNoteForm.value.title === "" && this.createNoteForm.value.description === "") {
+      return;
+    }
+    var newNote = {
+      "archive": true,
+      "description": note.description,
+      "inTrash": note.inTrash,
+      "noteId": note.noteId,
+      "pinned": note.pinned,
+      "title": note.title
+    }
+    this.onSubmit(newNote);
+
+  }
+
 }
