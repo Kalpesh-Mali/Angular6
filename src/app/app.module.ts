@@ -17,6 +17,8 @@ import { UpdatenoteComponent } from './component/updatenote/updatenote.component
 import { ArchiveNoteComponent } from './component/archive-note/archive-note.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { TrashdailogComponent } from './component/trashdailog/trashdailog.component';
+import { PinNoteComponent } from './component/pin-note/pin-note.component';
+import { SidenavbarComponent } from './component/sidenavbar/sidenavbar.component';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { TrashdailogComponent } from './component/trashdailog/trashdailog.compon
     ArchiveNoteComponent,
     TrashComponent,
     TrashdailogComponent,
+    PinNoteComponent,
+    SidenavbarComponent,
     
   ],
   entryComponents: [UpdatenoteComponent,TrashdailogComponent],

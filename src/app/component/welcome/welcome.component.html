@@ -73,7 +73,8 @@
 <mat-divider></mat-divider>
 <!-- side navigation bar -->
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #drawer mode="side" opened role="navigation" id="sidenave">
+  <mat-sidenav #drawer mode="side" 
+   role="navigation" id="sidenave">
     <mat-nav-list id="insidenave">
       <button fxHide="true" fxHide.xs="false" mat-icon-button [matMenuTriggerFor]="notifications" matTooltip="notifications">
         <mat-icon>notifications_on</mat-icon>
@@ -126,5 +127,6 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>
+    <!-- <app-main-notes [notes]="dynamicBind"></app-main-notes> -->
   </mat-sidenav-content>
 </mat-sidenav-container>

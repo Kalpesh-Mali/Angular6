@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 import { Note } from 'src/app/core/models/note';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { NoteService } from 'src/app/core/service/note.service';
-import { MatSnackBar, MatDialog } from '@angular/material';
 
 @Component({
-  selector: 'app-archive-note',
-  templateUrl: './archive-note.component.html',
-  styleUrls: ['./archive-note.component.css']
+  selector: 'app-pin-note',
+  templateUrl: './pin-note.component.html',
+  styleUrls: ['./pin-note.component.css']
 })
-export class ArchiveNoteComponent implements OnInit {
-
+export class PinNoteComponent implements OnInit {
   public notes: Note[] = [];
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
     public dialog: MatDialog) { }
@@ -18,7 +17,6 @@ export class ArchiveNoteComponent implements OnInit {
   ngOnInit() {
     this.getNotes();
   }
-
   getNotes() {
     this.noteService.retrieveNotes().subscribe(newNote => {
       this.notes = newNote;
@@ -44,6 +42,7 @@ export class ArchiveNoteComponent implements OnInit {
     });
   }
 
+
   updateMethod(note) {
     this.noteService.updateNote(note, note.noteId).subscribe(response => {
       console.log(response);
@@ -59,12 +58,13 @@ export class ArchiveNoteComponent implements OnInit {
   }
 
   updateArchiveNote(note) {
-    note.archive = 0;
+    note.archive=1;
+    note.pinned=0;
     this.updateMethod(note);
   }
 
   pinned(note) {
-    note.pinned = 1;
+    note.pinned=0;
     this.updateMethod(note);
   }
 

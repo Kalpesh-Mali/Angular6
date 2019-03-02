@@ -1,12 +1,7 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title (click)=openDialog(note)>
-      {{note.title}}
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content (click)=openDialog(note)>
-    {{note.description}}
-  </mat-card-content>
+<div class="notecard">
+
+  <div mat-dialog-title id="title" class="textarea" [innerHTML]=note.title></div>
+  <p mat-dialog-content id="description" class="textarea" [innerHTML]=note.description></p>
   <div class="mouseover">
     <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="more">
       <i id="accountcircle" class="material-icons">more_vert</i></button>
@@ -15,4 +10,18 @@
       <button mat-button (click)=restore(note)>Restore</button>
     </mat-menu>
   </div>
-</mat-card>
+</div>
+
+
+
+
+<!-- <mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{note.title}}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    {{note.description}}
+  </mat-card-content>
+</mat-card> -->

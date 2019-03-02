@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from 'src/app/core/service/note.service';
 import { Note } from 'src/app/core/models/note';
 import { MatSnackBar, MatDialog } from '@angular/material';
@@ -11,6 +11,7 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 })
 export class MainNotesComponent implements OnInit {
 
+  // @Input() notes:Note;
   public notes: Note[] = [];
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
     public dialog: MatDialog) { }
@@ -18,6 +19,7 @@ export class MainNotesComponent implements OnInit {
   ngOnInit() {
     this.getNotes();
   }
+
   getNotes() {
     this.noteService.retrieveNotes().subscribe(newNote => {
       this.notes = newNote;
@@ -25,13 +27,6 @@ export class MainNotesComponent implements OnInit {
       this.snackBar.open("error", "error to retrieve notes", { duration: 2000 });
     }
     )
-  }
-
-  checkNote(note) {
-    if (note.archieve == false && note.inTrash == false)
-      return true;
-    else
-      return false;
   }
 
   openDialog(note): void {
@@ -52,40 +47,28 @@ export class MainNotesComponent implements OnInit {
 
 
   moveToTrash(note) {
-    var newNote = {
-      "archive": note.archive,
-      "description": note.description,
-      "inTrash": true,
-      "noteId": note.noteId,
-      "pinned": note.pinned,
-      "title": note.title
-    }
-    console.log(newNote);
-    this.noteService.updateNote(newNote, note.noteId).subscribe(response => {
+    note.inTrash = 1;
+    this.updateMethod(note);
+  }
+
+  updateArchiveNote(note) {
+    note.archive = 1;
+    this.updateMethod(note);
+  }
+
+  pinned(note) {
+    note.pinned = 1;
+    this.updateMethod(note);
+  }
+
+  updateMethod(note) {
+    this.noteService.updateNote(note, note.noteId).subscribe(response => {
       console.log(response);
-      this.snackBar.open("moved to trash", "Ok", { duration: 2000 });
     },
       error => {
         console.log("error");
       })
   }
 
-  updateArchiveNote(note) {
-    var newNote = {
-      "archive": true,
-      "description": note.description,
-      "inTrash": note.inTrash,
-      "noteId": note.noteId,
-      "pinned": note.pinned,
-      "title": note.title
-    }
-    console.log(newNote);
-    this.noteService.updateNote(newNote, note.noteId).subscribe(response => {
-      console.log(response);
-      this.snackBar.open("archieve OK", "Ok", { duration: 2000 });
-    },
-      error => {
-        console.log("error");
-      })
-  }
+
 }

@@ -29,32 +29,16 @@ export class UpdatenoteComponent implements OnInit {
       })
     this.dialogRef.close();
   }
-  deleteNote(note) {
-    console.log(note.noteId);
-    this.noteService.deleteNote(note.noteId).subscribe(response => {
-      this.snackBar.open("deleted Note", "OK", { duration: 2000 });
-    }), error => {
-      this.snackBar.open("error", "error to retrieve notes", { duration: 2000 });
-    }
+  moveToTrash(note) {
+    note.inTrash = 1;
+    console.log(note);
+    this.noteService.updateNote(note, note.noteId).subscribe(response => {
+      console.log(response);
+      this.snackBar.open("moved to trash", "Ok", { duration: 2000 });
+    },
+      error => {
+        console.log("error");
+      })
   }
-
-  // updateArchiveNote(note) {
-  //   var newNote = {
-  //     "archive": true,
-  //     "description": note.description,
-  //     "inTrash": note.inTrash,
-  //     "noteId": note.noteId,
-  //     "pinned": note.pinned,
-  //     "title": note.title
-  //   }
-  //   console.log(newNote);
-  //   this.noteService.updateNote(newNote, note.noteId).subscribe(response => {
-  //     console.log(response);
-  //     this.snackBar.open("archieve OK", "Ok", { duration: 2000 });
-  //   },
-  //     error => {
-  //       console.log("error");
-  //     })
-  // }
 
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Note } from 'src/app/core/models/note';
+import { NoteService } from 'src/app/core/service/note.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-welcome',
@@ -8,9 +11,19 @@ import { Router } from '@angular/router';
 })
 export class WelcomeComponent implements OnInit {
   hide = true;
-  constructor(private router: Router) { }
+  public dynamicBind : Note;
+  constructor(private router: Router,private noteService:NoteService,private snackBar:MatSnackBar) { }
 
   ngOnInit() {
+  }
+
+  getNotes() {
+    this.noteService.retrieveNotes().subscribe(newNote => {
+      this.dynamicBind = newNote;
+    }, error => {
+      this.snackBar.open("error", "error to retrieve notes", { duration: 2000 });
+    }
+    )
   }
 
   archive() {
@@ -28,6 +41,6 @@ export class WelcomeComponent implements OnInit {
   trashnote()
   {
     this.router.navigate(['welcome/trash-notes'])
-
   }
+  
 }

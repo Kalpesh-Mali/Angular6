@@ -56,16 +56,13 @@ export class NotesearchbodyComponent implements OnInit {
     if (this.createNoteForm.invalid) {
       return;
     }
-    if (this.createNoteForm.value.title === "" && this.createNoteForm.value.description === "") {
+    const {title, description}  =this.createNoteForm.value ;
+    if (!title && !description) {
       return;
     }
     var newNote = {
-      "archive": true,
-      "description": note.description,
-      "inTrash": note.inTrash,
-      "noteId": note.noteId,
-      "pinned": note.pinned,
-      "title": note.title
+      ...note,
+      archive: true,
     }
     this.onSubmit(newNote);
 
