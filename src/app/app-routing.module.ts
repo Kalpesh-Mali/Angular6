@@ -10,6 +10,7 @@ import { PasswordresetComponent } from './component/passwordreset/passwordreset.
 import { MainNotesComponent } from './component/main-notes/main-notes.component';
 import { ArchiveNoteComponent } from './component/archive-note/archive-note.component';
 import { TrashComponent } from './component/trash/trash.component';
+import { SidenavbarComponent } from './component/sidenavbar/sidenavbar.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
       {
         path: 'trash-notes',
         component: TrashComponent
+      },
+      {
+        path: '',
+        component: SidenavbarComponent
       },
       {
         path: '',

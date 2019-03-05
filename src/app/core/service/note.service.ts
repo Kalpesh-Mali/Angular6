@@ -25,19 +25,32 @@ export class NoteService {
   }
 
   createNote(note): Observable<any> {
-    return this.httpUtil.postServiceForNoteCreate(environment.note_url + 'createnote', this.httpheaders, note);
+    return this.httpUtil.postForNoteCreate(environment.note_url + 'createnote', this.httpheaders, note);
   }
 
 
-  updateNote(note,id) {
-    return this.httpUtil.putServiceForNoteUpdate(environment.note_url + 'updatenote/'+id, note, this.httpheaders);
+  updateNote(note, id) {
+    return this.httpUtil.putForNoteUpdate(environment.note_url + 'updatenote/' + id, note, this.httpheaders);
   }
 
   deleteNote(id) {
-    return this.httpUtil.deleteServiceForNoteDelete(environment.note_url + 'deletenote/' + id, this.httpheaders);
+    return this.httpUtil.deleteForNoteDelete(environment.note_url + 'deletenote/' + id, this.httpheaders);
   }
 
-  retrieveArchiveNotes(): Observable<any> {
-    return this.httpUtil.getService(environment.note_url + 'archivenote', this.httpheaders);
+  retrieveLabels(): Observable<any> {
+    return this.httpUtil.getService(environment.note_url + 'retrievelabel', this.httpheaders);
   }
+
+  updateLabel(label, id) {
+    return this.httpUtil.putForLabelUpdate(environment.note_url + 'updatelabel/' + id, label, this.httpheaders);
+  }
+
+  deleteLabel(id) {
+    return this.httpUtil.deleteForLabelDelete(environment.note_url + 'deletelabel/' + id, this.httpheaders);
+  }
+
+  createLabel(label): Observable<any> {
+    return this.httpUtil.postForLabelCreate(environment.note_url + 'createlabel', label, this.httpheaders);
+  }
+
 }

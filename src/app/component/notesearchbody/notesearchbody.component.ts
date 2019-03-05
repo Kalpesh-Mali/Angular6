@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/core/service/http.service';
 import { NoteService } from 'src/app/core/service/note.service';
 import { MatSnackBar } from '@angular/material';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-notesearchbody',
@@ -11,6 +12,9 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./notesearchbody.component.css']
 })
 export class NotesearchbodyComponent implements OnInit {
+
+  @Output() CloseClick = new EventEmitter();
+
   public showHeader = true;
   createNoteForm: FormGroup;
   loading = false;
@@ -56,13 +60,31 @@ export class NotesearchbodyComponent implements OnInit {
     if (this.createNoteForm.invalid) {
       return;
     }
-    const {title, description}  =this.createNoteForm.value ;
-    if (!title && !description) {
+    if (this.createNoteForm.value.title === "" && this.createNoteForm.value.description === "") {
       return;
     }
     var newNote = {
       ...note,
-      archive: true,
+      archive: true
+    }
+    console.log(newNote.archive);
+    this.onSubmit(newNote);
+
+  }
+
+  pinnedNoteSave(note)
+  {
+    this.submitted = true;
+
+    if (this.createNoteForm.invalid) {
+      return;
+    }
+    if (this.createNoteForm.value.title === "" && this.createNoteForm.value.description === "") {
+      return;
+    }
+    var newNote = {
+      ...note,
+      pinned: true,
     }
     this.onSubmit(newNote);
 

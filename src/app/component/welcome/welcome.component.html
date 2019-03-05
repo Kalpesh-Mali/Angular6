@@ -2,7 +2,7 @@
   <mat-toolbar class="navbar">
     <mat-toolbar-row>
       <!-- menu -->
-      <button id="menubuttn" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+      <button id="menubuttn" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggle()"
         matTooltip="Menu">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
@@ -28,9 +28,9 @@
       </a>
 
       <!-- List -->
-      <a mat-icon-button routerLink="#" routerLinkActive="active" matTooltip="Lists">
+      <!-- <a mat-icon-button routerLink="#" routerLinkActive="active" matTooltip="Lists"> -->
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'view_module' : 'view_stream'}}</mat-icon>
-      </a>
+      <!-- </a> -->
 
       <!-- Settings -->
       <button fxHide.xs="true" mat-icon-button [matMenuTriggerFor]="settings" matTooltip="Settings">
@@ -72,61 +72,5 @@
 </div>
 <mat-divider></mat-divider>
 <!-- side navigation bar -->
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #drawer mode="side" 
-   role="navigation" id="sidenave">
-    <mat-nav-list id="insidenave">
-      <button fxHide="true" fxHide.xs="false" mat-icon-button [matMenuTriggerFor]="notifications" matTooltip="notifications">
-        <mat-icon>notifications_on</mat-icon>
-      </button>
-      <mat-menu #notifications="matMenu">
-      </mat-menu>
-      <button mat-stroked-button id="button" (click)="notes()"><img class="image" src="./assets/img/note.svg"
-          id="imgNotes">Notes</button><br>
-      <button mat-stroked-button id="button"><img class="image" src="./assets/img/reminders.svg"
-          id="imgRem">Reminders</button><br>
-      <hr id="line">
-      <div>
-        <span style="margin-left: 10px">
-          <font face="arial">Label</font>
-        </span> <button mat-stroked-button id="editbutton" type="button">Edit</button>
-      </div>
-      <div (updateClick)="refresh($event)">
-        <button mat-stroked-button class="buttonn" (click)="createLabel()">
-          <img class="image" src="./assets/img/label.svg" id="imglab">Createnew label</button>
-        <div *ngFor="let data of labelNameList">
-          <div fxLayout=row fxLayoutGap="10%">
-            <button mat-stroked-button class=labelbutton (click)="notesWithList(data)">
-              <div fxFlex="5%"><i class="material-icons">label</i></div>
-              <div fxFlex="90%" class="txtt">{{data}}</div>
-            </button>
-          </div>
-        </div>
-      </div>
-      <hr id="line">
-      <button mat-stroked-button id="button" (click)="archive()"><img class="image" src="./assets/img/Archive.svg"
-          id="imgArc">Archive</button><br>
-      <button mat-stroked-button id="button" (click)="trashnote()"><img class="image" src="./assets/img/Trash.svg"
-          id="imgtrace">Trash</button><br>
-      <hr id="line">
-      <button fxHide="true" fxHide.xs="false" mat-stroked-button id="button"><img class="image" src="./assets/img/Settings.svg"
-          id="imgSet">Settings</button><br>
-      <button fxHide="true" fxHide.xs="false" mat-stroked-button id="button"><img class="image" src="./assets/img/Send_feedback.svg" id="imgfeed">Send
-        feedback
-      </button><br>
-      <button fxHide="true" fxHide.xs="false" mat-stroked-button id="button"><img class="image" src="./assets/img/help.svg"
-          id="imghelp">Help</button><br>
-      <button fxHide="true" fxHide.xs="false" mat-stroked-button id="button"><img class="image" src="./assets/img/app_download.svg" id="imgdn">App
-        download
-      </button><br>
-      <button fxHide="true" fxHide.xs="false" mat-stroked-button id="button"><img class="image" src="./assets/img/keyboard_shortcuts.svg"
-          id="imgkb">Keyboard
-        shortcuts
-      </button><br>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-    <!-- <app-main-notes [notes]="dynamicBind"></app-main-notes> -->
-  </mat-sidenav-content>
-</mat-sidenav-container>
+
+<app-sidenavbar [toggleSidebar]="toggleNav"></app-sidenavbar>

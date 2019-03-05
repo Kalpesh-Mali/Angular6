@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
   <form [formGroup]="createNoteForm">
-    <mat-accordion>
+    <mat-accordion class="mat-accordion">
       <mat-expansion-panel [expanded]=true (opened)="showHeader = false" (closed)="onSubmit(createNoteForm.value)"
         (closed)="showHeader = true" hideToggle="true">
         <mat-expansion-panel-header>
@@ -24,7 +24,7 @@
         <mat-panel-description>
           <input matInput class="noBorderAndBackground" placeholder="Title" formControlName="title"
             [ngClass]="{ 'is-invalid': submitted && f.title.errors }" style="width: 500px;">
-          <button mat-icon-button matTooltip="pin">
+          <button mat-icon-button (click)="pinnedNoteSave(createNoteForm.value)" matTooltip="pin">
             <mat-icon>colorize</mat-icon>
           </button>
         </mat-panel-description>

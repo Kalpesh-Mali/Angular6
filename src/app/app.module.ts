@@ -19,6 +19,8 @@ import { TrashComponent } from './component/trash/trash.component';
 import { TrashdailogComponent } from './component/trashdailog/trashdailog.component';
 import { PinNoteComponent } from './component/pin-note/pin-note.component';
 import { SidenavbarComponent } from './component/sidenavbar/sidenavbar.component';
+import { RetriveNotesComponent } from './component/retrive-notes/retrive-notes.component';
+import { EditLabelsComponent } from './component/edit-labels/edit-labels.component';
 
 
 @NgModule({
@@ -50,9 +52,11 @@ import { SidenavbarComponent } from './component/sidenavbar/sidenavbar.component
     TrashdailogComponent,
     PinNoteComponent,
     SidenavbarComponent,
+    RetriveNotesComponent,
+    EditLabelsComponent,
     
   ],
-  entryComponents: [UpdatenoteComponent,TrashdailogComponent],
+  entryComponents: [UpdatenoteComponent,TrashdailogComponent,EditLabelsComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -23,15 +23,27 @@ export class HttpService {
     return this.http.delete<any>(url,header);
   }
 
-  postServiceForNoteCreate(url,header,object){
+  postForNoteCreate(url,header,object){
     return this.http.post<any>(url,object,header);
   }
 
-  putServiceForNoteUpdate(url,object,header){
+  putForNoteUpdate(url,object,header){
     return this.http.put<any>(url,object,header);
   }
 
-  deleteServiceForNoteDelete(url,header){
+  deleteForNoteDelete(url,header){
     return this.http.delete<any>(url,header);
+  }
+
+  putForLabelUpdate(url,object,header){
+    return this.http.put<any>(url,object,header);
+  }
+
+  deleteForLabelDelete(url,header){
+    return this.http.delete<any>(url,header);
+  }
+
+  postForLabelCreate(url,object,header){
+    return this.http.post<any>(url,object,header);
   }
 }
