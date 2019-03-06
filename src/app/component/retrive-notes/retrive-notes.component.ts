@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 import { NoteService } from 'src/app/core/service/note.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
+import { Label } from 'src/app/core/models/label';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-retrive-notes',
@@ -13,10 +15,19 @@ export class RetriveNotesComponent implements OnInit {
 
   @Output() eventRetrive = new EventEmitter();
 
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  label = new FormControl();
+
+
+  public labels: Label[] = [];
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.getLabels();
   }
   openDialog(note): void {
     const dialogRef = this.dialog.open(UpdatenoteComponent, {
@@ -26,10 +37,12 @@ export class RetriveNotesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.noteService.updateNote(note, note.noteId).subscribe(response => {
         console.log(response);
-      },
+      }
+        ,
         error => {
           console.log("error");
         })
+      this.eventRetrive.emit(true);
       console.log('The dialog was closed');
     });
   }
@@ -57,6 +70,22 @@ export class RetriveNotesComponent implements OnInit {
       error => {
         console.log("error");
       })
+  }
+
+  removeLabel(label, note) {
+    this.noteService.removeLabelFromNote(note.noteId, label.labelId).subscribe(response => {
+      console.log("deleting check in database");
+      this.eventRetrive.emit(true);
+    }, (error) => console.log(error));
+  }
+
+  public getLabels() {
+    this.noteService.retrieveLabels().subscribe(newLabel => {
+      this.labels = newLabel;
+    }, error => {
+      this.snackBar.open("error", "error to retrieve labels", { duration: 2000 });
+    }
+    )
   }
 
 }

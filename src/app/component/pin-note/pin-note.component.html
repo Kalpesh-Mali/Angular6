@@ -1,8 +1,7 @@
 <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
   Pinned Notes
   <div *ngFor="let note of notes">
-    <mat-card *ngIf="note.pinned && !note.inTrash && !note.archive" [style.backgroundColor]="'yellow'" 
-    class="head">
+    <mat-card *ngIf="note.pinned && !note.inTrash && !note.archive" [style.backgroundColor]="'yellow'" class="head">
       <mat-card-header>
         <button mat-icon-button matTooltip="unpin" (click)=pinned(note) class="button">
           <img class="image" src="./assets/img/unpinned.png" height="50%" id="imgRem">
@@ -14,6 +13,15 @@
       <mat-card-content (click)=openDialog(note)>
         {{note.description}}
       </mat-card-content>
+
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let label of note.labels" [selectable]="selectable" [removable]="removable"
+          (removed)="removeLabel(label,note)">
+          {{label.labelName}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+
       <div>
         <button mat-icon-button matTooltip="Remind me">
           <mat-icon>add_alert</mat-icon>
@@ -33,7 +41,8 @@
         <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="more">
           <i id="accountcircle" class="material-icons">more_vert</i></button>
         <mat-menu #more="matMenu" class="morecard">
-          <button mat-button (click)=moveToTrash(note)>Delete Note</button>
+          <div><button mat-button (click)=moveToTrash(note)>Delete Note</button></div>
+          <div><button mat-button (click)=addNote(note)>Add Note</button></div>
         </mat-menu>
       </div>
     </mat-card>

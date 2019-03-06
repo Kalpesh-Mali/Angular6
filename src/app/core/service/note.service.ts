@@ -53,4 +53,15 @@ export class NoteService {
     return this.httpUtil.postForLabelCreate(environment.note_url + 'createlabel', label, this.httpheaders);
   }
 
+  removeLabelFromNote(noteId, labelId) {
+    return this.httpUtil.deleteForRemoveLabelFromNote(`${environment.note_url}removenotelabel/`, {
+      params: {
+        noteId: noteId,
+        labelId: labelId,
+      },
+      observe: 'response'
+    }
+    )
+  }
+
 }

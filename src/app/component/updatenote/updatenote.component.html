@@ -5,6 +5,15 @@
   <div>
     <textarea class="noBorderAndBackground" matInput [(ngModel)]="data.description" [value]=data.description></textarea>
   </div>
+
+  <mat-chip-list #chipList>
+      <mat-chip *ngFor="let label of data.labels" [selectable]="selectable" [removable]="removable"
+        (removed)="removeLabel(label,data)">
+        {{label.labelName}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+
   <div>
     <button mat-icon-button matTooltip="Remind me">
       <mat-icon>add_alert</mat-icon>

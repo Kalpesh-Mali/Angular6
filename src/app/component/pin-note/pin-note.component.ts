@@ -14,6 +14,11 @@ export class PinNoteComponent implements OnInit {
 
   @Output() eventPin = new EventEmitter();
 
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
@@ -32,6 +37,7 @@ export class PinNoteComponent implements OnInit {
         error => {
           console.log("error");
         })
+      this.eventPin.emit(true);
       console.log('The dialog was closed');
     });
   }
@@ -60,6 +66,13 @@ export class PinNoteComponent implements OnInit {
   pinned(note) {
     note.pinned = 0;
     this.updateMethod(note);
+  }
+
+  removeLabel(label, note) {
+    this.noteService.removeLabelFromNote(note.noteId, label.labelId).subscribe(response => {
+      console.log("deleting check in database");
+      this.eventPin.emit(true);
+    }, (error) => console.log(error));
   }
 
 }

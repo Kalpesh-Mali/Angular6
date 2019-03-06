@@ -10,7 +10,10 @@ import { MatSnackBar, MatDialog } from '@angular/material';
   styleUrls: ['./archive-note.component.css']
 })
 export class ArchiveNoteComponent implements OnInit {
-
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
   public notes: Note[] = [];
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
     public dialog: MatDialog) { }
@@ -40,6 +43,7 @@ export class ArchiveNoteComponent implements OnInit {
         error => {
           console.log("error");
         })
+      this.getNotes();
       console.log('The dialog was closed');
     });
   }
@@ -66,6 +70,13 @@ export class ArchiveNoteComponent implements OnInit {
   pinned(note) {
     note.pinned = 1;
     this.updateMethod(note);
+  }
+
+  removeLabel(label, note) {
+    this.noteService.removeLabelFromNote(note.noteId, label.labelId).subscribe(response => {
+      console.log("deleting check in database");
+      this.getNotes();
+    }, (error) => console.log(error));
   }
 
 }

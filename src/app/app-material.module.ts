@@ -23,6 +23,8 @@ import {MatNativeDateModule, MatSidenavModule, MatListModule} from '@angular/mat
 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 
@@ -50,7 +52,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatListModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
   ],
   exports: [
     MatStepperModule,
@@ -73,7 +76,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatListModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
   ],
 })
 export class AppMaterialModule { }

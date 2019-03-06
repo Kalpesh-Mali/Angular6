@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./passwordreset.component.css']
 })
 export class PasswordresetComponent implements OnInit {
+
   resetForm: FormGroup;
   loading = false;
   submitted = false;

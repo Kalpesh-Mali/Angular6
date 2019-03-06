@@ -46,4 +46,8 @@ export class HttpService {
   postForLabelCreate(url,object,header){
     return this.http.post<any>(url,object,header);
   }
+
+  deleteForRemoveLabelFromNote(url,header){
+    return this.http.delete<any>(url,header);
+  }
 }
