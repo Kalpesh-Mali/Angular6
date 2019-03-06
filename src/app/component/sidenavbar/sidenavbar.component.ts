@@ -21,12 +21,12 @@ export class SidenavbarComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.getLabels();
     this.toggleSidebar.subscribe(event => {
       if (this.drawer) {
         this.drawer.toggle();
       }
     });
+    this.getLabels();
   }
 
   public navigateTo(path) {

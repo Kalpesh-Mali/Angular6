@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NoteService } from 'src/app/core/service/note.service';
 import { Note } from 'src/app/core/models/note';
 import { MatSnackBar, MatDialog } from '@angular/material';
-import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 
 @Component({
   selector: 'app-main-notes',

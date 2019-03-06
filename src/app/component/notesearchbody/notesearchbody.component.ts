@@ -13,7 +13,7 @@ import { EventEmitter } from '@angular/core';
 })
 export class NotesearchbodyComponent implements OnInit {
 
-  @Output() CloseClick = new EventEmitter();
+  @Output() eventCreate = new EventEmitter();
 
   public showHeader = true;
   createNoteForm: FormGroup;
@@ -37,7 +37,6 @@ export class NotesearchbodyComponent implements OnInit {
 
   onSubmit(note) {
     this.submitted = true;
-
     if (this.createNoteForm.invalid) {
       return;
     }
@@ -47,23 +46,15 @@ export class NotesearchbodyComponent implements OnInit {
     console.log(this.mytoken);
     console.log(note);
     this.noteService.createNote(note).subscribe(response => {
-      this.snackBar.open("sucess", "note created", {
+      this.eventCreate.emit(true);
+      this.snackBar.open("success", "note created", {
         duration: 2000
       });
     })
   }
 
-  archiveNoteSave(note)
-  {
-    this.submitted = true;
-
-    if (this.createNoteForm.invalid) {
-      return;
-    }
-    if (this.createNoteForm.value.title === "" && this.createNoteForm.value.description === "") {
-      return;
-    }
-    var newNote = {
+  archiveNoteSave(note) {
+    const newNote = {
       ...note,
       archive: true
     }
@@ -72,22 +63,12 @@ export class NotesearchbodyComponent implements OnInit {
 
   }
 
-  pinnedNoteSave(note)
-  {
-    this.submitted = true;
-
-    if (this.createNoteForm.invalid) {
-      return;
-    }
-    if (this.createNoteForm.value.title === "" && this.createNoteForm.value.description === "") {
-      return;
-    }
-    var newNote = {
+  pinnedNoteSave(note) {
+    const newNote = {
       ...note,
       pinned: true,
     }
     this.onSubmit(newNote);
-
   }
 
 }

@@ -27,10 +27,12 @@
         <mat-icon>refresh</mat-icon>
       </a>
 
-      <!-- List -->
-      <!-- <a mat-icon-button routerLink="#" routerLinkActive="active" matTooltip="Lists"> -->
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'view_module' : 'view_stream'}}</mat-icon>
-      <!-- </a> -->
+      <!-- List & Grid -->
+      <button id="viewstream" mat-icon-button fxHide.xs="true" fxShow.sm="false"
+        fxShow.md="true" fxShow.lg="true">
+        <mat-icon (click)="viewList()" *ngIf="grid==0">view_stream</mat-icon>
+        <mat-icon (click)="viewGrid()" *ngIf="grid==1">view_module</mat-icon>
+      </button>
 
       <!-- Settings -->
       <button fxHide.xs="true" mat-icon-button [matMenuTriggerFor]="settings" matTooltip="Settings">

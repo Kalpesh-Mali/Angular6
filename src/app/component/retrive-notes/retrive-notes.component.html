@@ -2,9 +2,9 @@
   Others
   <!-- <div> -->
   <div *ngFor="let note of notes">
-    <mat-card *ngIf="!note.archive && !note.inTrash && !note.pinned" class="card-item">
+    <mat-card *ngIf="!note.archive && !note.inTrash && !note.pinned" class="head">
       <mat-card-header>
-        <button mat-icon-button matTooltip="pin" (click)=pinned(note) style="text-align:right;">
+        <button mat-icon-button matTooltip="pin" (click)=pinned(note) class="button">
           <img class="image" src="./assets/img/pinned.png" height="50%" id="imgRem">
         </button>
         <mat-card-title (click)=openDialog(note)>

@@ -12,7 +12,7 @@ import { NoteService } from 'src/app/core/service/note.service';
 export class PinNoteComponent implements OnInit {
   @Input() notes
 
-  @Output() eventEmit = new EventEmitter();
+  @Output() eventPin = new EventEmitter();
 
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
     public dialog: MatDialog) { }

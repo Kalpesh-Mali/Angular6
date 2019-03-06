@@ -3,7 +3,8 @@
     <div fxFlex="10%">
         <mat-icon>clear</mat-icon>
     </div>
-    <div fxFlex=70% data-text="Create new label" contenteditable="true" class="textarea" id="labelName" #labelName>
+    <div fxFlex=70%  contenteditable="true" class="textarea"
+      id="labelName" #labelName>
     </div>
     <div fxFlex="10%">
         <mat-icon (click)="labelcreate(labelName)">done</mat-icon>
@@ -15,7 +16,7 @@
         <div fxFlex=10%>
             <mat-icon class="icon" (click)=labeldelete(label)>delete</mat-icon>
         </div>
-        <div fxFlex=80% class="textarea" data-text="Create new label" contenteditable="true" id="text" #labl>
+        <div fxFlex=80% class="textarea" contenteditable="true" id="text" #labl>
             {{label.labelName}}</div>
         <div fxFlex=10%>
             <mat-icon class="icon" (click)=labelUpdate(label,labl)>edit</mat-icon>

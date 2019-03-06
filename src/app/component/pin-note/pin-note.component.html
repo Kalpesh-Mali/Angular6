@@ -1,9 +1,10 @@
 <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
   Pinned Notes
   <div *ngFor="let note of notes">
-    <mat-card *ngIf="note.pinned && !note.inTrash && !note.archive" [style.backgroundColor]="'yellow'">
+    <mat-card *ngIf="note.pinned && !note.inTrash && !note.archive" [style.backgroundColor]="'yellow'" 
+    class="head">
       <mat-card-header>
-        <button mat-icon-button matTooltip="unpin" (click)=pinned(note) style="float:right">
+        <button mat-icon-button matTooltip="unpin" (click)=pinned(note) class="button">
           <img class="image" src="./assets/img/unpinned.png" height="50%" id="imgRem">
         </button>
         <mat-card-title (click)=openDialog(note)>

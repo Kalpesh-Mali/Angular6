@@ -11,7 +11,7 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 export class RetriveNotesComponent implements OnInit {
   @Input() notes
 
-  @Output() retriveEvent = new EventEmitter();
+  @Output() eventRetrive = new EventEmitter();
 
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
     public dialog: MatDialog) { }

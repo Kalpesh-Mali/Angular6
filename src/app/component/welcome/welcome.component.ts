@@ -12,6 +12,7 @@ import { Subject } from 'rxjs';
 })
 export class WelcomeComponent implements OnInit {
 
+  grid = 0;
   hide = true;
   public dynamicBind: Note;
   public toggleNav: Subject<any> = new Subject();
@@ -37,6 +38,13 @@ export class WelcomeComponent implements OnInit {
   public logout() {
     localStorage.removeItem('token')
     this.router.navigate(['/login']);
+  }
+
+  viewList() {
+    this.grid = 1;
+  }
+  viewGrid() {
+    this.grid = 0;
   }
 
 }

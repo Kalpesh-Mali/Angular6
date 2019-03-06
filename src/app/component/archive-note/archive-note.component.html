@@ -1,11 +1,11 @@
 <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
   <div *ngFor="let note of notes" >
-    <mat-card *ngIf="note.archive && !note.inTrash && !note.pinned">
+    <mat-card *ngIf="note.archive && !note.inTrash && !note.pinned" class="head">
       <mat-card-header>
         <mat-card-title (click)=openDialog(note)>
           {{note.title}}
         </mat-card-title>
-        <button mat-icon-button matTooltip="pin" (click)=pinned(note) style="float:right">
+        <button mat-icon-button matTooltip="pin" (click)=pinned(note) class="button">
           <mat-icon>colorize</mat-icon>
         </button>
       </mat-card-header>

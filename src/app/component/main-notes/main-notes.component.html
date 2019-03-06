@@ -1,14 +1,14 @@
 <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
 
   <div fxFlex="40%">
-    <app-notesearchbody (CloseClick)="refresh($event)"></app-notesearchbody>
+    <app-notesearchbody (eventCreate)="refresh($event)"></app-notesearchbody>
   </div>
 
   <div fxFlex="40%">
-    <app-pin-note [notes]=notes (eventEmit)="refresh($event)"></app-pin-note>
+    <app-pin-note [notes]="notes" (eventPin)="refresh($event)"></app-pin-note>
   </div>
   <div fxFlex="40%">
-    <app-retrive-notes [notes]=notes (retriveEvent)="refresh($event)"></app-retrive-notes>
+    <app-retrive-notes [notes]="notes" (eventRetrive)="refresh($event)"></app-retrive-notes>
   </div>
 
 </div>

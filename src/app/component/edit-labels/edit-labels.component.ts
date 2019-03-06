@@ -36,15 +36,15 @@ export class EditLabelsComponent implements OnInit {
 
   public labelUpdate(label,labelName)
   {
-    var name=labelName.innerHTML;
+    const name=labelName.innerHTML;
     console.log(name);
-    var newLabel=
+    const newLabel=
     {
       ...label,
-      "labelName" : name
+      labelName : name
     }
     this.noteService.updateLabel(newLabel,newLabel.labelId).subscribe(response => {
-      this.ngOnInit();
+      this.getLabels();
       this.snackBar.open("label updated", "Ok", { duration: 2000 });
     }, error => {
       this.snackBar.open("error", "error to update labels", { duration: 2000 });
@@ -55,7 +55,7 @@ export class EditLabelsComponent implements OnInit {
   public labeldelete(label)
   {
     this.noteService.deleteLabel(label.labelId).subscribe(response => {
-      this.ngOnInit();
+      this.getLabels();
       this.snackBar.open("label deleted", "Ok", { duration: 2000 });
     }, error => {
       this.snackBar.open("error", "error to delete labels", { duration: 2000 });
@@ -65,21 +65,17 @@ export class EditLabelsComponent implements OnInit {
 
   public labelcreate(labelName)
   {
-    var name=labelName.innerHTML;
-    var label=
+    const name=labelName.innerHTML;
+    const label=
     {
-      "labelName":name
+      labelName:name
     }
     this.noteService.createLabel(label).subscribe(response => {
-      this.ngOnInit();
+      this.getLabels();
       this.snackBar.open("label created", "Ok", { duration: 2000 });
     }, error => {
       this.snackBar.open("error", "error to create labels", { duration: 2000 });
     }
     )
   }
-
-
-
-
 }

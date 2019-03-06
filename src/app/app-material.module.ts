@@ -21,7 +21,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatNativeDateModule, MatSidenavModule, MatListModule} from '@angular/material';
 
 
-import {MatDialogModule} from '@angular/material/dialog'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatChipsModule} from '@angular/material/chips';
+
 
 
 @NgModule({
@@ -47,7 +49,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSidenavModule, 
     MatListModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatChipsModule
   ],
   exports: [
     MatStepperModule,
@@ -69,7 +72,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSidenavModule, 
     MatListModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatChipsModule
   ],
 })
 export class AppMaterialModule { }
