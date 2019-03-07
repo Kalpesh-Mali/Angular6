@@ -50,6 +50,7 @@ export class ArchiveNoteComponent implements OnInit {
 
   updateMethod(note) {
     this.noteService.updateNote(note, note.noteId).subscribe(response => {
+      this.getNotes();
       console.log(response);
     },
       error => {

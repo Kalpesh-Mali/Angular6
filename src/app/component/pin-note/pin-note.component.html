@@ -1,10 +1,14 @@
 <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
-  Pinned Notes
+
   <div *ngFor="let note of notes">
-    <mat-card *ngIf="note.pinned && !note.inTrash && !note.archive" [style.backgroundColor]="'yellow'" class="head">
+    <mat-card class="head">
+      <!-- <span *ngIf="note.pinned"> Pinned Note</span> -->
       <mat-card-header>
-        <button mat-icon-button matTooltip="unpin" (click)=pinned(note) class="button">
+        <button *ngIf="note.pinned" mat-icon-button matTooltip="unpin" (click)="pinned('unpinned',note)" class="button">
           <img class="image" src="./assets/img/unpinned.png" height="50%" id="imgRem">
+        </button>
+        <button *ngIf="!note.pinned" mat-icon-button matTooltip="pin" (click)="pinned('pinned',note)" class="button">
+          <img class="image" src="./assets/img/pinned.png" height="50%" id="imgRem">
         </button>
         <mat-card-title (click)=openDialog(note)>
           {{note.title}}
@@ -35,14 +39,20 @@
         <button mat-icon-button matTooltip="Add image">
           <mat-icon>image</mat-icon>
         </button>
-        <button mat-icon-button (click)="updateArchiveNote(note)" matTooltip="Archive">
+        <button mat-icon-button (click)="updateArchiveNote('archive',note)" matTooltip="Archive">
           <mat-icon>archive</mat-icon>
         </button>
         <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="more">
           <i id="accountcircle" class="material-icons">more_vert</i></button>
         <mat-menu #more="matMenu" class="morecard">
-          <div><button mat-button (click)=moveToTrash(note)>Delete Note</button></div>
-          <div><button mat-button (click)=addNote(note)>Add Note</button></div>
+          <div><button mat-button (click)="moveToTrash('inTrash',note)">Delete Note</button></div>
+          <div><button mat-button [matMenuTriggerFor]="addLabels" 
+            (click)="$event.stopPropagation()">Add Note</button></div>
+          <mat-menu #addLabels="matMenu" class="morecard">
+            <div *ngFor="let label of labels">
+                <mat-checkbox (click)="$event.stopPropagation()">{{label.labelName}}</mat-checkbox>
+            </div>
+          </mat-menu>
         </mat-menu>
       </div>
     </mat-card>

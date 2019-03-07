@@ -19,7 +19,6 @@ import { TrashComponent } from './component/trash/trash.component';
 import { TrashdailogComponent } from './component/trashdailog/trashdailog.component';
 import { PinNoteComponent } from './component/pin-note/pin-note.component';
 import { SidenavbarComponent } from './component/sidenavbar/sidenavbar.component';
-import { RetriveNotesComponent } from './component/retrive-notes/retrive-notes.component';
 import { EditLabelsComponent } from './component/edit-labels/edit-labels.component';
 import { NoteFilterPipe } from './pipe/note-filter.pipe';
 
@@ -53,7 +52,6 @@ import { NoteFilterPipe } from './pipe/note-filter.pipe';
     TrashdailogComponent,
     PinNoteComponent,
     SidenavbarComponent,
-    RetriveNotesComponent,
     EditLabelsComponent,
     NoteFilterPipe,
     

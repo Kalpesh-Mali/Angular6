@@ -3,6 +3,8 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 import { Note } from 'src/app/core/models/note';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { NoteService } from 'src/app/core/service/note.service';
+import { FormControl } from '@angular/forms';
+import { Label } from 'src/app/core/models/label';
 
 @Component({
   selector: 'app-pin-note',
@@ -12,17 +14,20 @@ import { NoteService } from 'src/app/core/service/note.service';
 export class PinNoteComponent implements OnInit {
   @Input() notes
 
-  @Output() eventPin = new EventEmitter();
+  @Output() updateNoteEvent = new EventEmitter();
 
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
+  // label = new FormControl();
+  public labels: Label[] = [];
 
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.getLabels();
   }
 
   openDialog(note): void {
@@ -31,48 +36,49 @@ export class PinNoteComponent implements OnInit {
       data: note
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.noteService.updateNote(note, note.noteId).subscribe(response => {
-        console.log(response);
-      },
-        error => {
-          console.log("error");
-        })
-      this.eventPin.emit(true);
+      // this.noteService.updateNote(note, note.noteId).subscribe(response => {
+      //   console.log(response);
+      // })
+      const data = { note }
+      this.updateNoteEvent.emit(data);
       console.log('The dialog was closed');
     });
   }
 
-
-  updateMethod(note) {
-    this.noteService.updateNote(note, note.noteId).subscribe(response => {
-      console.log(response);
-    },
-      error => {
-        console.log("error");
-      })
-  }
-
-  moveToTrash(note) {
+  moveToTrash(key, note) {
     note.inTrash = 1;
-    this.updateMethod(note);
+    const data = { key, note };
+    this.updateNoteEvent.emit(data);
   }
 
-  updateArchiveNote(note) {
+  updateArchiveNote(key, note) {
     note.archive = 1;
     note.pinned = 0;
-    this.updateMethod(note);
+    const data = { key, note };
+    this.updateNoteEvent.emit(data);
   }
 
-  pinned(note) {
-    note.pinned = 0;
-    this.updateMethod(note);
+  pinned(key, note) {
+    note.pinned = key === 'pinned' ? 1 : 0;
+    const data = { key, note };
+    this.updateNoteEvent.emit(data);
   }
 
   removeLabel(label, note) {
     this.noteService.removeLabelFromNote(note.noteId, label.labelId).subscribe(response => {
       console.log("deleting check in database");
-      this.eventPin.emit(true);
+      const data = { note };
+      this.updateNoteEvent.emit(data);
+      // this.eventEmit.emit(true);
     }, (error) => console.log(error));
   }
 
+  public getLabels() {
+    this.noteService.retrieveLabels().subscribe(newLabel => {
+      this.labels = newLabel;
+    }, error => {
+      this.snackBar.open("error", "error to retrieve labels", { duration: 2000 });
+    }
+    )
+  }
 }

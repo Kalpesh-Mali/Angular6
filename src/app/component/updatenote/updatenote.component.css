@@ -21,3 +21,13 @@
     display: flex;
     outline: none
  }
+
+ .head{
+  width:500px;
+  position: relative;
+}
+
+.button{
+  position: absolute;
+  right: 350px;
+}

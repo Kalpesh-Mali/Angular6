@@ -1,6 +1,7 @@
 <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
-  <div *ngFor="let note of notes" >
-    <mat-card *ngIf="note.archive && !note.inTrash && !note.pinned" class="head">
+  <div *ngFor="let note of notes | noteFilter: 'archive'">
+    <!-- *ngIf="note.archive && !note.inTrash && !note.pinned" -->
+    <mat-card class="head">
       <mat-card-header>
         <mat-card-title (click)=openDialog(note)>
           {{note.title}}
@@ -14,12 +15,12 @@
       </mat-card-content>
 
       <mat-chip-list #chipList>
-          <mat-chip *ngFor="let label of note.labels" [selectable]="selectable" [removable]="removable"
-            (removed)="removeLabel(label,note)">
-            {{label.labelName}}
-            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-          </mat-chip>
-        </mat-chip-list>
+        <mat-chip *ngFor="let label of note.labels" [selectable]="selectable" [removable]="removable"
+          (removed)="removeLabel(label,note)">
+          {{label.labelName}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
 
 
       <div class="mouseover">
@@ -35,9 +36,9 @@
         <button mat-icon-button matTooltip="Add image">
           <mat-icon>image</mat-icon>
         </button>
-        <button mat-icon-button (click)="updateArchiveNote(note)"matTooltip="Undo Archive">
-            <mat-icon>archive</mat-icon>
-          </button>
+        <button mat-icon-button (click)="updateArchiveNote(note)" matTooltip="Undo Archive">
+          <mat-icon>unarchive</mat-icon>
+        </button>
         <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="more">
           <i id="accountcircle" class="material-icons">more_vert</i></button>
         <mat-menu #more="matMenu" class="morecard">

@@ -24,6 +24,8 @@ import {MatNativeDateModule, MatSidenavModule, MatListModule} from '@angular/mat
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 
@@ -53,7 +55,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSnackBarModule,
     MatDialogModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   exports: [
     MatStepperModule,
@@ -77,7 +80,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSnackBarModule,
     MatDialogModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
 })
 export class AppMaterialModule { }

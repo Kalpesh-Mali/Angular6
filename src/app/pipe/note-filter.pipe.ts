@@ -14,30 +14,28 @@ export class NoteFilterPipe implements PipeTransform {
         }
       });
     }
-    // else if (!valid) {
-    //   return notes.filter((item) => {
-    //     if (item.archive && !item.inTrash && !item.pinned) {
-    //       return item;
-    //     }
-    //   });
-    // }
-    // else if (!valid) {
-    //   return notes.filter((item) => {
-    //     if (!item.archive && !item.inTrash && item.pinned) {
-    //       return item;
-    //     }
-    //   });
-    // }
-    // else if (!valid) {
-    //   return notes.filter((item) => {
-    //     if (!item.archive && item.inTrash && !item.pinned) {
-    //       return item;
-    //     }
-    //   });
-    // }
-
-    // else
-    //   return notes.filter((item) => item[valid]);
+    else if (valid === 'archive') {
+      return notes.filter((item) => {
+        if (item.archive && !item.inTrash && !item.pinned) {
+          return item;
+        }
+      });
+    }
+    else if (valid === 'pinned') {
+      return notes.filter((item) => {
+        if (!item.inTrash && item.pinned) {
+          return item;
+        }
+      });
+    }
+    else if (valid === 'inTrash') {
+      return notes.filter((item) => {
+        if (item.inTrash) {
+          return item;
+        }
+      });
+    }
+    return null;
 
   }
 }

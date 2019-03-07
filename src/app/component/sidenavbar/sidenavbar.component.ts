@@ -39,7 +39,7 @@ export class SidenavbarComponent implements OnInit {
       data: ''
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.ngOnInit();
+      this.getLabels();
       console.log('The dialog was closed');
     });
   }

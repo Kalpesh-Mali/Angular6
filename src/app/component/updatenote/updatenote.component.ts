@@ -26,20 +26,31 @@ export class UpdatenoteComponent implements OnInit {
   closeClick(newNote) {
     console.log(newNote.title);
     console.log(newNote.description);
-    this.noteService.updateNote(newNote, newNote.noteId).subscribe(response => {
-      console.log(response);
-    },
-      error => {
-        console.log("error");
-      })
-    this.dialogRef.close();
+    this.updateNote(newNote);
   }
+
   moveToTrash(note) {
     note.inTrash = 1;
     console.log(note);
-    this.noteService.updateNote(note, note.noteId).subscribe(response => {
+    this.updateNote(note);
+  }
+
+  updateArchiveNote(key, data) {
+    data.archive = key === 'archive' ? 1 : 0;
+    data.pinned=0;
+    this.updateNote(data);
+  }
+
+  pinned(key,note)
+  {
+    note.pinned = key === 'pinned' ? 1 : 0;
+    this.updateNote(note);
+  }
+
+  updateNote(newNote) {
+    this.noteService.updateNote(newNote, newNote.noteId).subscribe(response => {
       console.log(response);
-      this.snackBar.open("moved to trash", "Ok", { duration: 2000 });
+      this.dialogRef.close();
     },
       error => {
         console.log("error");
@@ -52,5 +63,7 @@ export class UpdatenoteComponent implements OnInit {
       this.dialogRef.close();
     }, (error) => console.log(error));
   }
+
+
 
 }

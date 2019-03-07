@@ -35,6 +35,7 @@ export class TrashComponent implements OnInit {
       data: note
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.getNotes();
       console.log('The dialog was closed');
     });
   }
@@ -43,7 +44,7 @@ export class TrashComponent implements OnInit {
     console.log(note.noteId);
     this.noteService.deleteNote(note.noteId).subscribe(response => {
       this.snackBar.open("deleted Note", "OK", { duration: 2000 });
-      this.ngOnInit();
+      this.getNotes();
     }), error => {
       this.snackBar.open("error to delete notes", "error", { duration: 2000 });
     }
@@ -56,7 +57,7 @@ export class TrashComponent implements OnInit {
     this.noteService.updateNote(note,note.noteId).subscribe(response => {
       console.log(response);
       this.snackBar.open("Restored", "Ok", { duration: 2000 });
-      this.ngOnInit();
+      this.getNotes();
     },
       error => {
         console.log("error");

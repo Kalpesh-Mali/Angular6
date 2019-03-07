@@ -18,10 +18,21 @@ export class MainNotesComponent implements OnInit {
     this.getNotes();
   }
 
-  public refresh(event) {
-    if (event) {
+  public refresh() {
       this.getNotes();
-    }
+  }
+
+  public onUpdateNote(data) {
+    this.updateMethod(data.note);
+  }
+
+  updateMethod(note) {
+    this.noteService.updateNote(note, note.noteId).subscribe(response => {
+      this.getNotes();
+    },
+      error => {
+        console.log("error");
+      })
   }
 
   public getNotes() {

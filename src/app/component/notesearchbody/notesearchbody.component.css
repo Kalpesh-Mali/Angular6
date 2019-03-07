@@ -1,9 +1,5 @@
-.mat-accordion {
-  
-  padding: 200px;}
 
 .noBorderAndBackground{
-   
   text-align: left;
    width: 91%;
     height: 100%;
@@ -12,6 +8,17 @@
     display: flex;
     outline: none
  }
+
+ .head{
+  width:500px;
+  top : 15px;
+  position: relative;
+}
+
+/* .button{
+  position: absolute;
+  right: 10px;
+} */
 
 
  

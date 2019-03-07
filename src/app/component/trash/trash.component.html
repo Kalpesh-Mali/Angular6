@@ -1,5 +1,5 @@
 <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
-  <div *ngFor="let note of notes" >
+  <div *ngFor="let note of notes | noteFilter: 'inTrash'" >
     <mat-card *ngIf="note.inTrash" class="mat-card">
       <mat-card-header>
         <mat-card-title (click)=openDialog(note)>
