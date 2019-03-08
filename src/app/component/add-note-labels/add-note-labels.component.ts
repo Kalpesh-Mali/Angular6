@@ -27,7 +27,6 @@ export class AddNoteLabelsComponent implements OnInit {
     this.noteService.addLabelToNote(note.noteId, label).subscribe(response => {
       console.log("adding check in database");
       const data = { note };
-      // this.getNotes();
       this.eventAddNoteLabel.emit(data);
     }, (error) => console.log(error));
   }

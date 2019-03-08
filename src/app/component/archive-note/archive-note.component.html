@@ -1,61 +1,6 @@
 <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
-  <div *ngFor="let note of notes | noteFilter: 'archive'">
-    <!-- *ngIf="note.archive && !note.inTrash && !note.pinned" -->
-    <mat-card class="head">
-      <mat-card-header>
-        <mat-card-title (click)=openDialog(note)>
-          {{note.title}}
-        </mat-card-title>
-        <button mat-icon-button matTooltip="pin" (click)=pinned(note) class="button">
-          <mat-icon>colorize</mat-icon>
-        </button>
-      </mat-card-header>
-      <mat-card-content (click)=openDialog(note)>
-        {{note.description}}
-      </mat-card-content>
-
-      <mat-chip-list #chipList>
-        <mat-chip *ngFor="let label of note.labels" [selectable]="selectable" [removable]="removable"
-          (removed)="removeLabel(label,note)">
-          {{label.labelName}}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-      </mat-chip-list>
-
-
-      <div class="mouseover">
-        <button mat-icon-button matTooltip="Remind me">
-          <mat-icon>add_alert</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Collaborator">
-          <mat-icon>person_add</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Change color">
-          <mat-icon>palette</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Add image">
-          <mat-icon>image</mat-icon>
-        </button>
-        <button mat-icon-button (click)="updateArchiveNote(note)" matTooltip="Undo Archive">
-          <mat-icon>unarchive</mat-icon>
-        </button>
-        <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="more">
-          <i id="accountcircle" class="material-icons">more_vert</i></button>
-        <mat-menu #more="matMenu" class="morecard">
-          <div><button mat-button (click)=moveToTrash(note)>Delete Note</button></div>
-          <app-add-note-labels [note]="note" (eventAddNoteLabel)="addNoteLabel($event)"></app-add-note-labels>
-          <!-- <div><button mat-button [matMenuTriggerFor]="addLabels" (click)="labelFilter($event,note.labels)">Add
-              Note</button>
-          </div>
-          <mat-menu #addLabels="matMenu" class="morecard">
-            <div *ngFor="let label of newLabels">
-              <mat-checkbox (click)="onClickCkeckbox($event, label, note)">
-                {{label.labelName}}
-              </mat-checkbox>
-            </div>
-          </mat-menu> -->
-        </mat-menu>
-      </div>
-    </mat-card>
+  <div fxFlex="40%">
+    <app-pin-note [notes]="notes | noteFilter:'archive'" (updateNoteEvent)="onUpdateNote($event)">
+    </app-pin-note>
   </div>
 </div>

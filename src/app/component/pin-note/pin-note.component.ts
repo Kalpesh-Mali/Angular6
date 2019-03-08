@@ -53,7 +53,7 @@ export class PinNoteComponent implements OnInit {
   }
 
   updateArchiveNote(key, note) {
-    note.archive = 1;
+    note.archive = key === 'archive' ? 1:0;
     note.pinned = 0;
     const data = { key, note };
     this.updateNoteEvent.emit(data);
