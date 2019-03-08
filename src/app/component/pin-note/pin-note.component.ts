@@ -20,14 +20,14 @@ export class PinNoteComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  // label = new FormControl();
   public labels: Label[] = [];
+  public newLabels: Label[] = [];
+
 
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.getLabels();
   }
 
   openDialog(note): void {
@@ -36,13 +36,14 @@ export class PinNoteComponent implements OnInit {
       data: note
     });
     dialogRef.afterClosed().subscribe(result => {
-      // this.noteService.updateNote(note, note.noteId).subscribe(response => {
-      //   console.log(response);
-      // })
       const data = { note }
       this.updateNoteEvent.emit(data);
       console.log('The dialog was closed');
     });
+  }
+
+  addNoteLabel(data) {
+    this.updateNoteEvent.emit(data);
   }
 
   moveToTrash(key, note) {
@@ -69,16 +70,7 @@ export class PinNoteComponent implements OnInit {
       console.log("deleting check in database");
       const data = { note };
       this.updateNoteEvent.emit(data);
-      // this.eventEmit.emit(true);
     }, (error) => console.log(error));
   }
 
-  public getLabels() {
-    this.noteService.retrieveLabels().subscribe(newLabel => {
-      this.labels = newLabel;
-    }, error => {
-      this.snackBar.open("error", "error to retrieve labels", { duration: 2000 });
-    }
-    )
-  }
 }

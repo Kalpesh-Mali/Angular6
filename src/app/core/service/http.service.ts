@@ -50,4 +50,8 @@ export class HttpService {
   deleteForRemoveLabelFromNote(url,header){
     return this.http.delete<any>(url,header);
   }
+
+  addForAddLabelFromNote(url,object){
+    return this.http.put<any>(url,object,{observe : 'response'});
+  }
 }

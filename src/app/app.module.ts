@@ -21,6 +21,7 @@ import { PinNoteComponent } from './component/pin-note/pin-note.component';
 import { SidenavbarComponent } from './component/sidenavbar/sidenavbar.component';
 import { EditLabelsComponent } from './component/edit-labels/edit-labels.component';
 import { NoteFilterPipe } from './pipe/note-filter.pipe';
+import { AddNoteLabelsComponent } from './component/add-note-labels/add-note-labels.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { NoteFilterPipe } from './pipe/note-filter.pipe';
     SidenavbarComponent,
     EditLabelsComponent,
     NoteFilterPipe,
+    AddNoteLabelsComponent,
     
   ],
   entryComponents: [UpdatenoteComponent,TrashdailogComponent,EditLabelsComponent],

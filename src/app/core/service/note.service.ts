@@ -64,4 +64,9 @@ export class NoteService {
     )
   }
 
+  addLabelToNote(noteId, label) {
+    return this.httpUtil.addForAddLabelFromNote(`${environment.note_url}addnotelabel/`+noteId,label
+    )
+  }
+
 }
