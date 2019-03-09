@@ -6,7 +6,7 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 @Component({
   selector: 'app-add-note-labels',
   templateUrl: './add-note-labels.component.html',
-  styleUrls: ['./add-note-labels.component.css']
+  styleUrls: ['./add-note-labels.component.scss']
 })
 export class AddNoteLabelsComponent implements OnInit {
 
@@ -14,6 +14,7 @@ export class AddNoteLabelsComponent implements OnInit {
   @Output() eventAddNoteLabel = new EventEmitter();
   public labels: Label[] = [];
   public newLabels: Label[] = [];
+  filter:'';
 
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
     public dialog: MatDialog) { }

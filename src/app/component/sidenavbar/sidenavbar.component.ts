@@ -9,11 +9,12 @@ import { Label } from 'src/app/core/models/label';
 @Component({
   selector: 'app-sidenavbar',
   templateUrl: './sidenavbar.component.html',
-  styleUrls: ['./sidenavbar.component.css']
+  styleUrls: ['./sidenavbar.component.scss']
 })
 export class SidenavbarComponent implements OnInit {
   @ViewChild('drawer') public drawer;
   @Input() public toggleSidebar: Subject<any>;
+  @Input() public grid = false;
 
   public labels: Label[] = [];
 
@@ -21,6 +22,7 @@ export class SidenavbarComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
+    console.log(this.grid);
     this.toggleSidebar.subscribe(event => {
       if (this.drawer) {
         this.drawer.toggle();

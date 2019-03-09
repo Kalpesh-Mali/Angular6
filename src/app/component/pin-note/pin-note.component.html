@@ -1,5 +1,6 @@
-<div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
-  <div *ngFor="let note of notes">
+<!-- <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center"> -->
+<div class="gk" [ngClass]="grid ? 'gk-grid-view': 'gk-list-view'">
+  <div *ngFor="let note of notes" class="gk-container">
     <mat-card class="head">
       <mat-card-header>
         <button *ngIf="note.pinned" mat-icon-button matTooltip="unpin" (click)="pinned('unpinned',note)" class="button">
@@ -40,7 +41,8 @@
         <button mat-icon-button *ngIf="!note.archive" (click)="updateArchiveNote('archive',note)" matTooltip="Archive">
           <mat-icon>archive</mat-icon>
         </button>
-        <button mat-icon-button *ngIf="note.archive" (click)="updateArchiveNote('unarchive',note)" matTooltip="Undo Archive">
+        <button mat-icon-button *ngIf="note.archive" (click)="updateArchiveNote('unarchive',note)"
+          matTooltip="Undo Archive">
           <mat-icon>unarchive</mat-icon>
         </button>
         <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="more">

@@ -1,6 +1,6 @@
 <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
   <div fxFlex="40%">
-    <app-pin-note [notes]="notes | noteFilter:'archive'" (updateNoteEvent)="onUpdateNote($event)">
+    <app-pin-note [notes]="notes | noteFilter:'archive'" [grid]="grid" (updateNoteEvent)="onUpdateNote($event)">
     </app-pin-note>
   </div>
 </div>

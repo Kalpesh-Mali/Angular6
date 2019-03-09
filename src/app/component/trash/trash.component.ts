@@ -4,20 +4,26 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { Note } from 'src/app/core/models/note';
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 import { TrashdailogComponent } from '../trashdailog/trashdailog.component';
+import { HelperServiceService } from 'src/app/core/service/helper-service.service';
 
 @Component({
   selector: 'app-trash',
   templateUrl: './trash.component.html',
-  styleUrls: ['./trash.component.css']
+  styleUrls: ['./trash.component.scss']
 })
 export class TrashComponent implements OnInit {
 
   public notes: Note[] = [];
+  public grid = false;
+
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, private helperService: HelperServiceService) { }
 
   ngOnInit() {
     this.getNotes();
+    this.helperService.getTheme().subscribe((resp) =>
+      this.grid = resp
+    );
   }
 
   getNotes() {
@@ -50,11 +56,10 @@ export class TrashComponent implements OnInit {
     }
   }
 
-  restore(note)
-  {
-    note.inTrash=0;
+  restore(note) {
+    note.inTrash = 0;
     console.log(note);
-    this.noteService.updateNote(note,note.noteId).subscribe(response => {
+    this.noteService.updateNote(note, note.noteId).subscribe(response => {
       console.log(response);
       this.snackBar.open("Restored", "Ok", { duration: 2000 });
       this.getNotes();

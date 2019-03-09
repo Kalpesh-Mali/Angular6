@@ -1,0 +1,32 @@
+.button{
+    position: absolute;
+    right: 10px;
+  }
+
+:host {
+    .gk {
+    &-container {
+      margin: 10px 20px;
+    }
+      &-grid-view {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        mat-card{
+          width:300px;
+          position: relative;
+        }
+      }
+      &-list-view {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        mat-card{
+          width:500px;
+          position: relative;
+        }
+      }
+    }
+  }

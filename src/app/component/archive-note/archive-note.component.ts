@@ -4,19 +4,25 @@ import { Note } from 'src/app/core/models/note';
 import { NoteService } from 'src/app/core/service/note.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { Label } from 'src/app/core/models/label';
+import { HelperServiceService } from 'src/app/core/service/helper-service.service';
 
 @Component({
   selector: 'app-archive-note',
   templateUrl: './archive-note.component.html',
-  styleUrls: ['./archive-note.component.css']
+  styleUrls: ['./archive-note.component.scss']
 })
 export class ArchiveNoteComponent implements OnInit {
   public notes: Note[] = [];
+  public grid = false;
+
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, private helperService: HelperServiceService) { }
 
   ngOnInit() {
     this.getNotes();
+    this.helperService.getTheme().subscribe((resp) =>
+      this.grid = resp
+    );
   }
 
   public onUpdateNote(data) {

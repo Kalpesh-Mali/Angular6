@@ -9,7 +9,7 @@ import { EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-notesearchbody',
   templateUrl: './notesearchbody.component.html',
-  styleUrls: ['./notesearchbody.component.css']
+  styleUrls: ['./notesearchbody.component.scss']
 })
 export class NotesearchbodyComponent implements OnInit {
 

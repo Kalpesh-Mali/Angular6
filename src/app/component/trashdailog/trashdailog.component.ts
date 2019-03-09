@@ -6,7 +6,7 @@ import { Note } from 'src/app/core/models/note';
 @Component({
   selector: 'app-trashdailog',
   templateUrl: './trashdailog.component.html',
-  styleUrls: ['./trashdailog.component.css']
+  styleUrls: ['./trashdailog.component.scss']
 })
 export class TrashdailogComponent implements OnInit {
 

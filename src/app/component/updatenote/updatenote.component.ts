@@ -7,7 +7,7 @@ import { Note } from 'src/app/core/models/note';
 @Component({
   selector: 'app-updatenote',
   templateUrl: './updatenote.component.html',
-  styleUrls: ['./updatenote.component.css']
+  styleUrls: ['./updatenote.component.scss']
 })
 export class UpdatenoteComponent implements OnInit {
 

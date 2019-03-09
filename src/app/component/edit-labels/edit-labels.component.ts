@@ -6,7 +6,7 @@ import { Label } from 'src/app/core/models/label';
 @Component({
   selector: 'app-edit-labels',
   templateUrl: './edit-labels.component.html',
-  styleUrls: ['./edit-labels.component.css']
+  styleUrls: ['./edit-labels.component.scss']
 })
 export class EditLabelsComponent implements OnInit {
 

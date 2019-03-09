@@ -9,10 +9,11 @@ import { Label } from 'src/app/core/models/label';
 @Component({
   selector: 'app-pin-note',
   templateUrl: './pin-note.component.html',
-  styleUrls: ['./pin-note.component.css']
+  styleUrls: ['./pin-note.component.scss']
 })
 export class PinNoteComponent implements OnInit {
   @Input() notes
+  @Input() public grid = false;
 
   @Output() updateNoteEvent = new EventEmitter();
 

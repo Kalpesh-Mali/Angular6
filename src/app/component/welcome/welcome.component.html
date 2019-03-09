@@ -30,8 +30,8 @@
       <!-- List & Grid -->
       <button mat-icon-button fxHide.xs="true" fxShow.sm="false"
         fxShow.md="true" fxShow.lg="true">
-        <mat-icon (click)="viewList()" *ngIf="grid==0">view_stream</mat-icon>
-        <mat-icon (click)="viewGrid()" *ngIf="grid==1">view_module</mat-icon>
+        <mat-icon (click)="viewGrid()" *ngIf="!grid">view_stream</mat-icon>
+        <mat-icon (click)="viewGrid()" *ngIf="grid">view_module</mat-icon>
       </button>
 
       <!-- Settings -->
@@ -63,6 +63,10 @@
       <mat-menu #notifications="matMenu">
       </mat-menu>
 
+      <!-- testing -->
+      <!-- <button mat-menu-button (click)="test()">test</button>
+      <button mat-menu-button (click)="test2()">test2</button> -->
+
       <!-- User -->
       <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="menu">
         <i id="accountcircle" class="material-icons">account_circle</i></button>
@@ -73,6 +77,6 @@
   </mat-toolbar>
 </div>
 <mat-divider></mat-divider>
-<!-- side navigation bar -->
 
-<app-sidenavbar [toggleSidebar]="toggleNav"></app-sidenavbar>
+<!-- side navigation bar -->
+<app-sidenavbar [toggleSidebar]="toggleNav" [grid]="grid"></app-sidenavbar>

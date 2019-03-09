@@ -4,12 +4,12 @@
   </div>
   <div fxFlex="40%">
     <span><b>pinned notes</b></span>
-    <app-pin-note [notes]="notes | noteFilter: 'pinned'" (updateNoteEvent)="onUpdateNote($event)">
+    <app-pin-note [notes]="notes | noteFilter: 'pinned'" [grid]="grid" (updateNoteEvent)="onUpdateNote($event)">
     </app-pin-note>
   </div>
   <div fxFlex="40%">
     <span><b>other notes</b></span>
-    <app-pin-note [notes]="notes | noteFilter" (updateNoteEvent)="onUpdateNote($event)">
+    <app-pin-note [notes]="notes | noteFilter" [grid]="grid" (updateNoteEvent)="onUpdateNote($event)">
     </app-pin-note>
   </div>
 </div>
