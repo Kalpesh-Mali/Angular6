@@ -13,12 +13,20 @@
       <p id="text" fxHide.xs="true">Keep</p>
 
       <!-- Search -->
-      <div id="searchbox" fxLayout="row" fxLayoutGap="2%">
+      <div id="searchbox" fxLayoutGap="2%">
         <div fxFlex="0%">
-          <button mat-icon-button id="buttn"><i id="search" class="material-icons">search</i></button>
+          <button mat-icon-button (click)="searchtest()">
+            <mat-icon id="buttn">search</mat-icon>
+          </button>
         </div>
-        <div fxFlex="100">
-          <input id="input" type="text" placeholder="Search" name="string" (click)="searchtest()" [(ngModel)]="string">
+        <div fxFlex="100%">
+          <input matInput id="input" type="text" placeholder="Search" name="searchString" (click)="searchtest()"
+            [(ngModel)]="searchString">
+        </div>
+        <div>
+          <button mat-button *ngIf="searchString" matSuffix mat-icon-button class="button" (click)="clearSearch()">
+            <mat-icon>close</mat-icon>
+          </button>
         </div>
       </div>
 
@@ -28,8 +36,7 @@
       </a>
 
       <!-- List & Grid -->
-      <button mat-icon-button fxHide.xs="true" fxShow.sm="false"
-        fxShow.md="true" fxShow.lg="true">
+      <button mat-icon-button fxHide.xs="true" fxShow.sm="false" fxShow.md="true" fxShow.lg="true">
         <mat-icon (click)="viewGrid()" *ngIf="!grid">view_stream</mat-icon>
         <mat-icon (click)="viewGrid()" *ngIf="grid">view_module</mat-icon>
       </button>

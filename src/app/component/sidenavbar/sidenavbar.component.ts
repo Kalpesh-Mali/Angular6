@@ -5,6 +5,7 @@ import { EditLabelsComponent } from '../edit-labels/edit-labels.component';
 import { NoteService } from 'src/app/core/service/note.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Label } from 'src/app/core/models/label';
+import { HelperServiceService } from 'src/app/core/service/helper-service.service';
 
 @Component({
   selector: 'app-sidenavbar',
@@ -19,7 +20,7 @@ export class SidenavbarComponent implements OnInit {
   public labels: Label[] = [];
 
   constructor(private router: Router, private noteService: NoteService, private snackBar: MatSnackBar,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,private helperService:HelperServiceService) { }
 
   ngOnInit() {
     console.log(this.grid);
@@ -49,8 +50,7 @@ export class SidenavbarComponent implements OnInit {
   public getLabels() {
     this.noteService.retrieveLabels().subscribe(newLabel => {
       this.labels = newLabel;
-    }, error => {
-      this.snackBar.open("error", "error to retrieve labels", { duration: 2000 });
+      // this.helperService.setLabels(newLabel);
     }
     )
   }

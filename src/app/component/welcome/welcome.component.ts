@@ -15,7 +15,9 @@ export class WelcomeComponent implements OnInit {
 
   public grid = false;
   public hide = true;
+  // public searchToggle = false;
   public dynamicBind: Note;
+  public searchString = '';
   public toggleNav: Subject<any> = new Subject();
 
 
@@ -48,18 +50,29 @@ export class WelcomeComponent implements OnInit {
     this.helperService.setTheme(this.grid);
   }
 
-  public test() {
-    var numbers = ['delhi', 'kkp', 'hai', 'delhi', 'hai', 'nope'];
-    var newNumbers = numbers.filter((number, index) => {
-      return index == numbers.indexOf(number);
-    });
-    console.log(newNumbers);
+  // public test() {
+  //   var numbers = ['delhi', 'kkp', 'hai', 'delhi', 'hai', 'nope'];
+  //   var newNumbers = numbers.filter((number, index) => {
+  //     return index == numbers.indexOf(number);
+  //   });
+  //   console.log(newNumbers);
+  // }
+
+  // public test2() {
+  //   var numbers = ['delhi', 'kkp', 'hai', 'nope'];
+  //   var value = 'delhi';
+  //   console.log(numbers.some((item) => item === value));
+  // }
+
+  public searchtest() {
+    this.helperService.setSearch(this.searchString);
+    this.router.navigate(['welcome/search'])
   }
 
-  public test2() {
-    var numbers = ['delhi', 'kkp', 'hai', 'nope'];
-    var value = 'deli';
-    console.log(numbers.some((item) => item === value) );
+  clearSearch()
+  {
+    this.searchString='';
+    this.router.navigate(['welcome/main-notes'])
   }
 
 }

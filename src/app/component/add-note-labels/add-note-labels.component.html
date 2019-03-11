@@ -3,19 +3,26 @@
     Labels</button>
 </div>
 <mat-menu #addLabels="matMenu" class="morecard">
-  <p>Label note</p>
-
-  <div fxLayout="row">
-    <input type="text" placeholder="Enter label name" name="filter"  [(ngModel)]="filter" (click)="$event.stopPropagation()" class="textarea">
-    <div fxFlex=10%>
-      <button mat-icon-button>
-        <mat-icon style="font-size:15px">search</mat-icon>
+  <div class="labelnote">
+    <p>Label note</p>
+    <div fxLayout="row">
+      <input matInput type="text" placeholder="Enter label name" name="filter" [(ngModel)]="filter"
+        (click)="$event.stopPropagation()" class="input">
+      <div fxFlex=10%>
+        <button mat-icon-button>
+          <mat-icon style="font-size:15px">search</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div *ngFor="let label of newLabels | search:filter">
+      <mat-checkbox (click)="onClickCheckbox($event, label, note)">
+        {{label.labelName}}
+      </mat-checkbox>
+    </div>
+    <div>
+      <button mat-button *ngIf="filter != ''" (click)="createNewLabel(filter,note)">
+        <mat-icon>add</mat-icon>Create "{{filter}}"
       </button>
     </div>
-  </div>
-  <div *ngFor="let label of newLabels | search:filter">
-    <mat-checkbox (click)="onClickCheckbox($event, label, note)">
-      {{label.labelName}}
-    </mat-checkbox>
   </div>
 </mat-menu>

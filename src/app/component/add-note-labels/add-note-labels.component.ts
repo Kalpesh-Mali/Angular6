@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Label } from 'src/app/core/models/label';
 import { NoteService } from 'src/app/core/service/note.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
+import { HelperServiceService } from 'src/app/core/service/helper-service.service';
 
 @Component({
   selector: 'app-add-note-labels',
@@ -14,14 +15,19 @@ export class AddNoteLabelsComponent implements OnInit {
   @Output() eventAddNoteLabel = new EventEmitter();
   public labels: Label[] = [];
   public newLabels: Label[] = [];
-  filter:'';
+  public filter = '';
 
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, private helperService: HelperServiceService) { }
 
   ngOnInit() {
     this.getLabels();
+    // this.retriveLabels();
   }
+
+  // public retriveLabels() {
+  //   this.labels=this.helperService.getLabels();
+  // }
 
   public onClickCheckbox(event, label, note) {
     event.stopPropagation();
@@ -58,6 +64,30 @@ export class AddNoteLabelsComponent implements OnInit {
         k++;
       }
     }
+  }
+
+  public createNewLabel(filter, note) {
+    const var1 = note.labels.some((label) => label.labelName === filter)
+    const var2 = this.newLabels.some((label) => label.labelName === filter)
+    if (var1 || var2) {
+      this.snackBar.open("label name already present", "error", { duration: 2000 });
+      return;
+    }
+    const newLabel =
+    {
+      labelName: filter
+    }
+    this.noteService.createLabel(newLabel).subscribe(label => {
+      this.noteService.addLabelToNote(note.noteId, label).subscribe(response => {
+        console.log("adding check in database");
+        const data = { note };
+        this.eventAddNoteLabel.emit(data);
+        this.snackBar.open("label created", "Ok", { duration: 2000 });
+      })
+    }, error => {
+      this.snackBar.open("error", "error to create labels", { duration: 2000 });
+    }
+    )
   }
 
 }

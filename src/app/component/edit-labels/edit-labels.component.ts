@@ -23,8 +23,6 @@ export class EditLabelsComponent implements OnInit {
   public getLabels() {
     this.noteService.retrieveLabels().subscribe(newLabel => {
       this.labels = newLabel;
-    }, error => {
-      this.snackBar.open("error", "error to retrieve labels", { duration: 2000 });
     }
     )
   }
@@ -37,6 +35,10 @@ export class EditLabelsComponent implements OnInit {
   public labelUpdate(label,labelName)
   {
     const name=labelName.innerHTML;
+    if(name === '')
+    {
+      return ;
+    }
     console.log(name);
     const newLabel=
     {
@@ -66,6 +68,10 @@ export class EditLabelsComponent implements OnInit {
   public labelcreate(labelName)
   {
     const name=labelName.innerHTML;
+    if(name === '')
+    {
+      return ;
+    }
     const label=
     {
       labelName:name

@@ -21,7 +21,7 @@ export class PinNoteComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  public labels: Label[] = [];
+  // public labels: Label[] = [];
   public newLabels: Label[] = [];
 
 

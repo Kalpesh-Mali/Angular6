@@ -1,4 +1,4 @@
-export interface Label{
+export class Label{
     labelName:string;
     labelId:string;
     userId:string;

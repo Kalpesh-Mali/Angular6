@@ -23,6 +23,8 @@ import { EditLabelsComponent } from './component/edit-labels/edit-labels.compone
 import { NoteFilterPipe } from './pipe/note-filter.pipe';
 import { AddNoteLabelsComponent } from './component/add-note-labels/add-note-labels.component';
 import { SearchPipe } from './pipe/search.pipe';
+import { SearchNoteComponent } from './component/search-note/search-note.component';
+import { SearchNotesPipe } from './pipe/search-notes.pipe';
 
 
 @NgModule({
@@ -58,6 +60,8 @@ import { SearchPipe } from './pipe/search.pipe';
     NoteFilterPipe,
     AddNoteLabelsComponent,
     SearchPipe,
+    SearchNoteComponent,
+    SearchNotesPipe,
     
   ],
   entryComponents: [UpdatenoteComponent,TrashdailogComponent,EditLabelsComponent],
