@@ -2,14 +2,10 @@
   <div *ngIf="searchString===''">
     Enter something on search bar
   </div>
-  Based on note title
+
   <div fxFlex="40%" *ngIf="searchString!==''">
+    Based on note title
     <app-pin-note [notes]="notes | searchNotes:searchString" [grid]="grid" (updateNoteEvent)="onUpdateNote($event)">
     </app-pin-note>
   </div>
-  <!-- Based on note labels
-  <div fxFlex="40%" *ngIf="searchString!==''">
-    <app-pin-note [notes]="notes | searchNotes:searchString" [grid]="grid" (updateNoteEvent)="onUpdateNote($event)">
-    </app-pin-note>
-  </div> -->
 </div>

@@ -11,11 +11,19 @@ export class SearchNotesPipe implements PipeTransform {
     if (!searchValue) {
       return null;
     }
-    else {
+    else if (searchValue) {
       return notes.filter(({ title }) => {
-        return title.includes(searchValue);
+        return title.toLowerCase().includes(searchValue.toLowerCase());
       });
     }
+    else if (searchValue) {
+      return notes.filter(({ labels }) => {
+        return labels.filter(({ labelName }) =>
+          labelName.toLowerCase().includes(searchValue.toLowerCase()));
+      });
+    }
+    else
+      return null;
   }
 
 }

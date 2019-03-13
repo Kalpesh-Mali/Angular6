@@ -5,6 +5,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { NoteService } from 'src/app/core/service/note.service';
 import { FormControl } from '@angular/forms';
 import { Label } from 'src/app/core/models/label';
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
 
 @Component({
   selector: 'app-pin-note',
@@ -72,6 +73,19 @@ export class PinNoteComponent implements OnInit {
       const data = { note };
       this.updateNoteEvent.emit(data);
     }, (error) => console.log(error));
+  }
+
+  dailogCollaborator(note)
+  {
+    const dialogRef = this.dialog.open(CollaboratorComponent, {
+      width: '500px',
+      data: note
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      const data = { note }
+      this.updateNoteEvent.emit(data);
+      console.log('The dialog was closed');
+    });
   }
 
 }

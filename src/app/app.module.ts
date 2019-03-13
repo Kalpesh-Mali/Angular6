@@ -25,6 +25,7 @@ import { AddNoteLabelsComponent } from './component/add-note-labels/add-note-lab
 import { SearchPipe } from './pipe/search.pipe';
 import { SearchNoteComponent } from './component/search-note/search-note.component';
 import { SearchNotesPipe } from './pipe/search-notes.pipe';
+import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 
 
 @NgModule({
@@ -62,9 +63,11 @@ import { SearchNotesPipe } from './pipe/search-notes.pipe';
     SearchPipe,
     SearchNoteComponent,
     SearchNotesPipe,
+    CollaboratorComponent,
     
   ],
-  entryComponents: [UpdatenoteComponent,TrashdailogComponent,EditLabelsComponent],
+  entryComponents: [UpdatenoteComponent,TrashdailogComponent,EditLabelsComponent,
+  CollaboratorComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

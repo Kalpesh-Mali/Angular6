@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -26,5 +27,17 @@ export class UserService {
 
   resetPassword(user, id) {
    return this.httpUtil.putService(environment.base_url + 'resetpassword/'+id, user, id);
+  }
+
+  colaborator():Observable<any>
+  {
+    const token = localStorage.getItem('token');
+    const httpheaders = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': token
+      })
+    };
+    return this.httpUtil.getService(environment.base_url+'colaborator',httpheaders);
   }
 }
