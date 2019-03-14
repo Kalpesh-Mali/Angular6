@@ -54,4 +54,8 @@ export class HttpService {
   addForAddLabelFromNote(url,object){
     return this.http.put<any>(url,object,{observe : 'response'});
   }
+
+  postToUploadImage(url,object,header){
+    return this.http.post<any>(url,object,header);
+  }
 }

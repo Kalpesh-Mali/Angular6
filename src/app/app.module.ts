@@ -26,6 +26,7 @@ import { SearchPipe } from './pipe/search.pipe';
 import { SearchNoteComponent } from './component/search-note/search-note.component';
 import { SearchNotesPipe } from './pipe/search-notes.pipe';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
+import { ImageComponent } from './component/image/image.component';
 
 
 @NgModule({
@@ -64,10 +65,11 @@ import { CollaboratorComponent } from './component/collaborator/collaborator.com
     SearchNoteComponent,
     SearchNotesPipe,
     CollaboratorComponent,
+    ImageComponent,
     
   ],
   entryComponents: [UpdatenoteComponent,TrashdailogComponent,EditLabelsComponent,
-  CollaboratorComponent],
+  CollaboratorComponent,ImageComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -76,9 +76,29 @@
 
       <!-- User -->
       <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="menu">
-        <i id="accountcircle" class="material-icons">account_circle</i></button>
+        <i id="accountcircle" class="material-icons" *ngIf="imageData.imageSrc===null">account_circle</i>
+        <img class="image" *ngIf="imageData.imageSrc!=null" [src]="imageData.imageSrc" height="60%"
+          width="60%">
+        <!-- <mat-list class="icon-button">
+          <mat-list-item>
+            <i id="accountcircle" class="material-icons" *ngIf="imageData.imageSrc===null">account_circle</i>
+            <img mat-list-icon class="image" *ngIf="imageData.imageSrc!=null" [src]="imageData.imageSrc" height="60%"
+              width="60%">
+          </mat-list-item>
+        </mat-list> -->
+      </button>
       <mat-menu #menu="matMenu" class="morecard">
-        <button mat-button (click)="logout()">Sign out</button>
+        <div>
+          <button mat-menu-item (click)="openDialog()">
+            <mat-icon>image</mat-icon>Change Picture
+          </button>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="row">
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>Sign out
+          </button>
+        </div>
       </mat-menu>
     </mat-toolbar-row>
   </mat-toolbar>

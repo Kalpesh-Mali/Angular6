@@ -1,0 +1,10 @@
+<div style="text-align:center">
+  <label>
+    <input matTnput type="file" (change)="selectFile($event)">
+  </label>
+  <div>
+    <button mat-button (click)="removeImage()">Remove</button>
+    <button mat-button [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+    <button mat-button (click)="close()">Close</button>
+  </div>
+</div>

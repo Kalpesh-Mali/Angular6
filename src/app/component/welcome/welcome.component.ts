@@ -2,33 +2,77 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Note } from 'src/app/core/models/note';
 import { NoteService } from 'src/app/core/service/note.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { Subject } from 'rxjs';
 import { HelperServiceService } from 'src/app/core/service/helper-service.service';
+import { UserService } from 'src/app/core/service/user.service';
+import { User } from 'src/app/core/models/user';
+import { DomSanitizer } from '@angular/platform-browser';
+import { useAnimation } from '@angular/animations';
+import { ImageComponent } from '../image/image.component';
+
+interface ImageData {
+  imageSrc: any;
+}
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss']
 })
+
 export class WelcomeComponent implements OnInit {
 
   public grid = false;
   public hide = true;
-  // public searchToggle = false;
+  public user
   public dynamicBind: Note;
   public searchString = '';
+  public imageData = <ImageData>{};
   public toggleNav: Subject<any> = new Subject();
 
 
   constructor(private router: Router, private noteService: NoteService, private snackBar: MatSnackBar,
-    private helperService: HelperServiceService) { }
+    private userService: UserService,private dailog:MatDialog,
+    private helperService: HelperServiceService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    this.getImage();
+  }
+
+  getImage() {
+    this.userService.downloadImage().subscribe(resp => {
+      this.user = resp
+      console.log(this.user)
+      if (this.user.profilePicture != null) {
+        const url = `data:${this.user.contentType};base64,${this.user.profilePicture}`;
+        this.imageData = {
+          imageSrc: this.sanitizer.bypassSecurityTrustUrl(url)
+        }
+      }
+      else {
+        this.imageData.imageSrc = null;
+      }
+    }, error => {
+      this.snackBar.open("error to download image", "error", { duration: 2000 });
+    }
+    )
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dailog.open(ImageComponent, {
+      width: '500px',
+      data: ''
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.getImage();
+      console.log('The dialog was closed');
+    });
   }
 
   public toggle() {
     this.toggleNav.next();
+    console.log(this.toggleNav);
   }
 
   public getNotes() {
@@ -69,9 +113,8 @@ export class WelcomeComponent implements OnInit {
     this.router.navigate(['welcome/search'])
   }
 
-  clearSearch()
-  {
-    this.searchString='';
+  clearSearch() {
+    this.searchString = '';
     this.router.navigate(['welcome/main-notes'])
   }
 

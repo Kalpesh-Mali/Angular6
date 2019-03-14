@@ -23,7 +23,6 @@ export class SidenavbarComponent implements OnInit {
     public dialog: MatDialog,private helperService:HelperServiceService) { }
 
   ngOnInit() {
-    console.log(this.grid);
     this.toggleSidebar.subscribe(event => {
       if (this.drawer) {
         this.drawer.toggle();

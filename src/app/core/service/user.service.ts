@@ -11,6 +11,14 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
+  public token = localStorage.getItem('token');
+  public httpheaders = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'token': this.token
+    })
+  };
+
   constructor(private httpUtil: HttpService, private router: Router, public snackBar: MatSnackBar) { }
 
   login(user) {
@@ -26,18 +34,29 @@ export class UserService {
   }
 
   resetPassword(user, id) {
-   return this.httpUtil.putService(environment.base_url + 'resetpassword/'+id, user, id);
+    return this.httpUtil.putService(environment.base_url + 'resetpassword/' + id, user, id);
   }
 
-  colaborator():Observable<any>
+  colaborator(): Observable<any> {
+    return this.httpUtil.getService(environment.base_url + 'colaborator', this.httpheaders);
+  }
+
+  uploadImage(file): Observable<any> {
+    const formdata = new FormData();
+    formdata.append("file", file);
+    return this.httpUtil.postToUploadImage(environment.base_url + 'photo/' + this.token, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    }
+    );
+  }
+
+  downloadImage():Observable<any> {
+    return this.httpUtil.getService(environment.base_url + 'photo', this.httpheaders);
+  }
+
+  removeImage()
   {
-    const token = localStorage.getItem('token');
-    const httpheaders = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': token
-      })
-    };
-    return this.httpUtil.getService(environment.base_url+'colaborator',httpheaders);
+    return this.httpUtil.deleteService(environment.base_url + 'photo',this.httpheaders);
   }
 }
