@@ -2,13 +2,24 @@
   <h3 mat-subheader>Colaborators</h3>
   <mat-divider></mat-divider>
   <mat-list-item *ngIf="user!=null">
-      <mat-icon mat-list-icon *ngIf="imageData.imageSrc===null">account_circle</mat-icon>
-      <img mat-list-icon class="image" *ngIf="imageData.imageSrc!=null" [src]="imageData.imageSrc">
+    <mat-icon mat-list-icon *ngIf="imageData.imageSrc===null">account_circle</mat-icon>
+    <img mat-list-icon class="image" *ngIf="imageData.imageSrc!=null" [src]="imageData.imageSrc">
     <h4 mat-line>{{user.name}}(Owner)</h4>
     <p mat-line> {{user.emailId}} </p>
   </mat-list-item>
   <mat-list-item>
     <mat-icon mat-list-icon>person_add</mat-icon>
+    <!-- <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Enter email here" aria-label="Number" matInput [formControl]="myControl"
+          [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let user of filteredOptions | async" [value]="user.emailId">
+            {{emailId}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form> -->
     <input matInput [(ngModel)]="emailId" placeholder="Enter email address" class="text">
     <button mat-icon-button class="button">
       <mat-icon (click)="collaborate(user,emailId)">done</mat-icon>

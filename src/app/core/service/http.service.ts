@@ -58,4 +58,9 @@ export class HttpService {
   postToUploadImage(url,object,header){
     return this.http.post<any>(url,object,header);
   }
+
+  getUserEmail(url,header)
+  {
+    return this.http.get<any>(url,header);
+  }
 }

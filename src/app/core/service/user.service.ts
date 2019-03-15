@@ -59,4 +59,14 @@ export class UserService {
   {
     return this.httpUtil.deleteService(environment.base_url + 'photo',this.httpheaders);
   }
+
+  getUsers():Observable<any>
+  {
+    return this.httpUtil.getService(environment.base_url + 'allusers',{observe : 'response'})
+  }
+
+  verifyEmail(email):Observable<any>
+  {
+    return this.httpUtil.getUserEmail(environment.base_url + 'verifyemail/'+email,this.httpheaders)
+  }
 }
