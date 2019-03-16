@@ -28,6 +28,7 @@ import { SearchNotesPipe } from './pipe/search-notes.pipe';
 import { CollaboratorComponent } from './component/collaborator/collaborator.component';
 import { ImageComponent } from './component/image/image.component';
 import { SearchUserPipe } from './pipe/search-user.pipe';
+import { ChangeColorComponent } from './component/change-color/change-color.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { SearchUserPipe } from './pipe/search-user.pipe';
     CollaboratorComponent,
     ImageComponent,
     SearchUserPipe,
+    ChangeColorComponent,
     
   ],
   entryComponents: [UpdatenoteComponent,TrashdailogComponent,EditLabelsComponent,

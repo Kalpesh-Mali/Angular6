@@ -67,6 +67,11 @@ export class UpdatenoteComponent implements OnInit {
     this.updateNote(data.note);
   }
 
+  updateColor(data)
+  {
+    this.updateNote(data.note);
+  }
+
   //   public onClickCkeckbox(event, label, note) {
   //   event.stopPropagation();
   //   this.noteService.addLabelToNote(note.noteId, label).subscribe(response => {

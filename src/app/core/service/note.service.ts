@@ -65,7 +65,12 @@ export class NoteService {
   }
 
   addLabelToNote(noteId, label) {
-    return this.httpUtil.addForAddLabelFromNote(`${environment.note_url}addnotelabel/`+noteId,label
+    return this.httpUtil.addForAddLabelFromNote(`${environment.note_url}addnotelabel/` + noteId, label
+    )
+  }
+
+  createCollaborator(noteId, userId) {
+    return this.httpUtil.postForCollaborator(`${environment.note_url}createcollaborator/`+noteId+'/'+userId, this.httpheaders
     )
   }
 

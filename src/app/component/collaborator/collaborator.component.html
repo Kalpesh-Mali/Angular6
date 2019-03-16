@@ -9,25 +9,24 @@
   </mat-list-item>
   <mat-list-item>
     <mat-icon mat-list-icon>person_add</mat-icon>
-    <!-- <form class="example-form">
+    <form class="example-form">
       <mat-form-field class="example-full-width">
         <input type="text" placeholder="Enter email here" aria-label="Number" matInput [formControl]="myControl"
           [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let user of filteredOptions | async" [value]="user.emailId">
-            {{emailId}}
+          <mat-option *ngFor="let user of users | searchUser:myControl.value" [value]="user.emailId">
+            {{user.emailId}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-    </form> -->
-    <input matInput [(ngModel)]="emailId" placeholder="Enter email address" class="text">
+    </form>
     <button mat-icon-button class="button">
-      <mat-icon (click)="collaborate(user,emailId)">done</mat-icon>
+      <mat-icon (click)="collaborate(myControl.value)">done</mat-icon>
     </button>
   </mat-list-item>
   <mat-divider></mat-divider>
   <div class="saveButton">
     <button mat-button (click)="closeClick()">Close</button>
-    <button mat-button (click)="collaborate(user,emailId)">Save</button>
+    <button mat-button (click)="collaborate(myControl.value)">Save</button>
   </div>
 </mat-list>

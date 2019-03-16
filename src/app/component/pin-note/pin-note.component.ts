@@ -55,7 +55,7 @@ export class PinNoteComponent implements OnInit {
   }
 
   updateArchiveNote(key, note) {
-    note.archive = key === 'archive' ? 1:0;
+    note.archive = key === 'archive' ? 1 : 0;
     note.pinned = 0;
     const data = { key, note };
     this.updateNoteEvent.emit(data);
@@ -75,8 +75,7 @@ export class PinNoteComponent implements OnInit {
     }, (error) => console.log(error));
   }
 
-  dailogCollaborator(note)
-  {
+  dailogCollaborator(note) {
     const dialogRef = this.dialog.open(CollaboratorComponent, {
       width: '500px',
       data: note
@@ -86,6 +85,10 @@ export class PinNoteComponent implements OnInit {
       this.updateNoteEvent.emit(data);
       console.log('The dialog was closed');
     });
+  }
+
+  updateColor(data) {
+    this.updateNoteEvent.emit(data);
   }
 
 }

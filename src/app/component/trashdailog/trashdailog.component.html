@@ -1,4 +1,4 @@
-<div class="notecard">
+<div class="notecard" [ngStyle]="{'background-color':note.color}">
   <div mat-dialog-title id="title" class="textarea" [innerHTML]=note.title></div>
   <p mat-dialog-content id="description" class="textarea" [innerHTML]=note.description></p>
   <div class="mouseover">

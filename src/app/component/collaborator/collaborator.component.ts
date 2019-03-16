@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { NoteService } from 'src/app/core/service/note.service';
 
 interface ImageData {
   imageSrc: any;
@@ -24,51 +25,34 @@ export class CollaboratorComponent implements OnInit {
   public imageData = <ImageData>{};
   public myControl = new FormControl();
   public users: User[] = [];
-  filteredOptions: Observable<any[]>;
-  options: string[] = ['One', 'Two', 'Three'];
-
 
   constructor(private userService: UserService, public dialogRef: MatDialogRef<CollaboratorComponent>,
     @Inject(MAT_DIALOG_DATA) public note: Note,
-    private snackBar: MatSnackBar, private sanitizer: DomSanitizer) { }
+    private snackBar: MatSnackBar, private sanitizer: DomSanitizer,
+    private noteService:NoteService) { }
 
   ngOnInit() {
     this.getImage();
-    // this.getUsers();
-    // console.log(this.users);
-    // this.filteredOptions = this.myControl.valueChanges
-    //   .pipe(
-    //     startWith(''),
-    //     map(value => this.filter(value))
-    //   );
+    this.getUsers();
   }
 
-  // private filter(value: string): string[] {
-  //   const filterValue = value.toLowerCase();
-  //   return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  // }
+  public getUsers() {
+    this.userService.getUsers().subscribe(({body}) => {
+      this.users = body;
+      console.log(this.users)
+    }
+      , error => console.log("error"));
+  }
 
-  // private filter(value: string): User[] {
-  //   const filterValue = value.toLowerCase();
-  //   this.getUsers();
-  //   return this.users.filter(({emailId}) => { return emailId.toLowerCase().includes(filterValue) });
-  // }
-
-  // public getUsers() {
-  //   this.userService.getUsers().subscribe(user => {
-  //     this.users = user
-  //     console.log(this.users)
-  //   }
-  //     , error => console.log("error"));
-  // }
-
-  collaborate(user, emailId) {
-    console.log(emailId);
-    console.log(user);
+  collaborate(emailId) {
+    // console.log(user);
     this.userService.verifyEmail(emailId).subscribe(user => {
-      console.log(user);
-      console.log(this.note);
+      console.log(user.id);
+      console.log(this.note.noteId);
       this.snackBar.open("emailId verified", "ok", { duration: 2000 });
+      this.noteService.createCollaborator(this.note.noteId,user.id).subscribe(resp=>
+        this.snackBar.open("added to collaborator", "ok", { duration: 2000 })
+        )
     }, error => console.log(error));
   }
 

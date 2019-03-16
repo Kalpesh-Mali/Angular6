@@ -8,5 +8,6 @@ export interface Note {
     pinned: boolean;
     inTrash: boolean;
     userId: string;
+    color:string;
     labels:Label[];
 }

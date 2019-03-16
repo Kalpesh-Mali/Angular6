@@ -71,4 +71,9 @@ export class NotesearchbodyComponent implements OnInit {
     this.onSubmit(newNote);
   }
 
+  updateColor(data)
+  {
+    this.onSubmit(data.note);
+  }
+
 }

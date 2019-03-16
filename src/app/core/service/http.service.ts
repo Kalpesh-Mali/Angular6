@@ -63,4 +63,9 @@ export class HttpService {
   {
     return this.http.get<any>(url,header);
   }
+
+  postForCollaborator(url,header)
+  {
+    return this.http.post<any>(url,{},header);
+  }
 }
