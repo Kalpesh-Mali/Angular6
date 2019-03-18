@@ -69,4 +69,9 @@ export class UserService {
   {
     return this.httpUtil.getUserEmail(environment.base_url + 'verifyemail/'+email,this.httpheaders)
   }
+
+  getCollaborateUser(userId):Observable<any>
+  {
+    return this.httpUtil.getCollaborateUser(environment.base_url + 'getcollaborateduser/'+userId);
+  }
 }

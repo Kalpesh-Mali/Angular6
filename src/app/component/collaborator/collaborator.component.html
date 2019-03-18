@@ -7,6 +7,14 @@
     <h4 mat-line>{{user.name}}(Owner)</h4>
     <p mat-line> {{user.emailId}} </p>
   </mat-list-item>
+  <mat-list-item *ngFor="let collabUser of collabUsers">
+    <!-- <mat-icon mat-list-icon *ngIf="imageData.imageSrc===null">account_circle</mat-icon> -->
+    <!-- <img mat-list-icon class="image" *ngIf="imageData.imageSrc!=null" [src]="imageData.imageSrc"> -->
+    <h4 mat-line>{{collabUser.name}}</h4>
+    <p mat-line> {{collabUser.emailId}} </p>
+    <mat-icon mat-list-icon (click)="removeCollaborator(collabUser)" >clear</mat-icon>
+
+  </mat-list-item>
   <mat-list-item>
     <mat-icon mat-list-icon>person_add</mat-icon>
     <form class="example-form">

@@ -68,4 +68,14 @@ export class HttpService {
   {
     return this.http.post<any>(url,{},header);
   }
+
+  getCollaborateUser(url)
+  {
+    return this.http.get<any>(url,{});
+  }
+
+  removeCollaborateUser(url)
+  {
+    return this.http.delete<any>(url,{});
+  }
 }

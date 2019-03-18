@@ -74,4 +74,9 @@ export class NoteService {
     )
   }
 
+  removeCollaborateUser(noteId,userId)
+  {
+    return this.httpUtil.removeCollaborateUser(`${environment.note_url}removecollaborator/`+userId+'/'+noteId);
+  }
+
 }

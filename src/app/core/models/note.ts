@@ -1,4 +1,5 @@
 import { Label } from './label';
+import { Collaborator } from './collaborator';
 
 export interface Note {
     noteId: string;
@@ -10,4 +11,5 @@ export interface Note {
     userId: string;
     color:string;
     labels:Label[];
+    collaborators:Collaborator[];
 }
