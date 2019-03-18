@@ -37,15 +37,12 @@ export class LoginComponent {
 
   onSubmit(user) {
     this.submitted = true;
-
     if (this.loginForm.invalid) {
       return;
     }
-    console.log(user);
     this.userService.login(user).subscribe(response => {
-      console.log("login successful");
       localStorage.setItem('token', response.headers.get('token'));
-      this.router.navigate(['/welcome']);
+      this.router.navigate(['/welcome/main-notes']);
       this.snackBar.open("Successfully logged In", "Ok", { duration: 2000 })
     }, error => {
       this.snackBar.open("error", "please enter valid data", { duration: 2000 })
