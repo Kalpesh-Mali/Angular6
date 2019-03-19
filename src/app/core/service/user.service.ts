@@ -72,6 +72,6 @@ export class UserService {
 
   getCollaborateUser(userId):Observable<any>
   {
-    return this.httpUtil.getCollaborateUser(environment.base_url + 'getcollaborateduser/'+userId);
+    return this.httpUtil.getCollaborateUser(environment.base_url + 'collaborateduser/'+userId);
   }
 }

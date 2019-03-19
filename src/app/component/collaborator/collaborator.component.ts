@@ -34,11 +34,17 @@ export class CollaboratorComponent implements OnInit {
     private noteService: NoteService) { }
 
   ngOnInit() {
-    this.getImage();
+    // this.getImage();
     this.getUsers();
     this.getCollaborateUser();
+    this.getNoteOwner();
   }
 
+  public getNoteOwner()
+  {
+    this.userService.getCollaborateUser(this.note.userId).subscribe(
+      user => this.user=user);
+  }
   public getUsers() {
     this.userService.getUsers().subscribe(({ body }) => {
       this.users = body;
@@ -63,23 +69,23 @@ export class CollaboratorComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  getImage() {
-    this.userService.downloadImage().subscribe(resp => {
-      this.user = resp
-      if (this.user.profilePicture != null) {
-        const url = `data:${this.user.contentType};base64,${this.user.profilePicture}`;
-        this.imageData = {
-          imageSrc: this.sanitizer.bypassSecurityTrustUrl(url)
-        }
-      }
-      else {
-        this.imageData.imageSrc = null;
-      }
-    }, error => {
-      this.snackBar.open("error to download image", "error", { duration: 2000 });
-    }
-    )
-  }
+  // getImage() {
+  //   this.userService.downloadImage().subscribe(resp => {
+  //     this.user = resp
+  //     if (this.user.profilePicture != null) {
+  //       const url = `data:${this.user.contentType};base64,${this.user.profilePicture}`;
+  //       this.imageData = {
+  //         imageSrc: this.sanitizer.bypassSecurityTrustUrl(url)
+  //       }
+  //     }
+  //     else {
+  //       this.imageData.imageSrc = null;
+  //     }
+  //   }, error => {
+  //     this.snackBar.open("error to download image", "error", { duration: 2000 });
+  //   }
+  //   )
+  // }
 
   getCollaborateUser() {
     for (let i = 0; i < this.note.collaborators.length; i++) {

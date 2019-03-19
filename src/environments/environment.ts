@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   base_url : 'http://localhost:8082/user/',
-  note_url : 'http://localhost:8087/user/'
+  note_url : 'http://localhost:8087/user/note/'
 };
 
 /*
