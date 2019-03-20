@@ -1,0 +1,20 @@
+.message{
+    opacity: 0.4;
+    font-size: 24px;
+}
+
+.searchicon{
+    height: 136px;
+    margin: 20px;
+    opacity: 0.2;
+    width: 120px;
+    font-size: 161px;
+}
+
+.empty
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 129px;
+}

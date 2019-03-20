@@ -6,6 +6,7 @@ import { NoteService } from 'src/app/core/service/note.service';
 import { FormControl } from '@angular/forms';
 import { Label } from 'src/app/core/models/label';
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-pin-note',
@@ -15,6 +16,7 @@ import { CollaboratorComponent } from '../collaborator/collaborator.component';
 export class PinNoteComponent implements OnInit {
   @Input() notes
   @Input() public grid = false;
+  @Input() message;
 
   @Output() updateNoteEvent = new EventEmitter();
 
@@ -30,6 +32,7 @@ export class PinNoteComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
+    console.log(this.message);
   }
 
   openDialog(note): void {

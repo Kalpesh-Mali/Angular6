@@ -33,7 +33,7 @@ export class WelcomeComponent implements OnInit {
 
 
   constructor(private router: Router, private noteService: NoteService, private snackBar: MatSnackBar,
-    private userService: UserService,private dailog:MatDialog,
+    private userService: UserService, private dailog: MatDialog,
     private helperService: HelperServiceService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class WelcomeComponent implements OnInit {
 
   getImage() {
     this.userService.downloadImage().subscribe(resp => {
-      this.user = resp
+      this.user = resp;
       console.log(this.user)
       if (this.user.profilePicture != null) {
         const url = `data:${this.user.contentType};base64,${this.user.profilePicture}`;
@@ -60,11 +60,10 @@ export class WelcomeComponent implements OnInit {
     )
   }
 
-  refreshPage()
-  {
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
+  refreshPage() {
+    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    //   return false;
+    // };
   }
 
   openDialog(): void {

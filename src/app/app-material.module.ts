@@ -19,6 +19,8 @@ import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatNativeDateModule, MatSidenavModule, MatListModule } from '@angular/material';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -56,7 +58,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatChipsModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule
   ],
   exports: [
     MatStepperModule,
@@ -82,7 +85,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatChipsModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule
   ],
 })
 export class AppMaterialModule { }

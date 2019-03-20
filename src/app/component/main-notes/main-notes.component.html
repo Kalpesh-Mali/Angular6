@@ -3,13 +3,11 @@
     <app-notesearchbody (eventCreate)="refresh($event)"></app-notesearchbody>
   </div>
   <div fxFlex="40%">
-    <span><b>pinned notes</b></span>
-    <app-pin-note [notes]="notes | noteFilter: 'pinned'" [grid]="grid" (updateNoteEvent)="onUpdateNote($event)">
+    <app-pin-note [notes]="notes | noteFilter: 'pinned'" [grid]="grid" [message]="'pinned'" (updateNoteEvent)="onUpdateNote($event)">
     </app-pin-note>
   </div>
   <div fxFlex="40%">
-    <span><b>other notes</b></span>
-    <app-pin-note [notes]="notes | noteFilter" [grid]="grid" (updateNoteEvent)="onUpdateNote($event)">
+    <app-pin-note [notes]="notes | noteFilter" [grid]="grid" [message]="'note'" (updateNoteEvent)="onUpdateNote($event)">
     </app-pin-note>
   </div>
 </div>

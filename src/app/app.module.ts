@@ -29,6 +29,7 @@ import { CollaboratorComponent } from './component/collaborator/collaborator.com
 import { ImageComponent } from './component/image/image.component';
 import { SearchUserPipe } from './pipe/search-user.pipe';
 import { ChangeColorComponent } from './component/change-color/change-color.component';
+import { RemainderComponent } from './component/remainder/remainder.component';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { ChangeColorComponent } from './component/change-color/change-color.comp
     ImageComponent,
     SearchUserPipe,
     ChangeColorComponent,
+    RemainderComponent,
     
   ],
   entryComponents: [UpdatenoteComponent,TrashdailogComponent,EditLabelsComponent,

@@ -12,11 +12,14 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
   public token = localStorage.getItem('token');
-  public httpheaders = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'token': this.token
-    })
+  public httpheaders() {
+    // console.log("localStorage.getItem('token')::", localStorage.getItem('token'));
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token')
+      })
+    }
   };
 
   constructor(private httpUtil: HttpService, private router: Router, public snackBar: MatSnackBar) { }
@@ -38,7 +41,7 @@ export class UserService {
   }
 
   colaborator(): Observable<any> {
-    return this.httpUtil.getService(environment.base_url + 'colaborator', this.httpheaders);
+    return this.httpUtil.getService(environment.base_url + 'colaborator', this.httpheaders());
   }
 
   uploadImage(file): Observable<any> {
@@ -51,27 +54,23 @@ export class UserService {
     );
   }
 
-  downloadImage():Observable<any> {
-    return this.httpUtil.getService(environment.base_url + 'photo', this.httpheaders);
+  downloadImage(): Observable<any> {
+    return this.httpUtil.getService(environment.base_url + 'photo', this.httpheaders());
   }
 
-  removeImage()
-  {
-    return this.httpUtil.deleteService(environment.base_url + 'photo',this.httpheaders);
+  removeImage() {
+    return this.httpUtil.deleteService(environment.base_url + 'photo', this.httpheaders());
   }
 
-  getUsers():Observable<any>
-  {
-    return this.httpUtil.getService(environment.base_url + 'allusers',{observe : 'response'})
+  getUsers(): Observable<any> {
+    return this.httpUtil.getService(environment.base_url + 'allusers', { observe: 'response' })
   }
 
-  verifyEmail(email):Observable<any>
-  {
-    return this.httpUtil.getUserEmail(environment.base_url + 'verifyemail/'+email,this.httpheaders)
+  verifyEmail(email): Observable<any> {
+    return this.httpUtil.getUserEmail(environment.base_url + 'verifyemail/' + email, this.httpheaders())
   }
 
-  getCollaborateUser(userId):Observable<any>
-  {
-    return this.httpUtil.getCollaborateUser(environment.base_url + 'collaborateduser/'+userId);
+  getCollaborateUser(userId): Observable<any> {
+    return this.httpUtil.getCollaborateUser(environment.base_url + 'collaborateduser/' + userId);
   }
 }

@@ -14,6 +14,7 @@ import { HelperServiceService } from 'src/app/core/service/helper-service.servic
 export class ArchiveNoteComponent implements OnInit {
   public notes: Note[] = [];
   public grid = false;
+  public message='archive';
 
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
     public dialog: MatDialog, private helperService: HelperServiceService) { }
@@ -23,6 +24,7 @@ export class ArchiveNoteComponent implements OnInit {
     this.helperService.getTheme().subscribe((resp) =>
       this.grid = resp
     );
+    console.log(this.message)
   }
 
   public onUpdateNote(data) {

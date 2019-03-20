@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
   <form [formGroup]="createNoteForm">
     <mat-accordion class="head">
-      <mat-expansion-panel [expanded]=true (opened)="showHeader = false" (closed)="onSubmit(createNoteForm.value)"
+      <mat-expansion-panel [expanded]=false (opened)="showHeader = false" (closed)="onSubmit(createNoteForm.value)"
         (closed)="showHeader = true" hideToggle="true">
         <mat-expansion-panel-header>
           <ng-container *ngIf="showHeader;else tempTtext">

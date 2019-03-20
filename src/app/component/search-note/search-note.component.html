@@ -1,6 +1,7 @@
 <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
-  <div *ngIf="searchString===''">
-    Enter something on search bar
+  <div *ngIf="searchString===''" class="empty">
+    <mat-icon class="searchicon">search</mat-icon>
+    <div class="message">Enter something on search bar</div>
   </div>
 
   <div fxFlex="40%" *ngIf="searchString!==''">

@@ -1,7 +1,7 @@
 <mat-list>
   <h3 mat-subheader>Colaborators</h3>
   <mat-divider></mat-divider>
-  <mat-list-item>
+  <mat-list-item *ngIf="user!=null">
       <!-- *ngIf="imageData.imageSrc===null" -->
     <mat-icon mat-list-icon >account_circle</mat-icon>
     <!-- <img mat-list-icon class="image" *ngIf="imageData.imageSrc!=null" [src]="imageData.imageSrc"> -->

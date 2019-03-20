@@ -12,6 +12,7 @@ import { ArchiveNoteComponent } from './component/archive-note/archive-note.comp
 import { TrashComponent } from './component/trash/trash.component';
 import { SidenavbarComponent } from './component/sidenavbar/sidenavbar.component';
 import { SearchNoteComponent } from './component/search-note/search-note.component';
+import { RemainderComponent } from './component/remainder/remainder.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'search',
         component: SearchNoteComponent
+      },
+      {
+        path: 'remainder',
+        component: RemainderComponent
       },
       {
         path: '',

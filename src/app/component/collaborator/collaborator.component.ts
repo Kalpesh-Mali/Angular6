@@ -55,6 +55,11 @@ export class CollaboratorComponent implements OnInit {
 
   collaborate(emailId) {
     this.userService.verifyEmail(emailId).subscribe(user => {
+      if(user.id===this.note.userId)
+      {
+        this.snackBar.open("you cannot add the owner", "error", { duration: 2000 });
+        return;
+      }
       this.snackBar.open("emailId verified", "ok", { duration: 2000 });
       this.noteService.createCollaborator(this.note.noteId, user.id).subscribe(resp => {
         this.dialogRef.close();
