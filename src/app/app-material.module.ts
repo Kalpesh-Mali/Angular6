@@ -28,6 +28,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 
 
@@ -59,7 +60,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatSelectModule,
     MatCheckboxModule,
     MatAutocompleteModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   exports: [
     MatStepperModule,
@@ -86,7 +89,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatSelectModule,
     MatCheckboxModule,
     MatAutocompleteModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
 })
 export class AppMaterialModule { }

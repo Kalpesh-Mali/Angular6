@@ -12,15 +12,31 @@ import { NoteService } from 'src/app/core/service/note.service';
 export class RemainderComponent implements OnInit {
 
   public notes: Note[] = [];
+  public grid = false;
+  public message='archive';
+
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
     public dialog: MatDialog, private helperService: HelperServiceService) { }
 
   ngOnInit() {
     this.getNotes();
+    this.helperService.getTheme().subscribe((resp) =>
+      this.grid = resp
+    );
+    console.log(this.message)
   }
 
-  public refresh() {
-    this.getNotes();
+  public onUpdateNote(data) {
+    this.updateMethod(data.note);
+  }
+
+  updateMethod(note) {
+    this.noteService.updateNote(note, note.noteId).subscribe(response => {
+      this.getNotes();
+    },
+      error => {
+        console.log("error");
+      })
   }
 
   public getNotes() {

@@ -6,7 +6,6 @@ import { NoteService } from 'src/app/core/service/note.service';
 import { FormControl } from '@angular/forms';
 import { Label } from 'src/app/core/models/label';
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-pin-note',
@@ -24,7 +23,9 @@ export class PinNoteComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  // public labels: Label[] = [];
+  selectedMoment =new Date();
+  public min = new Date();
+    // public labels: Label[] = [];
   public newLabels: Label[] = [];
 
 
@@ -35,7 +36,7 @@ export class PinNoteComponent implements OnInit {
     console.log(this.message);
   }
 
-  openDialog(note): void {
+  public openDialog(note): void {
     const dialogRef = this.dialog.open(UpdatenoteComponent, {
       width: '500px',
       data: note
@@ -47,30 +48,30 @@ export class PinNoteComponent implements OnInit {
     });
   }
 
-  addNoteLabel(data) {
+  public addNoteLabel(data) {
     this.updateNoteEvent.emit(data);
   }
 
-  moveToTrash(key, note) {
+  public moveToTrash(key, note) {
     note.inTrash = 1;
     const data = { key, note };
     this.updateNoteEvent.emit(data);
   }
 
-  updateArchiveNote(key, note) {
+  public updateArchiveNote(key, note) {
     note.archive = key === 'archive' ? 1 : 0;
     note.pinned = 0;
     const data = { key, note };
     this.updateNoteEvent.emit(data);
   }
 
-  pinned(key, note) {
+  public pinned(key, note) {
     note.pinned = key === 'pinned' ? 1 : 0;
     const data = { key, note };
     this.updateNoteEvent.emit(data);
   }
 
-  removeLabel(label, note) {
+  public removeLabel(label, note) {
     this.noteService.removeLabelFromNote(note.noteId, label.labelId).subscribe(response => {
       console.log("deleting check in database");
       const data = { note };
@@ -78,7 +79,7 @@ export class PinNoteComponent implements OnInit {
     }, (error) => console.log(error));
   }
 
-  dailogCollaborator(note) {
+  public dailogCollaborator(note) {
     const dialogRef = this.dialog.open(CollaboratorComponent, {
       width: '500px',
       data: note
@@ -90,8 +91,23 @@ export class PinNoteComponent implements OnInit {
     });
   }
 
-  updateColor(data) {
+  public updateColor(data) {
     this.updateNoteEvent.emit(data);
   }
 
+  public saveRemainder(selectedMoment,note)
+  {
+    note.remainder=selectedMoment;
+    console.log(note.remainder);
+    const data = { note }
+    this.updateNoteEvent.emit(data);
+  }
+
+  public removeRemainder(note)
+  {
+    note.remainder=null;
+    console.log(note.remainder);
+    const data = { note }
+    this.updateNoteEvent.emit(data);
+  }
 }

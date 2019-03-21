@@ -19,6 +19,8 @@ export class NotesearchbodyComponent implements OnInit {
   createNoteForm: FormGroup;
   loading = false;
   submitted = false;
+  selectedMoment =new Date();
+  public min = new Date();
   public mytoken = localStorage.getItem('token')
 
 
@@ -75,5 +77,14 @@ export class NotesearchbodyComponent implements OnInit {
   {
     this.onSubmit(data.note);
   }
+
+  // public saveRemainder(selectedMoment,note)
+  // {
+  //   const newNote = {
+  //     ...note,
+  //     remainder: selectedMoment,
+  //   }
+  //   this.onSubmit(newNote);
+  // }
 
 }

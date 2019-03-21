@@ -2,4 +2,9 @@
   <div fxFlex="40%">
     <app-notesearchbody (eventCreate)="refresh($event)"></app-notesearchbody>
   </div>
+  <div fxFlex="40%">
+    <app-pin-note [notes]="notes | noteFilter:'remainder'" [grid]="grid" [message]="'remainder'"
+      (updateNoteEvent)="onUpdateNote($event)">
+    </app-pin-note>
+  </div>
 </div>

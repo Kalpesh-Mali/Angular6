@@ -11,5 +11,6 @@ export interface Note {
     userId: string;
     color:string;
     labels:Label[];
+    remainder:string;
     collaborators:Collaborator[];
 }
