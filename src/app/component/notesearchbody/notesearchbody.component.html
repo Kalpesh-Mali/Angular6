@@ -33,21 +33,21 @@
             [ngClass]="{ 'is-invalid': submitted && f.description.errors }" style="width: 500px;"></textarea>
         </mat-panel-description>
         <mat-panel-description>
-          <!-- <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="remind">
+          <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="remind">
             <mat-icon>add_alert</mat-icon>
           </button>
           <mat-menu #remind="matMenu" class="morecard" (click)="$event.stopPropagation()">
             <div class="input-wrapper">
               <label>Add a remainder to note:</label>
               <hr>
-              <input [min]="min" [(ngModel)]="selectedMoment" [owlDateTimeTrigger]="dtPicker1" [owlDateTime]="dtPicker1"
+              <input [min]="min" formControlName="remainder" [owlDateTimeTrigger]="dtPicker1" [owlDateTime]="dtPicker1"
                 placeholder="select date and time">
               <owl-date-time #dtPicker1></owl-date-time>
             </div>
             <div>
-              <button mat-button class="saveButton" (click)="saveRemainder(selectedMoment,createNoteForm.value)">Save</button>
+              <button mat-button class="saveButton" (click)="saveRemainder(createNoteForm.value.remainder,createNoteForm.value)">Save</button>
             </div>
-          </mat-menu> -->
+          </mat-menu>
           <button mat-icon-button matTooltip="Collaborator">
             <mat-icon>person_add</mat-icon>
           </button>

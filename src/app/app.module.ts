@@ -30,6 +30,7 @@ import { ImageComponent } from './component/image/image.component';
 import { SearchUserPipe } from './pipe/search-user.pipe';
 import { ChangeColorComponent } from './component/change-color/change-color.component';
 import { RemainderComponent } from './component/remainder/remainder.component';
+import { DynamicHoverClassDirective } from './directive/dynamic-hover-class.directive';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { RemainderComponent } from './component/remainder/remainder.component';
     SearchUserPipe,
     ChangeColorComponent,
     RemainderComponent,
+    DynamicHoverClassDirective,
     
   ],
   entryComponents: [UpdatenoteComponent,TrashdailogComponent,EditLabelsComponent,

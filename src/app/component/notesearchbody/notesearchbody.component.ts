@@ -32,7 +32,8 @@ export class NotesearchbodyComponent implements OnInit {
 
     this.createNoteForm = this.formBuilder.group({
       title: [''],
-      description: ['']
+      description: [''],
+      remainder:''
     });
   }
   get f() { return this.createNoteForm.controls; }
@@ -78,13 +79,13 @@ export class NotesearchbodyComponent implements OnInit {
     this.onSubmit(data.note);
   }
 
-  // public saveRemainder(selectedMoment,note)
-  // {
-  //   const newNote = {
-  //     ...note,
-  //     remainder: selectedMoment,
-  //   }
-  //   this.onSubmit(newNote);
-  // }
+  public saveRemainder(selectedMoment,note)
+  {
+    const newNote = {
+      ...note,
+      remainder: selectedMoment,
+    }
+    this.onSubmit(newNote);
+  }
 
 }

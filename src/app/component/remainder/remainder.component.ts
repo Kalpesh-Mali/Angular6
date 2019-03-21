@@ -26,6 +26,10 @@ export class RemainderComponent implements OnInit {
     console.log(this.message)
   }
 
+  public refresh() {
+    this.getNotes();
+  }
+
   public onUpdateNote(data) {
     this.updateMethod(data.note);
   }
