@@ -31,6 +31,7 @@ import { SearchUserPipe } from './pipe/search-user.pipe';
 import { ChangeColorComponent } from './component/change-color/change-color.component';
 import { RemainderComponent } from './component/remainder/remainder.component';
 import { DynamicHoverClassDirective } from './directive/dynamic-hover-class.directive';
+import { LabelsComponent } from './component/labels/labels.component';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { DynamicHoverClassDirective } from './directive/dynamic-hover-class.dire
     ChangeColorComponent,
     RemainderComponent,
     DynamicHoverClassDirective,
+    LabelsComponent,
     
   ],
   entryComponents: [UpdatenoteComponent,TrashdailogComponent,EditLabelsComponent,

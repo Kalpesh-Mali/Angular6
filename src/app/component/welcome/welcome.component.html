@@ -1,4 +1,4 @@
-<div>
+<div class="fixed">
   <mat-toolbar class="navbar">
     <mat-toolbar-row>
       <!-- menu -->
@@ -20,7 +20,7 @@
           </button>
         </div>
         <div fxFlex="100%">
-          <input matInput id="input" type="text" placeholder="Search" name="searchString" (click)="searchtest()"
+          <input matInput id="input" type="text" placeholder="search" name="searchString" (click)="searchtest()"
             [(ngModel)]="searchString">
         </div>
         <div>
@@ -70,22 +70,11 @@
       <mat-menu #notifications="matMenu">
       </mat-menu>
 
-      <!-- testing -->
-      <!-- <button mat-menu-button (click)="test()">test</button>
-      <button mat-menu-button (click)="test2()">test2</button> -->
-
       <!-- User -->
       <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="menu">
         <i id="accountcircle" class="material-icons" *ngIf="imageData.imageSrc===null">account_circle</i>
         <img class="image" *ngIf="imageData.imageSrc!=null" [src]="imageData.imageSrc" height="60%"
           width="60%">
-        <!-- <mat-list class="icon-button">
-          <mat-list-item>
-            <i id="accountcircle" class="material-icons" *ngIf="imageData.imageSrc===null">account_circle</i>
-            <img mat-list-icon class="image" *ngIf="imageData.imageSrc!=null" [src]="imageData.imageSrc" height="60%"
-              width="60%">
-          </mat-list-item>
-        </mat-list> -->
       </button>
       <mat-menu #menu="matMenu" class="morecard">
         <div>

@@ -48,13 +48,10 @@
               <button mat-button class="saveButton" (click)="saveRemainder(createNoteForm.value.remainder,createNoteForm.value)">Save</button>
             </div>
           </mat-menu>
-          <button mat-icon-button matTooltip="Collaborator">
-            <mat-icon>person_add</mat-icon>
-          </button>
+          <!-- <button mat-icon-button matTooltip="Collaborator" (click)="dailogCollaborator(createNoteForm.value)">
+              <mat-icon>person_add</mat-icon>
+            </button> -->
           <app-change-color [newNote]="createNoteForm.value" (colorChange)="updateColor($event)"></app-change-color>
-          <!-- <button mat-icon-button matTooltip="Change color">
-            <mat-icon>palette</mat-icon>
-          </button> -->
           <button mat-icon-button matTooltip="Add image">
             <mat-icon>image</mat-icon>
           </button>

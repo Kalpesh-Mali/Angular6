@@ -3,8 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/core/service/http.service';
 import { NoteService } from 'src/app/core/service/note.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { EventEmitter } from '@angular/core';
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
 
 @Component({
   selector: 'app-notesearchbody',
@@ -26,7 +27,8 @@ export class NotesearchbodyComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,
     private router: Router, private noteService: NoteService,
-    private httpUtil: HttpService, private snackBar: MatSnackBar) { }
+    private httpUtil: HttpService, private snackBar: MatSnackBar,
+    private dialog:MatDialog) { }
 
   ngOnInit() {
 
@@ -87,5 +89,18 @@ export class NotesearchbodyComponent implements OnInit {
     }
     this.onSubmit(newNote);
   }
+
+  // public dailogCollaborator(note) {
+  //   if (note.title === "" && note.description === "") {
+  //     return;
+  //   }
+  //   const dialogRef = this.dialog.open(CollaboratorComponent, {
+  //     width: '500px',
+  //     data: note
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //   });
+  // }
 
 }

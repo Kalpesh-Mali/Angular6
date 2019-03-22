@@ -22,10 +22,22 @@
     </mat-chip-list>
 
     <div>
-      <button mat-icon-button matTooltip="Remind me">
+      <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="remind">
         <mat-icon>add_alert</mat-icon>
       </button>
-      <button mat-icon-button matTooltip="Collaborator">
+      <mat-menu #remind="matMenu" class="morecard" (click)="$event.stopPropagation()">
+        <div class="input-wrapper">
+          <label>Add a remainder to note:</label>
+          <hr>
+          <input [min]="min" [(ngModel)]="selectedMoment" [owlDateTimeTrigger]="dtPicker1" [owlDateTime]="dtPicker1"
+            placeholder="select date and time">
+          <owl-date-time #dtPicker1></owl-date-time>
+        </div>
+        <div>
+          <button mat-button class="saveButton" (click)="saveRemainder(selectedMoment,data)">Save</button>
+        </div>
+      </mat-menu>
+      <button mat-icon-button matTooltip="Collaborator" (click)="dailogCollaborator(data)">
         <mat-icon>person_add</mat-icon>
       </button>
       <app-change-color [newNote]="data" (colorChange)="updateColor($event)"></app-change-color>

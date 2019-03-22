@@ -1,5 +1,11 @@
 <!-- <div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center"> -->
-<div class="gk" [ngClass]="grid ? 'gk-grid-view': 'gk-list-view'">
+<p *ngIf="notes.length > 0 && message==='note'">
+  <span><b>other notes</b></span>
+</p>
+<p *ngIf="notes.length > 0 && message==='pinned'">
+  <span><b>pinned notes</b></span>
+</p>
+<div class="gk" [ngClass]="grid ? 'gk-grid-view': 'gk-list-view'" [dynamicHoverClass]="'has-hover'">
   <div *ngIf="notes.length === 0 && message==='archive'" class="empty">
     <mat-icon class="searchicon">archive</mat-icon>
     <div class="message">No notes in archive</div>
@@ -8,26 +14,20 @@
     <mat-icon class="searchicon">notifications_none</mat-icon>
     <div class="message">No notes in remainder</div>
   </div>
-  <div *ngIf="notes.length > 0 && message==='note'">
-    <span><b>other notes</b></span>
-  </div>
-  <div *ngIf="notes.length > 0 && message==='pinned'">
-    <span><b>pinned notes</b></span>
-  </div>
   <div *ngFor="let note of notes" class="gk-container">
     <mat-card class="head" [style.background-color]="note.color">
-      <mat-card-header>
+      <mat-card-header class="container-header">
         <button *ngIf="note.pinned" mat-icon-button matTooltip="unpin" (click)="pinned('unpinned',note)" class="button">
-          <img class="image" src="./assets/img/unpinned.png" height="50%" id="imgRem">
+          <img class="image" src="./assets/img/unpinned.png" height="50%" id="imgRem" class="header-icon">
         </button>
         <button *ngIf="!note.pinned" mat-icon-button matTooltip="pin" (click)="pinned('pinned',note)" class="button">
-          <img class="image" src="./assets/img/pinned.png" height="50%" id="imgRem">
+          <img class="image" src="./assets/img/pinned.png" height="50%" id="imgRem" class="header-icon">
         </button>
         <mat-card-title (click)=openDialog(note)>
           {{note.title}}
         </mat-card-title>
       </mat-card-header>
-      <mat-card-content (click)=openDialog(note)>
+      <mat-card-content class="container-body" (click)=openDialog(note)>
         {{note.description}}
       </mat-card-content>
 
@@ -44,42 +44,51 @@
           <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
         </mat-chip>
       </mat-chip-list>
-      <div>
-        <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="remind">
-          <mat-icon>add_alert</mat-icon>
-        </button>
-        <mat-menu #remind="matMenu" class="morecard" (click)="$event.stopPropagation()">
-          <div class="input-wrapper">
-            <label>Add a remainder to note:</label>
-            <hr>
-            <input [min]="min" [(ngModel)]="selectedMoment" [owlDateTimeTrigger]="dtPicker1" [owlDateTime]="dtPicker1"
-              placeholder="select date and time">
-            <owl-date-time #dtPicker1></owl-date-time>
-          </div>
-          <div>
-            <button mat-button class="saveButton" (click)="saveRemainder(selectedMoment,note)">Save</button>
-          </div>
-        </mat-menu>
-        <button mat-icon-button matTooltip="Collaborator" (click)="dailogCollaborator(note)">
-          <mat-icon>person_add</mat-icon>
-        </button>
-        <app-change-color [newNote]="note" (colorChange)="updateColor($event)"></app-change-color>
-        <button mat-icon-button matTooltip="Add image">
-          <mat-icon>image</mat-icon>
-        </button>
-        <button mat-icon-button *ngIf="!note.archive" (click)="updateArchiveNote('archive',note)" matTooltip="Archive">
-          <mat-icon>archive</mat-icon>
-        </button>
-        <button mat-icon-button *ngIf="note.archive" (click)="updateArchiveNote('unarchive',note)"
-          matTooltip="Undo Archive">
-          <mat-icon>unarchive</mat-icon>
-        </button>
-        <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="more">
-          <i id="accountcircle" class="material-icons">more_vert</i></button>
-        <mat-menu #more="matMenu" class="morecard">
-          <div><button mat-button (click)="moveToTrash('inTrash',note)">Delete Note</button></div>
-          <app-add-note-labels [note]="note" (eventAddNoteLabel)="addNoteLabel($event)"></app-add-note-labels>
-        </mat-menu>
+      <div class="container-footer">
+        <div class="container-footer-buttons">
+          <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="remind">
+            <mat-icon>add_alert</mat-icon>
+          </button>
+          <mat-menu #remind="matMenu" class="morecard" (click)="$event.stopPropagation()">
+            <div class="input-wrapper">
+              <label>Add a remainder to note:</label>
+              <hr>
+              <input [min]="min" [(ngModel)]="selectedMoment" [owlDateTimeTrigger]="dtPicker1" [owlDateTime]="dtPicker1"
+                placeholder="select date and time">
+              <owl-date-time #dtPicker1></owl-date-time>
+            </div>
+            <div>
+              <button mat-button class="saveButton" (click)="saveRemainder(selectedMoment,note)">Save</button>
+            </div>
+          </mat-menu>
+          <button mat-icon-button matTooltip="Collaborator" (click)="dailogCollaborator(note)">
+            <mat-icon>person_add</mat-icon>
+          </button>
+          <app-change-color [newNote]="note" (colorChange)="updateColor($event)"></app-change-color>
+          <button mat-icon-button matTooltip="Add image">
+            <mat-icon>image</mat-icon>
+          </button>
+          <button mat-icon-button *ngIf="!note.archive" (click)="updateArchiveNote('archive',note)"
+            matTooltip="Archive">
+            <mat-icon>archive</mat-icon>
+          </button>
+          <button mat-icon-button *ngIf="note.archive" (click)="updateArchiveNote('unarchive',note)"
+            matTooltip="Undo Archive">
+            <mat-icon>unarchive</mat-icon>
+          </button>
+          <button mat-icon-button class="icon-button" id="more" [matMenuTriggerFor]="more">
+            <i id="accountcircle" class="material-icons">more_vert</i></button>
+          <mat-menu #more="matMenu" class="morecard">
+            <div><button mat-button (click)="moveToTrash('inTrash',note)">Delete Note</button></div>
+            <app-add-note-labels [note]="note" (eventAddNoteLabel)="addNoteLabel($event)"></app-add-note-labels>
+          </mat-menu>
+          <button mat-icon-button matTooltip="undo">
+            <mat-icon>undo</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="redo">
+            <mat-icon>redo</mat-icon>
+          </button>
+        </div>
       </div>
     </mat-card>
   </div>

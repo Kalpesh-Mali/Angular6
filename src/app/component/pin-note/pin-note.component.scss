@@ -98,3 +98,40 @@
 {
     float: right;
 }
+
+
+// @mixin display($value) {
+//   .header-icon, .container-footer-buttons  {
+//     display: $value;
+//    }
+// }
+
+
+// .flex-box {
+//  display: flex;
+//    justify-content: space-between;
+// }
+// .container {
+//  @include display(none);
+//    padding: 10px;
+//  color: black;
+//  background-color: skyblue;
+//  &-header {
+//   @extend .flex-box;
+//   p {
+//     background-color: red;
+//     padding:  0 5px;
+//     border-radius: 10px;
+//   }
+//  }
+//  &-footer {
+//    height: 20px;
+//    &-buttons {
+//    @extend .flex-box;
+//    }
+//  }
+//  &.has-hover  {
+//    @include display(flex);
+//    background-color: lightgrey;
+//  }
+// }

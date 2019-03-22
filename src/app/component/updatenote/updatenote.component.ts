@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject, Output } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar, MatDialog } from '@angular/material';
 import { NoteService } from 'src/app/core/service/note.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Note } from 'src/app/core/models/note';
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
 
 @Component({
   selector: 'app-updatenote',
@@ -15,10 +16,12 @@ export class UpdatenoteComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  selectedMoment=new Date();
+  min=new Date();
 
   constructor(public dialogRef: MatDialogRef<UpdatenoteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Note, private noteService: NoteService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,private dialog:MatDialog) { }
 
   ngOnInit() {
   }
@@ -67,48 +70,22 @@ export class UpdatenoteComponent implements OnInit {
     this.updateNote(data.note);
   }
 
-  updateColor(data)
-  {
+  updateColor(data) {
     this.updateNote(data.note);
   }
 
-  //   public onClickCkeckbox(event, label, note) {
-  //   event.stopPropagation();
-  //   this.noteService.addLabelToNote(note.noteId, label).subscribe(response => {
-  //     console.log("adding check in database");
-  //     const data = { note };
-  //     this.getNotes();
-  //   }, (error) => console.log(error));
-  // }
+  saveRemainder(selectedMoment, note) {
+    note.remainder = selectedMoment;
+    this.updateNote(note);
+  }
 
-  // public getLabels() {
-  //   this.noteService.retrieveLabels().subscribe(newLabel => {
-  //     this.labels = newLabel;
-  //     console.log(this.labels);
-  //   }, error => {
-  //     this.snackBar.open("error", "error to retrieve labels", { duration: 2000 });
-  //   }
-  //   )
-  // }
-
-  // public labelFilter(event, noteLabels) {
-  //   event.stopPropagation();
-  //   this.newLabels.length = 0;
-  //   var k = 0;
-  //   for (var i = 0; i < this.labels.length; i++) {
-  //     var present = 0;
-  //     for (var j = 0; j < noteLabels.length; j++) {
-  //       if (this.labels[i].labelId === noteLabels[j].labelId && present === 0) {
-  //         present = 1;
-  //       }
-  //     }
-  //     if (present === 0) {
-  //       this.newLabels[k] = this.labels[i];
-  //       k++;
-  //     }
-  //   }
-  // }
-
-
-
+  public dailogCollaborator(note) {
+    const dialogRef = this.dialog.open(CollaboratorComponent, {
+      width: '500px',
+      data: note
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }

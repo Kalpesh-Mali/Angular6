@@ -1,102 +1,13 @@
-.mat-stroked-button:hover{
+.mat-menu-item:hover{
     background-color: rgb(255, 233, 133);
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
 }
-
-.navbar{
-    display: flex;
-}
-
-#insidenave{
+.example-container
+{
     width: 250px;
 }
-#button{
-    border-style: none;
-    width: 100%;
-    font-family: sans-serif;
-    height: 56px;
-    padding: 5px
-}
-#imgNotes{
-    margin-right: 42px;
-    margin-left: -116px;
 
-}
-#imgRem{
-    margin-right: 34px;
-    margin-left: -90px;
-}
-#imglab{
-  margin-right: 18px;
-  margin-left: -89px;
-}
-#imgArc{
-    margin-right: 42px;
-    margin-left: -116px;
-}
-#imgtrace{
-    margin-right: 42px;
-    margin-left: -126px;
-}
-#imgSet{
-    margin-right: 42px;
-    margin-left: -116px;
-}
-#imgfeed{
-    margin-right: 30px;
-    margin-left: -78px;
-
-}
-#imghelp{
-    margin-right: 42px;
-    margin-left: -134px;
-}
-#imgdn{
-    margin-right: 31px;
-    margin-left: -74px;
-
-}
-#imgkb{
-    margin-right: 26px;
-    margin-left: -50px;
-}
-#editbutton{
-  margin-left: 104px;
-  border: none;
-}
-
-#line{
-    height: -5px;
-    border: lightgray 1px solid;
-}
-.example-container {
-    height: 100%;
-  }
-
-  .example-sidenav {
-    padding: 20px;
-  }
-
-
-.labelsbutton{
-    border-style: none;
-}
-.txtt{
-    white-space: nowrap;
-    text-overflow:ellipsis;
-    overflow: hidden !important;
-}
-.buttonn{
-    border: none;
-    width: 250px;
-    margin-right: 26px;
-    margin-left: -16px;   
-}
-.labelbutton{
-    width: 250px;
-    border: none;
-}
-.txtt{
-    margin-top: -2px;
+mat-sidenav-container{
+    height:100%;
 }
