@@ -38,6 +38,7 @@ export class SidenavbarComponent implements OnInit {
   editLabel(): void {
     const dialogRef = this.dialog.open(EditLabelsComponent, {
       width: '500px',
+      height:'250px',
       data: ''
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -52,6 +53,13 @@ export class SidenavbarComponent implements OnInit {
       // this.helperService.setLabels(newLabel);
     }
     )
+  }
+
+  notesWithList(label,path)
+  {
+    this.helperService.setLabel(label);
+    console.log("sidenav::::::",label)
+    this.navigateTo(path);
   }
 
 }

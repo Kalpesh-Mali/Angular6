@@ -1,3 +1,6 @@
-<p>
-  labels works!
-</p>
+<div class="container" fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
+  <div fxFlex="40%">
+    <app-pin-note [notes]="newNotes" [grid]="grid" [message]="'label'" (updateNoteEvent)="onUpdateNote($event)">
+    </app-pin-note>
+  </div>
+</div>

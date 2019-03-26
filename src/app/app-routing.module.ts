@@ -13,6 +13,7 @@ import { TrashComponent } from './component/trash/trash.component';
 import { SidenavbarComponent } from './component/sidenavbar/sidenavbar.component';
 import { SearchNoteComponent } from './component/search-note/search-note.component';
 import { RemainderComponent } from './component/remainder/remainder.component';
+import { LabelsComponent } from './component/labels/labels.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'remainder',
         component: RemainderComponent
+      },
+      {
+        path: 'label',
+        component: LabelsComponent
       },
       {
         path: '',

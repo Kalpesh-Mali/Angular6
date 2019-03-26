@@ -82,6 +82,7 @@ export class PinNoteComponent implements OnInit {
   public dailogCollaborator(note) {
     const dialogRef = this.dialog.open(CollaboratorComponent, {
       width: '500px',
+      height:'250px',
       data: note
     });
     dialogRef.afterClosed().subscribe(result => {

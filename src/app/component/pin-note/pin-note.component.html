@@ -14,6 +14,10 @@
     <mat-icon class="searchicon">notifications_none</mat-icon>
     <div class="message">No notes in remainder</div>
   </div>
+  <div *ngIf="notes.length === 0 && message==='label'" class="empty">
+    <mat-icon class="searchicon">label</mat-icon>
+    <div class="message">No notes with this label yet</div>
+  </div>
   <div *ngFor="let note of notes" class="gk-container">
     <mat-card class="head" [style.background-color]="note.color">
       <mat-card-header class="container-header">
@@ -82,12 +86,6 @@
             <div><button mat-button (click)="moveToTrash('inTrash',note)">Delete Note</button></div>
             <app-add-note-labels [note]="note" (eventAddNoteLabel)="addNoteLabel($event)"></app-add-note-labels>
           </mat-menu>
-          <button mat-icon-button matTooltip="undo">
-            <mat-icon>undo</mat-icon>
-          </button>
-          <button mat-icon-button matTooltip="redo">
-            <mat-icon>redo</mat-icon>
-          </button>
         </div>
       </div>
     </mat-card>

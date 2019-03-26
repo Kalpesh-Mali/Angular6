@@ -24,7 +24,7 @@
         <span>Edit Labels</span>
       </button>
       <div *ngFor="let label of labels">
-        <button mat-menu-item (click)="notesWithList(label)">
+        <button mat-menu-item (click)="notesWithList(label,'welcome/label')">
           <mat-icon>label</mat-icon> &nbsp;
           <span>{{label.labelName}}</span>
         </button>

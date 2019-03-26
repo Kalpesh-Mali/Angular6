@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { Label } from '../models/label';
 
 @Injectable({
@@ -7,8 +7,9 @@ import { Label } from '../models/label';
 })
 export class HelperServiceService {
   public theme$: Subject<any> = new Subject();
-  public labels$:Label[];
+  // public labels$:Label[];
   public search$: Subject<any> = new Subject();
+  public label$: Label;
   
   constructor() { }
 
@@ -18,6 +19,14 @@ export class HelperServiceService {
 
   public getTheme() {
     return this.theme$;
+  }
+
+  public setLabel(label:Label) {
+    this.label$=(label)
+  }
+
+  public getLabel() :Label {
+    return this.label$;
   }
 
   // public setLabels(labels:Label[])

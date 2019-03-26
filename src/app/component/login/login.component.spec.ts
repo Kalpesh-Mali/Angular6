@@ -19,7 +19,20 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  // it('should create', () => {
+  //   expect(component).toBeTruthy();
+  // });
+
+//   it('should call auth login method', async(() => {
+//  let loginElement: DebugElement;
+//  const debugElement = fixture.debugElement;
+//  authService = debugElement.injector.get(AuthService);
+//  loginSpy = spyOn(authService , 'loginByUsernameAndPassword').and.callThrough();
+//  loginElement = fixture.debugElement.query(By.css('form'));
+//  // to set values
+//  component.loginForm.controls['username'].setValue('user');
+//  component.loginForm.controls['password'].setValue('123');
+//  loginElement.triggerEventHandler('ngSubmit', null);
+//  expect(loginSpy).toHaveBeenCalledTimes(1); // check that service is called once
+// }));
 });
