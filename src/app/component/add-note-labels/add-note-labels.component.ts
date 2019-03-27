@@ -51,10 +51,10 @@ export class AddNoteLabelsComponent implements OnInit {
   public labelFilter(event, noteLabels) {
     event.stopPropagation();
     this.newLabels.length = 0;
-    var k = 0;
-    for (var i = 0; i < this.labels.length; i++) {
+    let k = 0;
+    for (let i = 0; i < this.labels.length; i++) {
       var present = 0;
-      for (var j = 0; j < noteLabels.length; j++) {
+      for (let j = 0; j < noteLabels.length; j++) {
         if (this.labels[i].labelId === noteLabels[j].labelId && present === 0) {
           present = 1;
         }
@@ -64,6 +64,11 @@ export class AddNoteLabelsComponent implements OnInit {
         k++;
       }
     }
+    // this.labels.filter(label => noteLabels.filter(noteLabel => {
+    //   if (label.labelId !== noteLabel.labelId) {
+    //     this.newLabels.push(label);
+    //   }
+    // }))
   }
 
   public createNewLabel(filter, note) {

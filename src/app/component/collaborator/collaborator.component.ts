@@ -95,7 +95,6 @@ export class CollaboratorComponent implements OnInit {
   getCollaborateUser() {
     for (let i = 0; i < this.note.collaborators.length; i++) {
       var k = 0;
-      console.log(this.note.collaborators[i].userId);
       this.userService.getCollaborateUser(this.note.collaborators[i].userId).subscribe(
         user => {
           this.collabUsers[k] = user;
