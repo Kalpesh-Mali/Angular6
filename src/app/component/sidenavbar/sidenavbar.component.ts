@@ -57,9 +57,7 @@ export class SidenavbarComponent implements OnInit {
 
   notesWithList(label,path)
   {
-    this.helperService.setLabel(label);
-    console.log("sidenav::::::",label)
-    this.navigateTo(path);
+    this.router.navigate([path,label.labelName]);
   }
 
 }

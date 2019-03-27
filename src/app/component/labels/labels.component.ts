@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { NoteService } from 'src/app/core/service/note.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { HelperServiceService } from 'src/app/core/service/helper-service.service';
 import { Note } from 'src/app/core/models/note';
 import { Label } from 'src/app/core/models/label';
 import { Subject } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-labels',
@@ -17,18 +18,21 @@ export class LabelsComponent implements OnInit {
   public grid = false;
   public notes: Note[] = [];
   public newNotes: Note[] = [];
-  public label: Label;
+  public label;
 
 
-  constructor(private noteService: NoteService, private snackBar: MatSnackBar,
+  constructor(private noteService: NoteService, private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
     public dialog: MatDialog, private helperService: HelperServiceService) { }
 
   ngOnInit() {
-    this.helperService.getTheme().subscribe((resp) =>
-      this.grid = resp
-    );
-    this.label = this.helperService.getLabel();
-    this.getNotes();
+    this.route.params.subscribe((params) => {
+      this.label = params['labelName'];
+      this.helperService.getTheme().subscribe((resp) =>
+        this.grid = resp
+      );
+      this.getNotes();
+    });
   }
 
   public onUpdateNote(data) {
@@ -55,15 +59,11 @@ export class LabelsComponent implements OnInit {
   }
 
   public filterLabel(notes) {
-    let k = 0;
-    for (let i = 0; i < notes.length; i++) {
-      for (let j = 0; j < notes[i].labels.length; j++) {
-        if (this.label.labelName === notes[i].labels[j].labelName) {
-          this.newNotes[k] = notes[i];
-          k++;
-          break;
-        }
+    this.newNotes.length = 0;
+    notes.filter((note) => note.labels.filter((label) => {
+      if (this.label === label.labelName && !note.inTrash) {
+        this.newNotes.push(note);
       }
-    }
+    }))
   }
 }

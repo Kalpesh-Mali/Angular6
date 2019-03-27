@@ -54,7 +54,7 @@ const routes: Routes = [
         component: RemainderComponent
       },
       {
-        path: 'label',
+        path: 'label/:labelName',
         component: LabelsComponent
       },
       {
