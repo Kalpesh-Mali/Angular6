@@ -54,16 +54,9 @@ export class WelcomeComponent implements OnInit {
         this.imageData.imageSrc = null;
       }
     }, error => {
-      this.refreshPage();
-      // this.snackBar.open("error to download image", "error", { duration: 2000 });
+      console.log("error")
     }
     )
-  }
-
-  refreshPage() {
-    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
-    //   return false;
-    // };
   }
 
   openDialog(): void {

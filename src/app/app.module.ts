@@ -32,6 +32,7 @@ import { ChangeColorComponent } from './component/change-color/change-color.comp
 import { RemainderComponent } from './component/remainder/remainder.component';
 import { DynamicHoverClassDirective } from './directive/dynamic-hover-class.directive';
 import { LabelsComponent } from './component/labels/labels.component';
+import { AddImageComponent } from './component/add-image/add-image.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { LabelsComponent } from './component/labels/labels.component';
     RemainderComponent,
     DynamicHoverClassDirective,
     LabelsComponent,
+    AddImageComponent,
     
   ],
   entryComponents: [UpdatenoteComponent,TrashdailogComponent,EditLabelsComponent,

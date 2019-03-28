@@ -73,13 +73,30 @@ export class NoteService {
   }
 
   createCollaborator(noteId, userId) {
-    return this.httpUtil.postForCollaborator(`${environment.note_url}createcollaborator/`+noteId+'/'+userId, this.httpheaders()
+    return this.httpUtil.postForCollaborator(`${environment.note_url}createcollaborator/` + noteId + '/' + userId, this.httpheaders()
     )
   }
 
-  removeCollaborateUser(noteId,userId)
-  {
-    return this.httpUtil.removeCollaborateUser(`${environment.note_url}removecollaborator/`+userId+'/'+noteId);
+  removeCollaborateUser(noteId, userId) {
+    return this.httpUtil.removeCollaborateUser(`${environment.note_url}removecollaborator/` + userId + '/' + noteId);
   }
 
+  addImage(file, noteId) {
+    const formdata = new FormData();
+    formdata.append("file", file);
+    return this.httpUtil.postForAddImage(environment.note_url + 'photo/' + noteId, formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    })
+  }
+
+  // uploadImage(file): Observable<any> {
+  //   const formdata = new FormData();
+  //   formdata.append("file", file);
+  //   return this.httpUtil.postToUploadImage(environment.base_url + 'photo/' + this.token, formdata, {
+  //     reportProgress: true,
+  //     responseType: 'text'
+  //   }
+  //   );
+  // }
 }

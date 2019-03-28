@@ -6,6 +6,8 @@ import { NoteService } from 'src/app/core/service/note.service';
 import { FormControl } from '@angular/forms';
 import { Label } from 'src/app/core/models/label';
 import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pin-note',
@@ -23,14 +25,15 @@ export class PinNoteComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  selectedMoment =new Date();
+  selectedMoment = new Date();
   public min = new Date();
-    // public labels: Label[] = [];
   public newLabels: Label[] = [];
+  selectedFiles: File;
+  imageSrc: any;
 
 
   constructor(private noteService: NoteService, private snackBar: MatSnackBar,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     console.log(this.message);
@@ -82,7 +85,7 @@ export class PinNoteComponent implements OnInit {
   public dailogCollaborator(note) {
     const dialogRef = this.dialog.open(CollaboratorComponent, {
       width: '500px',
-      height:'250px',
+      height: '250px',
       data: note
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -96,19 +99,36 @@ export class PinNoteComponent implements OnInit {
     this.updateNoteEvent.emit(data);
   }
 
-  public saveRemainder(selectedMoment,note)
-  {
-    note.remainder=selectedMoment;
+  public saveRemainder(selectedMoment, note) {
+    note.remainder = selectedMoment;
     console.log(note.remainder);
     const data = { note }
     this.updateNoteEvent.emit(data);
   }
 
-  public removeRemainder(note)
-  {
-    note.remainder=null;
+  public removeRemainder(note) {
+    note.remainder = null;
     console.log(note.remainder);
     const data = { note }
     this.updateNoteEvent.emit(data);
+  }
+
+  public onFileChanged(event, note) {
+    this.selectedFiles = event.target.files[0];
+    this.uploadImage(note);
+  }
+
+  public uploadImage(note) {
+    this.noteService.addImage(this.selectedFiles, note.noteId).subscribe((resp) => {
+      console.log("image added")
+      const data = { note }
+      this.updateNoteEvent.emit(data);
+    }
+    );
+  }
+
+  public getImages(image, note): any {
+    const url = `data:${note.contentType};base64,${image}`;
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 }
