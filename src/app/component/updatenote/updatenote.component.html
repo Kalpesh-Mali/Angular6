@@ -5,13 +5,12 @@
   <button *ngIf="!data.pinned" mat-icon-button matTooltip="pin" (click)="pinned('pinned',data)" class="button">
     <img class="image" src="./assets/img/pinned.png" height="50%" id="imgRem">
   </button>
-  <div fxLayout="row" *ngFor="let image of data.images" class="imageNote">
-      <img [src]="getImages(image,data)" class="imageSize" (mouseover)="showDelete=true" 
-      (mouseout)="showDelete=false">
-      <mat-icon class="delete-icon" (click)=deleteImage(image,data)>
-        <span [hidden]="!showDelete">delete</span></mat-icon>
-  </div>
+
   <div class="notecard">
+    <div *ngFor="let image of data.images" class="imageNote">
+      <img [src]="getImages(image,data)" class="imageSize">
+      <mat-icon class="delete-icon" (click)=deleteImage(image,data)>delete</mat-icon>
+    </div>
     <div>
       <input class="noBorderAndBackground" matInput [(ngModel)]="data.title" [value]=data.title>
     </div>
@@ -48,9 +47,9 @@
       </button>
       <app-change-color [newNote]="data" (colorChange)="updateColor($event)"></app-change-color>
       <button mat-icon-button matTooltip="Add image">
-          <input style="display: none" type="file" (change)="onFileChanged($event,data)" #fileInput>
-          <mat-icon (click)="fileInput.click()">image</mat-icon>
-        </button>
+        <input style="display: none" type="file" (change)="onFileChanged($event,data)" #fileInput>
+        <mat-icon (click)="fileInput.click()">image</mat-icon>
+      </button>
       <button *ngIf="data.archive" mat-icon-button (click)="updateArchiveNote('',data)" matTooltip="Undo Archive">
         <mat-icon>unarchive</mat-icon>
       </button>

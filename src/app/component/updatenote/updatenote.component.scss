@@ -34,7 +34,7 @@ mat-card{
 
 .button{
   position: absolute;
-  right: 350px;
+  margin-left: 565px;
 }
 
 ::ng-deep.mat-dialog-container {
@@ -68,10 +68,22 @@ mat-card{
 
 .imageNote
   {
-    display:flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin:  0px 0px 2px 4px;
+    margin: 0px 11px;
     height: fit-content;
     width: 101px;
+    display: inline-flex;
   }
+
+  // .overlay {
+  //   position: absolute;
+  //   height: 100%;
+  //   width: 100%;
+  //   transition: .3s ease;
+  //   background-color:red;
+  // }
+  
+  // .container:hover .overlay {
+  //   opacity: 1;
+  // }

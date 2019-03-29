@@ -21,7 +21,7 @@
 
           </ng-template>
         </mat-expansion-panel-header>
-        <mat-panel-description>
+        <mat-panel-description class="title">
           <input matInput class="noBorderAndBackground" placeholder="Title" formControlName="title"
             [ngClass]="{ 'is-invalid': submitted && f.title.errors }" style="width: 500px;">
           <button mat-icon-button (click)="pinnedNoteSave(createNoteForm.value)" matTooltip="pin">
