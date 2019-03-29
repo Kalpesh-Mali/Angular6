@@ -90,13 +90,8 @@ export class NoteService {
     })
   }
 
-  // uploadImage(file): Observable<any> {
-  //   const formdata = new FormData();
-  //   formdata.append("file", file);
-  //   return this.httpUtil.postToUploadImage(environment.base_url + 'photo/' + this.token, formdata, {
-  //     reportProgress: true,
-  //     responseType: 'text'
-  //   }
-  //   );
-  // }
+  removeImage(imagesId)
+  {
+    return this.httpUtil.removeImage(environment.note_url + 'photo/' + imagesId);
+  }
 }

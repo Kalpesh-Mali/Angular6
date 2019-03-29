@@ -83,4 +83,9 @@ export class HttpService {
   {
     return this.http.post<any>(url,param,header);
   }
+
+  removeImage(url)
+  {
+    return this.http.delete<any>(url,{});
+  }
 }

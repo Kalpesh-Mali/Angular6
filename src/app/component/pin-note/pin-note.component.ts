@@ -41,7 +41,7 @@ export class PinNoteComponent implements OnInit {
 
   public openDialog(note): void {
     const dialogRef = this.dialog.open(UpdatenoteComponent, {
-      width: '500px',
+      width: '600px',
       data: note
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -128,7 +128,7 @@ export class PinNoteComponent implements OnInit {
   }
 
   public getImages(image, note): any {
-    const url = `data:${note.contentType};base64,${image}`;
+    const url = `data:${note.contentType};base64,${image.images}`;
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 }

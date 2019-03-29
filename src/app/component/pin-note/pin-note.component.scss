@@ -3,11 +3,28 @@
     right: 10px;
   }
 
+  .imageSize
+  {
+    height:40%;
+     width:74%
+  };
+
+.image 
+    {
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 2px -11px;
+      height: fit-content;
+      width: 101px;
+    }
+
+
 :host {
     .gk {
     &-container {
       margin: 10px 20px;
     }
+    
       &-grid-view {
         display: flex;
         flex-direction: row;
@@ -17,6 +34,12 @@
           width:300px;
           position: relative;
           box-shadow: 0 14px 28px rgba(110, 108, 108, 0.22), 0 10px 10px rgba(110, 108, 108, 0.22);
+        }
+        mat-card-header{
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          margin: 4px 16px 14px 0px;
         }
       }
       &-list-view {
@@ -28,6 +51,12 @@
           width:500px;
           position: relative;
           box-shadow: 0 14px 28px rgba(110, 108, 108, 0.22), 0 10px 10px rgba(110, 108, 108, 0.22);
+        }
+        mat-card-header{
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          margin: 4px 16px 14px 0px;
         }
       }
     }
