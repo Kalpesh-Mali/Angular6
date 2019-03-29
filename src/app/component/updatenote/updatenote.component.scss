@@ -64,6 +64,7 @@ mat-card{
   height: 24px;
   width: 24px;
   margin-left: -21px;
+  visibility: hidden;
 }
 
 .imageNote
@@ -76,14 +77,7 @@ mat-card{
     display: inline-flex;
   }
 
-  // .overlay {
-  //   position: absolute;
-  //   height: 100%;
-  //   width: 100%;
-  //   transition: .3s ease;
-  //   background-color:red;
-  // }
-  
-  // .container:hover .overlay {
-  //   opacity: 1;
-  // }
+.imageNote:hover .delete-icon{
+    opacity: 1;
+    visibility: visible;
+}
