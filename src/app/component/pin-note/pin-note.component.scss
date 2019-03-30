@@ -67,6 +67,16 @@
     background-color: transparent;
 }
 
+.gk-container:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+// .mouseover
+// {
+//   opacity: 1;
+//   visibility: hidden;
+// }
 
 // .container {
 //   @include display(none);
