@@ -24,7 +24,7 @@ export class NoteService {
   constructor(private httpUtil: HttpService, private router: Router, public snackBar: MatSnackBar) { }
 
   retrieveNotes(): Observable<any> {
-    return this.httpUtil.getService(environment.note_url + 'retrievenote', this.httpheaders());
+    return this.httpUtil.getService(environment.note_url + 'notes', this.httpheaders());
   }
 
   createNote(note): Observable<any> {
@@ -33,31 +33,31 @@ export class NoteService {
 
 
   updateNote(note, id) {
-    return this.httpUtil.putForNoteUpdate(environment.note_url + 'updatenote/' + id, note, this.httpheaders());
+    return this.httpUtil.putForNoteUpdate(environment.note_url + id, note, this.httpheaders());
   }
 
   deleteNote(id) {
-    return this.httpUtil.deleteForNoteDelete(environment.note_url + 'deletenote/' + id, this.httpheaders());
+    return this.httpUtil.deleteForNoteDelete(environment.note_url + id, this.httpheaders());
   }
 
   retrieveLabels(): Observable<any> {
-    return this.httpUtil.getService(environment.note_url + 'retrievelabel', this.httpheaders());
+    return this.httpUtil.getService(environment.note_url + 'labels', this.httpheaders());
   }
 
   updateLabel(label, id) {
-    return this.httpUtil.putForLabelUpdate(environment.note_url + 'updatelabel/' + id, label, this.httpheaders());
+    return this.httpUtil.putForLabelUpdate(environment.note_url + 'label/' + id, label, this.httpheaders());
   }
 
   deleteLabel(id) {
-    return this.httpUtil.deleteForLabelDelete(environment.note_url + 'deletelabel/' + id, this.httpheaders());
+    return this.httpUtil.deleteForLabelDelete(environment.note_url + 'label/' + id, this.httpheaders());
   }
 
   createLabel(label): Observable<any> {
-    return this.httpUtil.postForLabelCreate(environment.note_url + 'createlabel', label, this.httpheaders());
+    return this.httpUtil.postForLabelCreate(environment.note_url + 'label', label, this.httpheaders());
   }
 
   removeLabelFromNote(noteId, labelId) {
-    return this.httpUtil.deleteForRemoveLabelFromNote(`${environment.note_url}removenotelabel/`, {
+    return this.httpUtil.deleteForRemoveLabelFromNote(`${environment.note_url}labelnote/`, {
       params: {
         noteId: noteId,
         labelId: labelId,
@@ -68,17 +68,17 @@ export class NoteService {
   }
 
   addLabelToNote(noteId, label) {
-    return this.httpUtil.addForAddLabelFromNote(`${environment.note_url}addnotelabel/` + noteId, label
+    return this.httpUtil.addForAddLabelFromNote(`${environment.note_url}labelnote/` + noteId, label
     )
   }
 
   createCollaborator(noteId, userId) {
-    return this.httpUtil.postForCollaborator(`${environment.note_url}createcollaborator/` + noteId + '/' + userId, this.httpheaders()
+    return this.httpUtil.postForCollaborator(`${environment.note_url}collaborator/` + noteId + '/' + userId, this.httpheaders()
     )
   }
 
   removeCollaborateUser(noteId, userId) {
-    return this.httpUtil.removeCollaborateUser(`${environment.note_url}removecollaborator/` + userId + '/' + noteId);
+    return this.httpUtil.removeCollaborateUser(`${environment.note_url}collaborator/` + userId + '/' + noteId);
   }
 
   addImage(file, noteId) {
